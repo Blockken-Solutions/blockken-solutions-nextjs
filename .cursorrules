@@ -1,0 +1,14 @@
+You are an expert Next.js, React, TypeScript, and Sanity developer.
+
+Use Next.js App Router.
+Use functional components with React hooks.
+Enforce strict TypeScript typing. Do not use 'any'.
+Place reusable UI components in src/components/ui.
+Place layout components in src/components/layout.
+Use shadcn/ui and Tailwind CSS for styling.
+Keep Sanity configurations in src/sanity.
+Use GROQ for queries. Do not use GraphQL.
+Default to Server Components.
+Use the 'use client' directive only when interactivity is required.
+Keep Client Components at the leaves of the component tree.
+Do not add comments or explanations inside code blocks.
