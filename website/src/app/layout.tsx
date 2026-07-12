@@ -3,9 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { getSiteSettings } from "@/sanity/fetch";
-import { buildPageMetadata, toNextMetadata } from "@/sanity/metadata";
+import { createMetadata } from "@/lib/metadata";
+import { buildSiteGraph } from "@/lib/structured-data";
 
 import "./globals.css";
 
@@ -19,33 +20,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const siteSettings = await getSiteSettings();
+export const metadata: Metadata = createMetadata();
 
-  return toNextMetadata(
-    buildPageMetadata(null, siteSettings),
-    siteSettings,
-  );
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteSettings = await getSiteSettings();
-
   return (
     <html
-      lang="en"
+      lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        <JsonLd data={buildSiteGraph()} />
         <ThemeProvider>
-          <SiteHeader siteSettings={siteSettings} />
+          <SiteHeader />
           <main className="flex-1">{children}</main>
-          <SiteFooter siteSettings={siteSettings} />
+          <SiteFooter />
         </ThemeProvider>
       </body>
     </html>

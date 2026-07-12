@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,6 +42,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-brand-orange: var(--brand-orange);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -53,11 +53,12 @@
 }
 
 :root {
-  --brand-primary: oklch(0.205 0 0);
+  --brand-primary: oklch(0.145 0 0);
   --brand-accent: oklch(0.556 0 0);
-  --brand-radius: 0.625rem;
+  --brand-orange: oklch(0.68 0.19 45);
+  --brand-radius: 1rem;
 
-  --section-py: 4rem;
+  --section-py: 5rem;
   --container-max: 72rem;
   --container-px: 1.5rem;
 
@@ -67,7 +68,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: var(--brand-primary);
+  --primary: var(--brand-orange);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -135,8 +136,69 @@
   }
   body {
     @apply bg-background text-foreground;
+    overscroll-behavior-y: none;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 6rem;
+    overscroll-behavior-y: none;
+  }
+  section[id],
+  [id="contact"] {
+    scroll-margin-top: 6rem;
+  }
+
+  [data-slot="button"].btn-orange,
+  [data-slot="button"][data-variant="orange"] {
+    border: none;
+    box-shadow:
+      0 4px 14px oklch(0.68 0.19 45 / 30%),
+      0 2px 6px oklch(0.68 0.19 45 / 18%);
+    transition:
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  [data-slot="button"].btn-orange:hover,
+  [data-slot="button"][data-variant="orange"]:hover {
+    border: none;
+    background-color: var(--brand-orange);
+    box-shadow:
+      0 6px 20px oklch(0.68 0.19 45 / 45%),
+      0 0 36px oklch(0.68 0.19 45 / 38%),
+      0 0 72px oklch(0.68 0.19 45 / 22%);
+  }
+
+  [data-slot="button"].btn-orange:focus-visible,
+  [data-slot="button"][data-variant="orange"]:focus-visible {
+    border: none;
+    outline: none;
+    box-shadow:
+      0 6px 20px oklch(0.68 0.19 45 / 45%),
+      0 0 36px oklch(0.68 0.19 45 / 38%),
+      0 0 0 3px oklch(0.68 0.19 45 / 30%);
+  }
+}
+
+@layer utilities {
+  .shadow-orange-glow {
+    box-shadow:
+      0 4px 14px oklch(0.68 0.19 45 / 35%),
+      0 2px 6px oklch(0.68 0.19 45 / 20%);
+  }
+
+  .glass-pill {
+    background: oklch(1 0 0 / 75%);
+    backdrop-filter: blur(12px);
+    border: 1px solid oklch(0.922 0 0 / 80%);
+    box-shadow:
+      0 1px 3px oklch(0 0 0 / 4%),
+      0 4px 12px oklch(0 0 0 / 6%);
+  }
+
+  .section-overlap {
+    margin-top: -1.5rem;
+    position: relative;
+    z-index: 1;
   }
 }

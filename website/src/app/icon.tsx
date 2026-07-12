@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+
 import { ImageResponse } from "next/og";
 
 export const size = {
@@ -7,7 +9,20 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default function Icon() {
+const BRAND_ORANGE = "#f97316";
+const FOREGROUND = "#262626";
+
+async function loadGeistBold(): Promise<ArrayBuffer> {
+  const font = await readFile(
+    new URL("../assets/fonts/Geist-Bold.ttf", import.meta.url),
+  );
+
+  return font.buffer.slice(font.byteOffset, font.byteOffset + font.byteLength);
+}
+
+export default async function Icon() {
+  const geistBold = await loadGeistBold();
+
   return new ImageResponse(
     (
       <div
@@ -17,16 +32,28 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#18181b",
-          color: "#fafafa",
-          fontSize: 18,
+          background: "#ffffff",
+          fontFamily: "Geist",
+          fontSize: 15,
           fontWeight: 700,
-          borderRadius: 8,
+          letterSpacing: "-0.025em",
         }}
       >
-        S
+        <span style={{ color: FOREGROUND }}>B</span>
+        <span style={{ color: BRAND_ORANGE }}>.</span>
+        <span style={{ color: FOREGROUND }}>S</span>
       </div>
     ),
-    size,
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Geist",
+          data: geistBold,
+          style: "normal",
+          weight: 700,
+        },
+      ],
+    },
   );
 }

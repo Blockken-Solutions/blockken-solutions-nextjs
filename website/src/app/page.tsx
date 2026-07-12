@@ -1,37 +1,22 @@
-import type { Metadata } from "next";
+import { AboutSection } from "@/components/landing/about-section";
+import { AgentPreview } from "@/components/landing/agent-preview";
+import { FaqTeaser } from "@/components/landing/faq-teaser";
+import { FooterCta } from "@/components/landing/footer-cta";
+import { Hero } from "@/components/landing/hero";
+import { ScanLeadMagnet } from "@/components/landing/scan-lead-magnet";
+import { ServicesBento } from "@/components/landing/services-bento";
+import { home } from "@/content/home";
 
-import { PageContent } from "@/components/page-content";
-import {
-  getHomePage,
-  getProjects,
-  getSiteSettings,
-} from "@/sanity/fetch";
-import { buildPageMetadata, toNextMetadata } from "@/sanity/metadata";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const [page, siteSettings] = await Promise.all([
-    getHomePage(),
-    getSiteSettings(),
-  ]);
-
-  return toNextMetadata(
-    buildPageMetadata(page, siteSettings, "/"),
-    siteSettings,
-  );
-}
-
-export default async function Home() {
-  const [page, siteSettings, projects] = await Promise.all([
-    getHomePage(),
-    getSiteSettings(),
-    getProjects(),
-  ]);
-
+export default function Home() {
   return (
-    <PageContent
-      page={page}
-      siteSettings={siteSettings}
-      projects={projects}
-    />
+    <>
+      <Hero content={home.hero} />
+      <ServicesBento content={home.services} />
+      <AgentPreview content={home.agents} />
+      <ScanLeadMagnet content={home.scan} />
+      <AboutSection content={home.about} />
+      <FaqTeaser content={home.faqTeaser} />
+      <FooterCta content={home.footerCta} />
+    </>
   );
 }

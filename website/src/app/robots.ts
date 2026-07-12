@@ -1,19 +1,39 @@
 import type { MetadataRoute } from "next";
 
-import { getMetadataBase } from "@/sanity/metadata";
-import { getSiteSettings } from "@/sanity/fetch";
+import { getMetadataBase } from "@/lib/metadata";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const siteSettings = await getSiteSettings();
-  const metadataBase = getMetadataBase(siteSettings);
+export default function robots(): MetadataRoute.Robots {
+  const metadataBase = getMetadataBase();
+  const sitemapUrl = new URL("/sitemap.xml", metadataBase).toString();
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: metadataBase
-      ? new URL("/sitemap.xml", metadataBase).toString()
-      : undefined,
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "GPTBot",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "ClaudeBot",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+    ],
+    sitemap: sitemapUrl,
   };
 }

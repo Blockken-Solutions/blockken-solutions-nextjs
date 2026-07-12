@@ -3,14 +3,16 @@ import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
 type SectionProps = ComponentPropsWithoutRef<"section"> & {
-  variant?: "default" | "muted" | "card";
+  variant?: "default" | "muted" | "card" | "elevated";
   containerClassName?: string;
+  overlap?: boolean;
 };
 
 export function Section({
   className,
   containerClassName,
   variant = "default",
+  overlap = false,
   children,
   ...props
 }: SectionProps) {
@@ -20,6 +22,9 @@ export function Section({
         "px-[var(--container-px)] py-[var(--section-py)]",
         variant === "muted" && "bg-muted",
         variant === "card" && "border-b border-border bg-card",
+        variant === "elevated" &&
+          "rounded-t-3xl bg-card shadow-[0_-8px_30px_-12px_oklch(0_0_0/8%)]",
+        overlap && "section-overlap",
         className,
       )}
       {...props}
