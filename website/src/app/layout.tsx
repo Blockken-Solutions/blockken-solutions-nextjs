@@ -5,7 +5,6 @@ import { HashScrollHandler } from "@/components/layout/hash-scroll-handler";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
-import { ThemeProvider } from "@/components/theme/theme-provider";
 import { createMetadata } from "@/lib/metadata";
 import { buildSiteGraph } from "@/lib/structured-data";
 
@@ -32,7 +31,6 @@ export default function RootLayout({
     <html
       lang="nl-BE"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
         <a
@@ -42,14 +40,12 @@ export default function RootLayout({
           Ga naar inhoud
         </a>
         <JsonLd data={buildSiteGraph()} />
-        <ThemeProvider>
-          <HashScrollHandler />
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </ThemeProvider>
+        <HashScrollHandler />
+        <SiteHeader />
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );
