@@ -5,6 +5,7 @@ import { useCallback } from "react";
 
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { SectionLabel } from "@/components/landing/section-label";
+import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { ScanTeaserContent } from "@/content/types";
 import { scanWithUrl } from "@/lib/paths";
@@ -24,17 +25,15 @@ export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
   );
 
   return (
-    <Section id="gratis-scan" variant="elevated" overlap>
-      <div className="mx-auto max-w-4xl rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-12">
-        <div className="text-center">
-          <SectionLabel>{content.sectionLabel}</SectionLabel>
-          <SectionHeading className="text-3xl font-bold sm:text-4xl">
-            {content.heading}
-          </SectionHeading>
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            {content.description}
-          </p>
-        </div>
+    <Section id="gratis-scan" variant="muted">
+      <div className="mx-auto max-w-4xl text-center">
+        <SectionLabel>{content.sectionLabel}</SectionLabel>
+        <SectionHeading className="text-3xl font-bold sm:text-4xl">
+          {content.heading}
+        </SectionHeading>
+        <SectionDescription className="mx-auto mt-4 max-w-2xl">
+          {content.description}
+        </SectionDescription>
 
         <ScanUrlForm
           inputPlaceholder={content.inputPlaceholder}

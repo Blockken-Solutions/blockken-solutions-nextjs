@@ -20,7 +20,28 @@ npm install
 npm run dev
 ```
 
-The site runs at [http://localhost:3000](http://localhost:3000). No environment variables are required.
+The site runs at [http://localhost:3000](http://localhost:3000).
+
+### Environment variables
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `GOOGLE_PAGESPEED_API_KEY` | For `/gratis-scan` | Google PageSpeed Insights API key (server-only) |
+| `RESEND_API_KEY` | For contact form | Email delivery via Resend |
+| `CONTACT_EMAIL_TO` | Optional | Recipient for contact form submissions |
+
+#### PageSpeed Insights API key setup
+
+1. Create a project in [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable the **PageSpeed Insights API**
+3. Create an API key under APIs & Services → Credentials
+4. Restrict the key:
+   - **Application restrictions:** HTTP referrers
+   - **Referrers:** `blockken.solutions/*`, `*.netlify.app/*`, `localhost:*`
+   - **API restrictions:** PageSpeed Insights API only
+5. Add `GOOGLE_PAGESPEED_API_KEY` to Netlify environment variables (Site settings → Environment variables)
+
+The scan runs client-side in the browser (no server proxy), so it works on Netlify Free without function timeout limits.
 
 ## Content
 

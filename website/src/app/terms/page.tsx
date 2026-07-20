@@ -9,5 +9,12 @@ export const metadata = createMetadata({
 });
 
 export default function TermsPage() {
-  return <LegalPage content={termsPage} pathname="/terms" />;
+  return (
+    <LegalPage
+      content={termsPage}
+      pathname="/terms"
+      alternateLegalHref="/privacy"
+      alternateLegalLabel="Bekijk privacybeleid"
+    />
+  );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 
 import { SectionLabel } from "@/components/landing/section-label";
+import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { AboutContent } from "@/content/types";
 import { getIcon } from "@/lib/icons";
@@ -12,7 +13,7 @@ type AboutSectionProps = {
 
 export function AboutSection({ content }: AboutSectionProps) {
   return (
-    <Section id="over-mij">
+    <Section id="over-mij" overlap overhang>
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="mx-auto w-full max-w-sm lg:mx-0">
           <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-muted">
@@ -43,12 +44,17 @@ export function AboutSection({ content }: AboutSectionProps) {
                     <Icon className="size-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+                    <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
                       {credential.type}
                     </p>
                     <p className="text-sm font-semibold leading-snug text-foreground">
                       {credential.label}
                     </p>
+                    {credential.issuer ? (
+                      <p className="text-xs text-muted-foreground">
+                        {[credential.issuer, credential.year].filter(Boolean).join(" · ")}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
               );
@@ -61,7 +67,7 @@ export function AboutSection({ content }: AboutSectionProps) {
           <SectionHeading className="text-3xl font-bold sm:text-4xl">
             {content.heading}
           </SectionHeading>
-          <p className="mt-6 text-base leading-relaxed text-muted-foreground">{content.body}</p>
+          <SectionDescription className="mt-6">{content.body}</SectionDescription>
 
           <ul className="mt-8 space-y-4">
             {content.skills.map((skill) => (

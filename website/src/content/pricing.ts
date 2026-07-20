@@ -6,12 +6,14 @@ export const pricing: PricingContent = {
   heading: "Transparante pakketten voor elke fase van uw groei.",
   subheading:
     "Kies het pakket dat past bij uw ambities — van een solide online basis tot volledig digitaal maatwerk.",
+  extraAgentNote:
+    "Een extra kant-en-klare agent kost vanaf € 499 eenmalige setup plus € 49/mnd — hetzelfde tarief als elke kant-en-klare agent uit onze bibliotheek. In Slimme Groei zit één kant-en-klare agent inbegrepen.",
   tiers: [
     {
       id: "digitale-fundering",
       name: "Digitale Fundering",
       audience:
-        "Bedrijven die een snelle, professionele basis willen zonder technisch gedoe.",
+        "Voor bedrijven die een snelle, professionele basis willen zonder technisch gedoe.",
       setup: {
         label: "Setup (Eenmalig)",
         price: "Vanaf € 999",
@@ -40,7 +42,7 @@ export const pricing: PricingContent = {
       id: "slimme-groei",
       name: "Slimme Groei",
       audience:
-        "Ondernemers die handwerk willen elimineren met slimme automatisering.",
+        "Voor bedrijven die handwerk willen elimineren met slimme automatisering.",
       setup: {
         label: "Setup (Eenmalig)",
         price: "Vanaf € 1.899",
@@ -48,7 +50,7 @@ export const pricing: PricingContent = {
           "Alles uit de Digitale Fundering",
           "AI-Vindbaarheid (AI SEO)",
           "Dynamische Social Previews",
-          "1 AI-Assistent uit de bibliotheek (bijv. Factuur Extractor of 24/7 Klantenservice)",
+          "1 AI-Assistent uit de bibliotheek (bijv. Factuur Extractor of Support Agent 24/7)",
         ],
       },
       subscription: {
@@ -70,13 +72,13 @@ export const pricing: PricingContent = {
       id: "digitaal-maatwerk",
       name: "Digitaal Maatwerk",
       audience:
-        "Gevestigde KMO's met complexe processen en bestaande software.",
+        "Voor bedrijven met complexe processen en bestaande software.",
       setup: {
         label: "Setup (Eenmalig)",
         price: "Vanaf € 3.500",
         features: [
           "Alles uit Slimme Groei",
-          "Systeem Integraties (Teamleader, Exact Online)",
+          "Systeem Integraties (Teamleader, Exact Online, Yuki, Billit)",
           "Custom AI & Functionaliteiten",
         ],
       },
@@ -86,7 +88,7 @@ export const pricing: PricingContent = {
         features: [
           "Alles uit het Slimme Groei abonnement",
           "API & Connectie-beheer",
-          "Priority Support",
+          "Prioritaire support",
         ],
       },
       cta: {
@@ -95,21 +97,4 @@ export const pricing: PricingContent = {
       },
     },
   ],
-  addons: {
-    heading: "Uitbreidingen & Add-ons",
-    items: [
-      {
-        name: "Geautomatiseerde Lead Magneet",
-        price: "+ € 250,- eenmalig",
-      },
-      {
-        name: "Extra Standaard AI-Agent",
-        price: "+ € 499,- setup / + € 49,- per maand",
-      },
-      {
-        name: "Volledig op maat gemaakte AI-Agent",
-        price: "Prijs op aanvraag",
-      },
-    ],
-  },
 };

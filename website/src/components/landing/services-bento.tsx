@@ -1,4 +1,8 @@
+import Link from "next/link";
+
+import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
+import { SectionDescription } from "@/components/ui/section-description";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { ServicesContent } from "@/content/types";
@@ -24,14 +28,31 @@ export function ServicesBento({ content }: ServicesBentoProps) {
           return (
             <li key={item.title}>
               <Card className="h-full rounded-3xl border-border/80 py-0 shadow-sm">
-                <CardContent className="p-8">
+                <CardContent className="flex h-full flex-col p-8">
                   <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-brand-orange/10">
-                    <Icon className="size-5 text-brand-orange" />
+                    <Icon className="size-5 text-brand-orange" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <SectionDescription className="mt-3">{item.description}</SectionDescription>
+                  {item.href ? (
+                    <div className="mt-auto pt-6">
+                      {item.href.startsWith("/#") ? (
+                        <SectionLink
+                          href={item.href}
+                          className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                        >
+                          {item.linkLabel ?? "Meer info →"}
+                        </SectionLink>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                        >
+                          {item.linkLabel ?? "Meer info →"}
+                        </Link>
+                      )}
+                    </div>
+                  ) : null}
                 </CardContent>
               </Card>
             </li>

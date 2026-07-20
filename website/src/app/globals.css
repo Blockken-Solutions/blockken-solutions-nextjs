@@ -60,6 +60,10 @@
   --brand-radius: 1rem;
 
   --section-py: 5rem;
+  --section-overlap-ratio: 0.5;
+  --section-shadow-top: 0 -12px 36px -6px oklch(0 0 0 / 14%);
+  --section-shadow-bottom: 0 16px 40px -8px oklch(0 0 0 / 16%);
+  --section-shadow-inset: inset 0 10px 24px -14px oklch(0 0 0 / 10%);
   --section-fade-size: 3.5rem;
   --container-max: 72rem;
   --container-px: 1.5rem;
@@ -140,7 +144,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-base text-foreground;
     overscroll-behavior-y: none;
   }
   html {
@@ -148,6 +152,13 @@
     scroll-padding-top: var(--header-offset);
     overscroll-behavior-y: none;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   section[id],
   [id="contact"] {
     scroll-margin-top: var(--header-offset);
@@ -217,5 +228,27 @@
       var(--section-muted) calc(100% - var(--section-fade-size)),
       var(--background) 100%
     );
+  }
+
+  .section-overlap {
+    margin-top: calc(var(--section-py) * var(--section-overlap-ratio) * -1);
+  }
+
+  .section-shadow-top {
+    box-shadow: var(--section-shadow-top);
+  }
+
+  .section-shadow-bottom {
+    box-shadow: var(--section-shadow-bottom);
+  }
+
+  .section-shadow-top.section-shadow-bottom {
+    box-shadow: var(--section-shadow-top), var(--section-shadow-bottom);
+  }
+
+  .section-recessed {
+    position: relative;
+    z-index: 0;
+    box-shadow: var(--section-shadow-inset);
   }
 }

@@ -1,15 +1,25 @@
+import Link from "next/link";
+
 import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { SectionDescription } from "@/components/ui/section-description";
+import { Section, PageHeading } from "@/components/ui/section";
 import type { LegalPageContent } from "@/content/types";
 import { buildWebPageSchema } from "@/lib/structured-data";
 
 type LegalPageProps = {
   content: LegalPageContent;
   pathname: string;
+  alternateLegalHref?: string;
+  alternateLegalLabel?: string;
 };
 
-export function LegalPage({ content, pathname }: LegalPageProps) {
+export function LegalPage({
+  content,
+  pathname,
+  alternateLegalHref,
+  alternateLegalLabel,
+}: LegalPageProps) {
   return (
     <>
       <JsonLd
@@ -21,9 +31,20 @@ export function LegalPage({ content, pathname }: LegalPageProps) {
       />
       <Section containerClassName="max-w-3xl">
         <BackToHomeLink className="mb-6" />
-        <SectionHeading className="text-4xl font-bold">
+        <PageHeading className="text-4xl font-bold">
           {content.title}
-        </SectionHeading>
+        </PageHeading>
+
+        {alternateLegalHref && alternateLegalLabel ? (
+          <p className="mt-4 text-sm text-muted-foreground">
+            <Link
+              href={alternateLegalHref}
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              {alternateLegalLabel}
+            </Link>
+          </p>
+        ) : null}
 
         <article className="mt-10 space-y-8">
           {content.sections.map((section) => (
@@ -32,15 +53,12 @@ export function LegalPage({ content, pathname }: LegalPageProps) {
                 {section.heading}
               </h2>
               {section.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="mt-3 leading-relaxed text-muted-foreground"
-                >
+                <SectionDescription key={paragraph} className="mt-3">
                   {paragraph}
-                </p>
+                </SectionDescription>
               ))}
               {section.list ? (
-                <ul className="mt-3 list-disc space-y-2 pl-6 text-muted-foreground">
+                <ul className="mt-3 list-disc space-y-2 pl-6 text-base leading-relaxed text-muted-foreground">
                   {section.list.map((item) => (
                     <li key={item}>{item}</li>
                   ))}

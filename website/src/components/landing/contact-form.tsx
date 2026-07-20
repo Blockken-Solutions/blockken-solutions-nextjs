@@ -58,6 +58,32 @@ export function ContactForm() {
     }));
   }, [agentSlug, agentTitle]);
 
+  useEffect(() => {
+    const scanUrl = searchParams.get("scan");
+    if (!scanUrl) return;
+
+    const performance = searchParams.get("perf");
+    const seo = searchParams.get("seo");
+    const accessibility = searchParams.get("a11y");
+    const bestPractices = searchParams.get("bp");
+
+    const scoreLines = [
+      performance ? `Performance: ${performance}/100` : null,
+      seo ? `SEO: ${seo}/100` : null,
+      accessibility ? `Toegankelijkheid: ${accessibility}/100` : null,
+      bestPractices ? `Best practices: ${bestPractices}/100` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    setFormData((current) => ({
+      ...current,
+      message:
+        current.message ||
+        `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe jullie mijn website kunnen verbeteren.`,
+    }));
+  }, [searchParams]);
+
   function updateField<K extends keyof ContactFormValues>(
     field: K,
     value: ContactFormValues[K],
@@ -136,7 +162,7 @@ export function ContactForm() {
     return (
       <div className="rounded-2xl border border-border bg-muted/50 px-6 py-8 text-center">
         <p className="text-lg font-semibold text-foreground">Bedankt voor uw bericht!</p>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
           Ik neem zo snel mogelijk contact met u op.
         </p>
       </div>
@@ -146,14 +172,21 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left">
       {agentTitle ? (
-        <p className="rounded-xl border border-brand-orange/20 bg-brand-orange/5 px-4 py-3 text-sm text-foreground">
+        <p className="rounded-xl border border-brand-orange/20 bg-brand-orange/5 px-4 py-3 text-base text-foreground">
           Demo-aanvraag voor: <span className="font-semibold">{agentTitle}</span>
+        </p>
+      ) : null}
+
+      {searchParams.get("scan") ? (
+        <p className="rounded-xl border border-brand-orange/20 bg-brand-orange/5 px-4 py-3 text-base text-foreground">
+          Scan-resultaten voor:{" "}
+          <span className="font-semibold">{searchParams.get("scan")}</span>
         </p>
       ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-1.5">
-          <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
+          <label htmlFor="contact-name" className="text-base font-medium text-foreground">
             Naam *
           </label>
           <Input
@@ -176,7 +209,7 @@ export function ContactForm() {
         </div>
 
         <div className="space-y-1.5">
-          <label htmlFor="contact-email" className="text-sm font-medium text-foreground">
+          <label htmlFor="contact-email" className="text-base font-medium text-foreground">
             E-mail *
           </label>
           <Input
@@ -201,7 +234,7 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="contact-company" className="text-sm font-medium text-foreground">
+        <label htmlFor="contact-company" className="text-base font-medium text-foreground">
           Bedrijf
         </label>
         <Input
@@ -216,7 +249,7 @@ export function ContactForm() {
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
+        <label htmlFor="contact-message" className="text-base font-medium text-foreground">
           Bericht *
         </label>
         <textarea
@@ -231,7 +264,7 @@ export function ContactForm() {
             showFieldError("message") ? "contact-message-error" : undefined
           }
           className={cn(
-            "w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm transition-colors outline-none",
+            "w-full rounded-lg border border-input bg-transparent px-3 py-2 text-base transition-colors outline-none",
             "placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
             showFieldError("message") &&
               "border-destructive ring-3 ring-destructive/20",

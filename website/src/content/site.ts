@@ -5,20 +5,26 @@ export const site = {
   url: "https://blockken.solutions",
   footerTagline: "Gebouwd in België.",
   language: "nl-BE",
-  lastModified: "2026-07-12",
+  lastModified: "2026-07-20",
   seo: {
     title: "blockken.solutions — Web, AI & Automatisering voor KMO's",
     description:
       "Razendsnelle webapplicaties en slimme AI-agents voor Belgische KMO's. Plan een gratis strategiegesprek en ontdek wat automatisering u oplevert.",
   },
+  legal: {
+    tradeName: "blockken.solutions",
+    responsiblePerson: "Wouter Blockken",
+    jurisdiction: "Oost-Vlaanderen",
+  },
   organization: {
     name: "blockken.solutions",
     url: "https://blockken.solutions",
-    logo: "https://blockken.solutions/icon",
+    logo: "https://blockken.solutions/logo.svg",
     email: "wouter@blockken.solutions",
     address: {
       addressCountry: "BE",
       addressLocality: "België",
+      addressRegion: "Vlaanderen",
     },
     sameAs: [
       "https://www.linkedin.com/in/wouter-blockken",
@@ -32,8 +38,8 @@ export const site = {
       "https://www.linkedin.com/in/wouter-blockken",
     ],
     credentials: [
-      "AI Technology Architect",
-      "Certified Fullstack Developer",
+      "AI Technology Architect (Howest, 2024)",
+      "Gecertificeerd Fullstack Developer",
     ],
   },
   contact: {

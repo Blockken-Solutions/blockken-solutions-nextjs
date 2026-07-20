@@ -53,7 +53,13 @@ export const termsPage: LegalPageContent = {
     {
       heading: "8. Toepasselijk recht",
       paragraphs: [
-        "Op deze voorwaarden is het Belgisch recht van toepassing. Geschillen worden bij voorkeur in onderling overleg opgelost. Indien nodig zijn de rechtbanken van het arrondissement waar blockken.solutions is gevestigd bevoegd.",
+        "Op deze voorwaarden is het Belgisch recht van toepassing. Geschillen worden bij voorkeur in onderling overleg opgelost. Indien nodig zijn de rechtbanken van het arrondissement Oost-Vlaanderen bevoegd.",
+      ],
+    },
+    {
+      heading: "9. Identificatie",
+      paragraphs: [
+        "Handelsnaam: blockken.solutions. Verantwoordelijke: Wouter Blockken. Vestigingsregio: Vlaanderen, België. Contact: wouter@blockken.solutions.",
       ],
     },
   ],

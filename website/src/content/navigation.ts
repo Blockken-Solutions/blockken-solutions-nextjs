@@ -30,6 +30,8 @@ export const navSectionIds = navLinks
   .map((link) => link.sectionId as string);
 
 export const footerLinks: NavLink[] = [
+  { label: "Prijzen", href: homeSection("prijzen"), type: "section", sectionId: "prijzen" },
+  { label: "Over mij", href: homeSection("over-mij"), type: "section", sectionId: "over-mij" },
   { label: "FAQ", href: "/faq", type: "page" },
   { label: "AI Agents", href: "/agents", type: "page" },
   { label: "Gratis Scan", href: "/gratis-scan", type: "page" },

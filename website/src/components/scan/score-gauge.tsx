@@ -3,13 +3,14 @@ import { cn } from "@/lib/utils";
 type ScoreGaugeProps = {
   label: string;
   value: string | number;
-  color?: "red" | "green" | "orange";
+  color?: "red" | "green" | "orange" | "blue";
 };
 
 const colorMap = {
   red: "stroke-red-500 text-red-500",
   green: "stroke-green-500 text-green-500",
   orange: "stroke-brand-orange text-brand-orange",
+  blue: "stroke-blue-500 text-blue-500",
 };
 
 export function ScoreGauge({ label, value, color = "orange" }: ScoreGaugeProps) {

@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 import { SectionLink } from "@/components/layout/section-link";
 import { TrustBar } from "@/components/landing/trust-bar";
 import { Button } from "@/components/ui/button";
+import { SectionDescription } from "@/components/ui/section-description";
 import { Section } from "@/components/ui/section";
 import type { HeroContent } from "@/content/types";
 
@@ -30,14 +31,14 @@ export function Hero({ content }: HeroProps) {
         <span className="block text-brand-orange">{content.headlineHighlight}</span>
       </h1>
 
-      <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+      <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
         {content.subheadline}
       </p>
 
       {content.summary ? (
-        <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground">
+        <SectionDescription className="mx-auto mt-4 max-w-2xl">
           {content.summary}
-        </p>
+        </SectionDescription>
       ) : null}
 
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

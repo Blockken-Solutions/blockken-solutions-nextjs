@@ -13,3 +13,20 @@ export function scanWithUrl(url: string): string {
 export function contactWithAgent(agentSlug: string): string {
   return `/?agent=${encodeURIComponent(agentSlug)}#contact`;
 }
+
+export function contactWithScan(result: {
+  url: string;
+  performance: number;
+  seo: number;
+  accessibility: number;
+  bestPractices: number;
+}): string {
+  const params = new URLSearchParams({
+    scan: result.url,
+    perf: String(result.performance),
+    seo: String(result.seo),
+    a11y: String(result.accessibility),
+    bp: String(result.bestPractices),
+  });
+  return `/?${params.toString()}#contact`;
+}

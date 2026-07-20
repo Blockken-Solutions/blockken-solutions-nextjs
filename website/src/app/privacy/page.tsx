@@ -9,5 +9,12 @@ export const metadata = createMetadata({
 });
 
 export default function PrivacyPage() {
-  return <LegalPage content={privacyPage} pathname="/privacy" />;
+  return (
+    <LegalPage
+      content={privacyPage}
+      pathname="/privacy"
+      alternateLegalHref="/terms"
+      alternateLegalLabel="Bekijk algemene voorwaarden"
+    />
+  );
 }

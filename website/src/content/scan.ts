@@ -5,11 +5,11 @@ export const scanPage: ScanPageContent = {
   seo: {
     title: "Gratis Website Scan — Performance, SEO & Laadtijd",
     description:
-      "Test uw website gratis op laadtijd, SEO en performance. Vul uw URL in en ontvang binnen enkele seconden een AI-analyse — geen registratie nodig.",
+      "Test uw website gratis op laadtijd, SEO en performance. Vul uw URL in en ontvang binnen 10–30 seconden een Lighthouse-analyse — geen registratie nodig.",
   },
   heading: "Gratis Website Scan",
   subheading:
-    "Ontdek hoe uw website scoort op performance, SEO en laadtijd. Onze AI analyseert uw pagina en geeft u direct inzicht in verbeterpunten.",
+    "Ontdek hoe uw website scoort op performance, SEO, toegankelijkheid en laadtijd. Google Lighthouse analyseert uw pagina en geeft u direct inzicht in verbeterpunten.",
   intro: {
     heading: "Wat analyseren we?",
     items: [
@@ -28,6 +28,11 @@ export const scanPage: ScanPageContent = {
         description:
           "We brengen de werkelijke laadtijd in kaart en identificeren knelpunten die bezoekers kunnen doen afhaken.",
       },
+      {
+        title: "Toegankelijkheid",
+        description:
+          "We controleren contrast, labels, structuur en andere toegankelijkheidsaspecten zodat uw site bruikbaar is voor iedereen.",
+      },
     ],
   },
   howItWorks: [
@@ -39,9 +44,9 @@ export const scanPage: ScanPageContent = {
     },
     {
       step: 2,
-      title: "AI-analyse",
+      title: "Lighthouse-analyse",
       description:
-        "Onze AI scant uw pagina op performance, SEO en laadtijd.",
+        "Google Lighthouse scant uw pagina op performance, SEO, toegankelijkheid en best practices.",
     },
     {
       step: 3,
@@ -53,13 +58,8 @@ export const scanPage: ScanPageContent = {
   form: {
     inputPlaceholder: "https://uw-website.be",
     buttonLabel: "Start Scan →",
-    helperText: "Geen registratie. Resultaat in < 10 seconden.",
+    helperText: "Geen registratie. Resultaat in 10–30 seconden.",
     errorMessage: "Voer een geldige website-URL in (bijv. https://uw-website.be).",
-  },
-  mockResults: {
-    performance: 48,
-    seo: 92,
-    loadTime: "4.2s",
   },
   cta: {
     heading: "Wilt u uw website laten optimaliseren?",
@@ -68,6 +68,10 @@ export const scanPage: ScanPageContent = {
     primary: {
       label: "Plan een gratis gesprek →",
       href: homeSection("contact"),
+    },
+    secondary: {
+      label: "Veelgestelde vragen over scores",
+      href: "/faq#scan-bereik",
     },
   },
 };

@@ -45,8 +45,12 @@ export function ScanUrlForm({
 
   return (
     <form onSubmit={handleSubmit} className={cn("mx-auto max-w-2xl", className)}>
-      <div className="flex items-center gap-2 rounded-full border border-border bg-background p-1.5 pl-5 shadow-sm">
+      <label htmlFor="scan-url" className="sr-only">
+        Website-URL
+      </label>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:rounded-full sm:border sm:border-border sm:bg-background sm:p-1.5 sm:pl-5 sm:shadow-sm">
         <Input
+          id="scan-url"
           type="url"
           name="url"
           placeholder={inputPlaceholder}

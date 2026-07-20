@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { CustomAgentCard } from "@/components/agents/custom-agent-card";
@@ -7,7 +8,7 @@ import { SectionLink } from "@/components/layout/section-link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { SectionHeading } from "@/components/ui/section";
+import { Section, PageHeading } from "@/components/ui/section";
 import type { AgentsPageContent } from "@/content/types";
 import { contactWithAgent } from "@/lib/paths";
 import { getIcon } from "@/lib/icons";
@@ -64,7 +65,12 @@ export function AgentsListing({ content }: AgentsListingProps) {
                     </Badge>
                   </div>
                   <h2 className="mt-4 text-lg font-bold text-foreground">
-                    {agent.title}
+                    <Link
+                      href={`/agents/${agent.slug}`}
+                      className="hover:text-brand-orange"
+                    >
+                      {agent.title}
+                    </Link>
                   </h2>
                   <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                     {agent.longDescription}
@@ -79,13 +85,20 @@ export function AgentsListing({ content }: AgentsListingProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-                    <span className="font-semibold text-foreground">
+                  <div className="mt-6 space-y-4 border-t border-border pt-5">
+                    <p className="text-base font-semibold text-foreground">
                       {agent.price}
-                    </span>
-                    <Button asChild variant="outline" shape="pill" size="sm">
-                      <SectionLink href={contactWithAgent(agent.slug)}>Vraag demo →</SectionLink>
-                    </Button>
+                    </p>
+                    <div className="flex flex-col gap-2.5 sm:flex-row">
+                      <Button asChild variant="outline" shape="pill" className="sm:flex-1">
+                        <Link href={`/agents/${agent.slug}`}>Meer info</Link>
+                      </Button>
+                      <Button asChild variant="orange" shape="pill" className="sm:flex-1">
+                        <SectionLink href={contactWithAgent(agent.slug)}>
+                          Vraag demo →
+                        </SectionLink>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -107,9 +120,9 @@ type AgentsPageHeaderProps = {
 export function AgentsPageHeader({ content }: AgentsPageHeaderProps) {
   return (
     <>
-      <SectionHeading className="text-4xl font-bold sm:text-5xl">
+      <PageHeading className="text-4xl font-bold sm:text-5xl">
         {content.heading}
-      </SectionHeading>
+      </PageHeading>
       <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
         {content.subheading}
       </p>

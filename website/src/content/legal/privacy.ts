@@ -11,7 +11,7 @@ export const privacyPage: LegalPageContent = {
     {
       heading: "1. Wie is verantwoordelijk?",
       paragraphs: [
-        "blockken.solutions, bereikbaar via wouter@blockken.solutions, is verantwoordelijk voor de verwerking van persoonsgegevens op deze website.",
+        "blockken.solutions, handelsnaam van Wouter Blockken (blockken.solutions), bereikbaar via wouter@blockken.solutions, is verantwoordelijk voor de verwerking van persoonsgegevens op deze website.",
       ],
     },
     {
@@ -50,7 +50,9 @@ export const privacyPage: LegalPageContent = {
       ],
       list: [
         "Netlify — website hosting",
-        "OpenAI / Anthropic — AI-verwerking voor scan- en agentdiensten",
+        "Resend — e-mailverzending voor contactformulieren",
+        "Google PageSpeed Insights — gratis website scan",
+        "OpenAI / Anthropic — AI-verwerking voor agentdiensten (indien van toepassing)",
       ],
     },
     {

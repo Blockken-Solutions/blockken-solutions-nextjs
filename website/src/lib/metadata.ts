@@ -24,10 +24,17 @@ export function createMetadata(options: CreateMetadataOptions = {}): Metadata {
   const metadataBase = getMetadataBase();
   const canonicalPath = pathname === "/" ? "/" : pathname;
   const canonicalUrl = new URL(canonicalPath, metadataBase).toString();
+  const titleAlreadyIncludesSiteName =
+    title.includes(site.name) || title.includes("blockken.solutions");
 
   return {
     metadataBase,
-    title: pathname === "/" ? { default: title, template: `%s | ${site.name}` } : title,
+    title:
+      pathname === "/"
+        ? { default: title, template: `%s | ${site.name}` }
+        : titleAlreadyIncludesSiteName
+          ? { absolute: title }
+          : title,
     description,
     authors: [{ name: site.author.name, url: site.author.url }],
     creator: site.author.name,

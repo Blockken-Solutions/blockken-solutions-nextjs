@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 
+import { FaqAnswer } from "@/components/faq/faq-answer";
 import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { SectionLink } from "@/components/layout/section-link";
 
@@ -13,7 +14,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { SectionDescription } from "@/components/ui/section-description";
+import { Section, PageHeading } from "@/components/ui/section";
 import type { FaqPageContent } from "@/content/types";
 import { cn } from "@/lib/utils";
 
@@ -48,29 +50,36 @@ export function FaqContent({ content }: FaqContentProps) {
       <div className="mx-auto max-w-3xl">
         <BackToHomeLink className="mb-6" />
         <SectionLabel>FAQ</SectionLabel>
-        <SectionHeading className="text-4xl font-bold sm:text-5xl">
+        <PageHeading className="text-4xl font-bold sm:text-5xl">
           {content.heading}
-        </SectionHeading>
-        <p className="mt-4 text-lg text-muted-foreground">{content.subheading}</p>
+        </PageHeading>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+          {content.subheading}
+        </p>
 
-        <div className="mt-8 inline-flex flex-wrap gap-1 rounded-full border border-border bg-card p-1.5 shadow-sm">
-          {filterCategories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              aria-pressed={activeCategory === category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={cn(
-                "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                activeCategory === category.id
-                  ? "bg-foreground text-background"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {category.label}
-            </button>
-          ))}
-        </div>
+        <nav
+          className="mt-8 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0"
+          aria-label="FAQ-categorieën"
+        >
+          <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+            {filterCategories.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                aria-pressed={activeCategory === category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={cn(
+                  "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                  activeCategory === category.id
+                    ? "border-brand-orange bg-brand-orange text-white shadow-sm"
+                    : "border-border bg-card text-muted-foreground hover:border-brand-orange/30 hover:text-foreground",
+                )}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+        </nav>
 
         <div className="mt-10 space-y-10">
           {visibleCategories.map((category) => (
@@ -87,9 +96,11 @@ export function FaqContent({ content }: FaqContentProps) {
               <div className="rounded-2xl border border-border bg-card px-6 shadow-sm">
                 <Accordion type="single" collapsible>
                   {category.items.map((item) => (
-                    <AccordionItem key={item.id} value={item.id}>
+                    <AccordionItem key={item.id} value={item.id} id={item.id}>
                       <AccordionTrigger>{item.question}</AccordionTrigger>
-                      <AccordionContent>{item.answer}</AccordionContent>
+                      <AccordionContent>
+                        <FaqAnswer text={item.answer} />
+                      </AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -102,9 +113,9 @@ export function FaqContent({ content }: FaqContentProps) {
           <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
             {content.cta.heading}
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
+          <SectionDescription className="mx-auto mt-3 max-w-lg">
             {content.cta.subheading}
-          </p>
+          </SectionDescription>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild variant="orange" shape="pill" size="lg">
               <SectionLink href={content.cta.primary.href}>{content.cta.primary.label}</SectionLink>

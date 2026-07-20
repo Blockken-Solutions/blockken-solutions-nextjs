@@ -9,6 +9,7 @@ import { SectionLabel } from "@/components/landing/section-label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { AgentsPreviewContent } from "@/content/types";
 import { contactWithAgent } from "@/lib/paths";
@@ -30,14 +31,14 @@ export function AgentPreview({ content }: AgentPreviewProps) {
       : content.agents.filter((agent) => agent.category === activeCategory);
 
   return (
-    <Section id="ai-agents" variant="muted">
+    <Section id="ai-agents" overlap overhang>
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <SectionLabel>{content.sectionLabel}</SectionLabel>
           <SectionHeading className="max-w-2xl text-4xl font-bold sm:text-5xl">
             {content.heading}
           </SectionHeading>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">{content.subheading}</p>
+          <SectionDescription className="mt-4 max-w-xl">{content.subheading}</SectionDescription>
         </div>
         <Link
           href={content.marketplaceLink.href}
@@ -66,7 +67,7 @@ export function AgentPreview({ content }: AgentPreviewProps) {
         ))}
       </div>
 
-      <ul className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredAgents.map((agent) => {
           const Icon = getIcon(agent.icon);
           return (
@@ -82,16 +83,28 @@ export function AgentPreview({ content }: AgentPreviewProps) {
                     </Badge>
                   </div>
                   <h3 className="mt-4 text-lg font-bold text-foreground">
-                    {agent.title}
+                    <Link
+                      href={`/agents/${agent.slug}`}
+                      className="hover:text-brand-orange"
+                    >
+                      {agent.title}
+                    </Link>
                   </h3>
-                  <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">
+                  <SectionDescription className="mt-2 flex-1">
                     {agent.description}
-                  </p>
-                  <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
-                    <span className="font-semibold text-foreground">{agent.price}</span>
-                    <Button asChild variant="outline" shape="pill" size="sm">
-                      <SectionLink href={contactWithAgent(agent.slug)}>Vraag demo →</SectionLink>
-                    </Button>
+                  </SectionDescription>
+                  <div className="mt-6 space-y-4 border-t border-border pt-5">
+                    <p className="text-base font-semibold text-foreground">{agent.price}</p>
+                    <div className="flex flex-col gap-2.5">
+                      <Button asChild variant="outline" shape="pill" className="w-full">
+                        <Link href={`/agents/${agent.slug}`}>Meer info</Link>
+                      </Button>
+                      <Button asChild variant="orange" shape="pill" className="w-full">
+                        <SectionLink href={contactWithAgent(agent.slug)}>
+                          Vraag demo →
+                        </SectionLink>
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>

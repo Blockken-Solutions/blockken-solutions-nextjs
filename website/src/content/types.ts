@@ -16,6 +16,7 @@ export type OrganizationConfig = {
   address: {
     addressCountry: string;
     addressLocality: string;
+    addressRegion?: string;
   };
   sameAs: string[];
 };
@@ -35,6 +36,11 @@ export type SiteConfig = {
   language: string;
   lastModified: string;
   seo: SeoConfig;
+  legal: {
+    tradeName: string;
+    responsiblePerson: string;
+    jurisdiction: string;
+  };
   organization: OrganizationConfig;
   author: AuthorConfig;
   contact: ContactInfo;
@@ -60,6 +66,8 @@ export type ServiceItem = {
   title: string;
   description: string;
   icon: string;
+  href?: string;
+  linkLabel?: string;
 };
 
 export type ServicesContent = {
@@ -80,6 +88,8 @@ export type AgentItem = {
 export type AgentListing = AgentItem & {
   longDescription: string;
   useCases: string[];
+  includedInTier?: string;
+  relatedSlugs?: string[];
 };
 
 export type AgentsPreviewContent = {
@@ -99,12 +109,6 @@ export type AgentsPageContent = {
   agents: AgentListing[];
   customAgent: CustomAgentCta;
   seo: SeoConfig;
-};
-
-export type ScanMockResults = {
-  performance: number;
-  seo: number;
-  loadTime: string;
 };
 
 export type ScanTeaserContent = {
@@ -132,17 +136,19 @@ export type ScanPageContent = {
     helperText: string;
     errorMessage: string;
   };
-  mockResults: ScanMockResults;
   cta: {
     heading: string;
     subheading: string;
     primary: CtaLink;
+    secondary?: CtaLink;
   };
 };
 
 export type CredentialItem = {
   type: string;
   label: string;
+  issuer?: string;
+  year?: string;
   icon: string;
 };
 
@@ -168,6 +174,7 @@ export type FaqItem = {
   id: string;
   question: string;
   answer: string;
+  teaser?: string;
 };
 
 export type FaqCategory = {
@@ -224,26 +231,35 @@ export type PricingTier = {
   cta: CtaLink;
 };
 
-export type PricingAddon = {
-  name: string;
-  price: string;
-};
-
 export type PricingContent = {
   sectionLabel: string;
   heading: string;
   subheading: string;
+  extraAgentNote: string;
   tiers: PricingTier[];
-  addons: {
-    heading: string;
-    items: PricingAddon[];
-  };
+};
+
+export type HowWeWorkStep = {
+  step: number;
+  title: string;
+  description: string;
+  icon: string;
+};
+
+export type HowWeWorkContent = {
+  sectionLabel: string;
+  heading: string;
+  subheading: string;
+  steps: HowWeWorkStep[];
+  primaryCta: CtaLink;
+  secondaryCta: CtaLink;
 };
 
 export type HomeContent = {
   hero: HeroContent;
   services: ServicesContent;
   pricing: PricingContent;
+  howWeWork: HowWeWorkContent;
   agents: AgentsPreviewContent;
   scan: ScanTeaserContent;
   about: AboutContent;

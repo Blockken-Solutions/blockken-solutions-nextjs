@@ -58,8 +58,8 @@ export function ContactDetails() {
   return (
     <div className="flex h-full flex-col text-left">
       <div>
-        <p className="text-sm font-semibold text-foreground">Direct contact</p>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+        <p className="text-base font-semibold text-foreground">Direct contact</p>
+        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
           Liever niet wachten? Neem rechtstreeks contact op via onderstaande
           kanalen.
         </p>

@@ -1,16 +1,30 @@
 import { ScoreGauge } from "@/components/scan/score-gauge";
-import type { ScanMockResults } from "@/content/types";
+import type { ScanResult } from "@/lib/scan/types";
 
 type ScanResultsProps = {
-  results: ScanMockResults;
+  result: ScanResult;
 };
 
-export function ScanResults({ results }: ScanResultsProps) {
+export function ScanResults({ result }: ScanResultsProps) {
   return (
-    <div className="grid gap-4 sm:grid-cols-3">
-      <ScoreGauge label="Performance" value={results.performance} color="red" />
-      <ScoreGauge label="SEO" value={results.seo} color="green" />
-      <ScoreGauge label="Laadtijd" value={results.loadTime} color="orange" />
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ScoreGauge
+        label="Performance"
+        value={result.scores.performance}
+        color="red"
+      />
+      <ScoreGauge label="SEO" value={result.scores.seo} color="green" />
+      <ScoreGauge label="LCP (lab)" value={result.metrics.lcp} color="orange" />
+      <ScoreGauge
+        label="Toegankelijkheid"
+        value={result.scores.accessibility}
+        color="blue"
+      />
+      <ScoreGauge
+        label="Best Practices"
+        value={result.scores.bestPractices}
+        color="orange"
+      />
     </div>
   );
 }

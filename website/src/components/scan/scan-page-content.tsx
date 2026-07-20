@@ -1,17 +1,22 @@
 "use client";
 
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { SectionLink } from "@/components/layout/section-link";
+import { ScanCoreWebVitals } from "@/components/scan/scan-core-web-vitals";
+import { ScanFindings } from "@/components/scan/scan-findings";
 import { ScanResults } from "@/components/scan/scan-results";
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Button } from "@/components/ui/button";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { Section, PageHeading } from "@/components/ui/section";
 import type { ScanPageContent } from "@/content/types";
-import { scanWithUrl } from "@/lib/paths";
+import { contactWithScan, scanWithUrl } from "@/lib/paths";
+import { useScan } from "@/lib/scan/use-scan";
 import { parseScanUrlParam } from "@/lib/scan-url";
 
 type ScanPageContentProps = {
@@ -22,6 +27,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const scannedUrl = parseScanUrlParam(searchParams.get("url"));
+  const scanState = useScan(scannedUrl);
 
   const handleSubmit = useCallback(
     (url: string) => {
@@ -35,9 +41,9 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
       <div className="mx-auto max-w-4xl">
         <BackToHomeLink className="mb-6" />
         <SectionLabel>Gratis Scan</SectionLabel>
-        <SectionHeading className="text-4xl font-bold sm:text-5xl">
+        <PageHeading className="text-4xl font-bold sm:text-5xl">
           {content.heading}
-        </SectionHeading>
+        </PageHeading>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           {content.subheading}
         </p>
@@ -49,7 +55,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           >
             {content.intro.heading}
           </h2>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {content.intro.items.map((item) => (
               <li
                 key={item.title}
@@ -109,12 +115,61 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           />
 
           {scannedUrl ? (
-            <div className="mt-10">
-              <p className="mb-6 text-center text-sm text-muted-foreground">
+            <div className="mt-10 space-y-10">
+              <p className="text-center text-sm text-muted-foreground">
                 Resultaten voor{" "}
                 <span className="font-medium text-foreground">{scannedUrl}</span>
               </p>
-              <ScanResults results={content.mockResults} />
+
+              {scanState.status === "loading" ? (
+                <div
+                  className="flex flex-col items-center gap-3 py-8"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <Loader2 className="size-8 animate-spin text-brand-orange" />
+                  <p className="text-sm text-muted-foreground">
+                    Website wordt geanalyseerd… (kan 30 seconden duren)
+                  </p>
+                </div>
+              ) : null}
+
+              {scanState.status === "error" ? (
+                <div
+                  className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-center text-sm text-red-700 dark:text-red-400"
+                  role="alert"
+                >
+                  {scanState.message}
+                </div>
+              ) : null}
+
+              {scanState.status === "success" ? (
+                <>
+                  <ScanResults result={scanState.result} />
+                  <ScanCoreWebVitals
+                    lcp={scanState.result.coreWebVitals.lcp}
+                    inp={scanState.result.coreWebVitals.inp}
+                    cls={scanState.result.coreWebVitals.cls}
+                    hasFieldData={scanState.result.coreWebVitals.hasFieldData}
+                  />
+                  <ScanFindings findings={scanState.result.findings} />
+                  <div className="flex justify-center pt-2">
+                    <Button asChild variant="orange" shape="pill" size="lg">
+                      <SectionLink
+                        href={contactWithScan({
+                          url: scanState.result.url,
+                          performance: scanState.result.scores.performance,
+                          seo: scanState.result.scores.seo,
+                          accessibility: scanState.result.scores.accessibility,
+                          bestPractices: scanState.result.scores.bestPractices,
+                        })}
+                      >
+                        Plan optimalisatiegesprek →
+                      </SectionLink>
+                    </Button>
+                  </div>
+                </>
+              ) : null}
             </div>
           ) : null}
         </section>
@@ -126,12 +181,17 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
             {content.cta.subheading}
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild variant="orange" shape="pill" size="lg">
               <SectionLink href={content.cta.primary.href}>
                 {content.cta.primary.label}
               </SectionLink>
             </Button>
+            {content.cta.secondary ? (
+              <Button asChild variant="outline" shape="pill" size="lg">
+                <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
+              </Button>
+            ) : null}
           </div>
         </div>
       </div>

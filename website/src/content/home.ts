@@ -1,7 +1,9 @@
 import type { HomeContent } from "@/content/types";
 import { homeSection } from "@/lib/paths";
 
+import { getAgentPreviewItems } from "./agents";
 import { customAgent } from "./custom-agent";
+import { faqTeaserItemIds, getFaqItemsByIds } from "./faq";
 import { pricing } from "./pricing";
 
 export const home: HomeContent = {
@@ -20,12 +22,12 @@ export const home: HomeContent = {
       href: homeSection("gratis-scan"),
     },
     secondaryCta: {
-      label: "Bekijk Onze Agents",
+      label: "Bekijk onze agents",
       href: homeSection("ai-agents"),
     },
     trustBarItems: [
       "EUROPESE HOSTING",
-      "GDPR-PROOF",
+      "GDPR-VEILIG",
       "OP MAAT GEBOUWD",
       "RAZENDSNELLE WEBSITES",
     ],
@@ -39,22 +41,72 @@ export const home: HomeContent = {
         description:
           "We bouwen moderne, op maat gemaakte websites die direct laden en er prachtig uitzien. Geen trage standaardthema's, maar een snelle ervaring die van bezoekers klanten maakt.",
         icon: "zap",
+        href: "/#prijzen",
+        linkLabel: "Bekijk pakketten →",
       },
       {
         title: "Slimme AI-Automatisering",
         description:
-          "We automatiseren uw saaie beheer. Van offertes genereren tot facturen inlezen — onze AI-systemen nemen uw handmatige werk over.",
+          "We automatiseren uw saaie beheer via kant-en-klare AI-agents — van offertes genereren tot facturen inlezen. Inbegrepen in Slimme Groei of apart af te nemen naast uw website.",
         icon: "bot",
+        href: "/agents",
+        linkLabel: "Bekijk agents →",
       },
       {
         title: "Vindbaarheid (Google & AI)",
         description:
-          "We zorgen dat uw bedrijf bovenaan staat — niet alleen in Google, maar ook als antwoord in AI-chatbots zoals ChatGPT.",
+          "Basis SEO zit in elk websitepakket. Vanaf Slimme Groei optimaliseren we ook voor AI-chatbots zoals ChatGPT — zodat uw bedrijf bovenaan staat, online én in antwoordmachines.",
         icon: "search",
+        href: "/gratis-scan",
+        linkLabel: "Start gratis scan →",
       },
     ],
   },
   pricing,
+  howWeWork: {
+    sectionLabel: "HOE HET WERKT",
+    heading: "Van eerste contact tot live — in vier duidelijke stappen.",
+    subheading:
+      "Geen verrassingen, geen jargon. U weet altijd waar u aan toe bent.",
+    steps: [
+      {
+        step: 1,
+        title: "Gratis scan of gesprek",
+        description:
+          "Start met een website scan of plan een kort strategiegesprek — geheel vrijblijvend.",
+        icon: "scan-search",
+      },
+      {
+        step: 2,
+        title: "Voorstel op maat",
+        description:
+          "We brengen uw situatie in kaart en stellen een concreet plan en pakket voor.",
+        icon: "clipboard-list",
+      },
+      {
+        step: 3,
+        title: "Bouw & integratie",
+        description:
+          "Wij bouwen uw website of AI-agent, koppelen systemen en houden u op de hoogte.",
+        icon: "hammer",
+      },
+      {
+        step: 4,
+        title: "Live & ondersteund",
+        description:
+          "U gaat live met persoonlijke onboarding. Daarna zorgen wij voor hosting, updates en support.",
+        icon: "rocket",
+      },
+    ],
+    primaryCta: {
+      label: "Start gratis scan →",
+      href: homeSection("gratis-scan"),
+    },
+    secondaryCta: {
+      label: "Plan een gesprek →",
+      href: homeSection("contact"),
+    },
+  },
   agents: {
     sectionLabel: "AI AGENTS",
     heading: "Klare AI-werknemers, direct inzetbaar.",
@@ -65,81 +117,17 @@ export const home: HomeContent = {
       href: "/agents",
     },
     filterCategories: ["Alle", "Klantenservice", "Boekhouding", "Sales"],
-    agents: [
-      {
-        slug: "support-agent-247",
-        title: "Support Agent 24/7",
-        description:
-          "Beantwoordt klantvragen automatisch via chat en e-mail.",
-        price: "Vanaf €49/mnd",
-        category: "Klantenservice",
-        icon: "message-circle",
-      },
-      {
-        slug: "factuur-extractor",
-        title: "Factuur Extractor",
-        description:
-          "Leest automatisch PDF-facturen in naar uw boekhouding.",
-        price: "Vanaf €49/mnd",
-        category: "Boekhouding",
-        icon: "file-text",
-      },
-      {
-        slug: "offerte-generator",
-        title: "Offerte Generator",
-        description:
-          "Maakt professionele offertes op basis van uw templates en klantgegevens.",
-        price: "Vanaf €59/mnd",
-        category: "Sales",
-        icon: "clipboard-list",
-      },
-      {
-        slug: "triage-agenda-planner",
-        title: "Triage & Agenda Planner",
-        description:
-          "Analyseert klantverzoeken en plant automatisch afspraken in uw kalender.",
-        price: "Vanaf €59/mnd",
-        category: "Klantenservice",
-        icon: "calendar-days",
-      },
-      {
-        slug: "lead-pre-kwalificator",
-        title: "Lead Pre-kwalificator",
-        description:
-          "Kwalificeert websitebezoekers via intake-vragen en levert gestructureerde leadprofielen af.",
-        price: "Vanaf €59/mnd",
-        category: "Sales",
-        icon: "user-check",
-      },
-      {
-        slug: "upsell-bestel-assistent",
-        title: "Upsell & Bestel Assistent",
-        description:
-          "Begeleidt klanten door uw assortiment en verhoogt uw gemiddelde bestelwaarde.",
-        price: "Vanaf €59/mnd",
-        category: "Sales",
-        icon: "shopping-cart",
-      },
-      {
-        slug: "storing-nazorg-bot",
-        title: "Storing & Nazorg Bot",
-        description:
-          "Voert eerstelijns diagnose uit bij defecten en bereidt reparatie-intakes voor.",
-        price: "Vanaf €49/mnd",
-        category: "Klantenservice",
-        icon: "wrench",
-      },
-    ],
+    agents: getAgentPreviewItems(),
     customAgent,
   },
   scan: {
     sectionLabel: "GRATIS SCAN",
     heading: "Kost uw huidige website u klanten? Test het direct.",
     description:
-      "Vul uw URL in en zie live hoe onze AI uw pagina scant op laadtijd, SEO en teksten.",
+      "Vul uw URL in en zie live hoe Google Lighthouse uw pagina scant op laadtijd, SEO en performance.",
     inputPlaceholder: "https://uw-website.be",
     buttonLabel: "Start Scan →",
-    helperText: "Geen registratie. Resultaat in < 10 seconden.",
+    helperText: "Geen registratie. Resultaat in 10–30 seconden.",
     errorMessage:
       "Voer een geldige website-URL in (bijv. https://uw-website.be).",
   },
@@ -153,18 +141,21 @@ export const home: HomeContent = {
       {
         type: "Diploma",
         label: "AI Technology Architect",
+        issuer: "Howest",
+        year: "2024",
         icon: "graduation-cap",
       },
       {
         type: "Gecertificeerd",
         label: "Fullstack Developer",
+        issuer: "Professionele certificering",
         icon: "scroll-text",
       },
     ],
     skills: [
       "Volledige websites van ontwerp tot oplevering",
       "AI-agents die uw administratie automatiseren",
-      "Veilige hosting binnen Europa (GDPR-proof)",
+      "Veilige hosting binnen Europa (GDPR-conform)",
     ],
     sameAs: [
       {
@@ -177,33 +168,8 @@ export const home: HomeContent = {
   faqTeaser: {
     heading: "Veelgestelde vragen",
     subheading:
-      "Antwoorden op de vragen die Belgische KMO-eigenaars het vaakst stellen.",
-    items: [
-      {
-        id: "kosten-ai-agent",
-        question: "Wat kost een AI-agent voor mijn KMO?",
-        answer:
-          "Kant-en-klare agents starten vanaf €49 per maand. Maatwerk begint typisch rond €2.500 eenmalig.",
-      },
-      {
-        id: "gdpr",
-        question: "Is mijn data veilig (GDPR)?",
-        answer:
-          "Ja. Alle data wordt verwerkt conform GDPR, met EU-hosting en encryptie in transit en at rest.",
-      },
-      {
-        id: "chatgpt-verschil",
-        question: "Wat is het verschil tussen ChatGPT en een custom AI-agent?",
-        answer:
-          "Een custom agent kent uw processen, is gekoppeld aan uw systemen en voert concrete taken uit — niet enkel chatten.",
-      },
-      {
-        id: "website-live",
-        question: "Hoe snel kan mijn website live?",
-        answer:
-          "Een marketingwebsite staat gemiddeld binnen 2 tot 4 weken live na een gratis strategiegesprek.",
-      },
-    ],
+      "Antwoorden op de vragen die Belgische bedrijven het vaakst stellen.",
+    items: getFaqItemsByIds([...faqTeaserItemIds]),
     cta: {
       label: "Alle vragen bekijken →",
       href: "/faq",

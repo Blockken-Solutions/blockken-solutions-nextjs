@@ -1,22 +1,27 @@
 import type {
+  BreadcrumbList,
   FAQPage,
   Graph,
+  HowTo,
   ItemList,
   LocalBusiness,
+  Offer,
   Organization,
   Person,
-  Product,
   Service,
+  SoftwareApplication,
   WebPage,
   WebSite,
   WithContext,
 } from "schema-dts";
 
 import { agentsPage } from "@/content/agents";
-import { faqPage, getAllFaqItems } from "@/content/faq";
+import { faqPage, getAllFaqItems, stripFaqAnswerMarkdown } from "@/content/faq";
 import { home } from "@/content/home";
+import { pricing } from "@/content/pricing";
+import { scanPage } from "@/content/scan";
 import { site } from "@/content/site";
-import type { AgentListing, FaqItem } from "@/content/types";
+import type { AgentListing, FaqItem, HowWeWorkStep, PricingTier } from "@/content/types";
 
 function absoluteUrl(pathname: string): string {
   return new URL(pathname, site.url).toString();
@@ -30,10 +35,12 @@ export function buildOrganizationSchema(): WithContext<Organization> {
     url: site.organization.url,
     logo: site.organization.logo,
     email: site.organization.email,
+    telephone: site.contact.phone,
     address: {
       "@type": "PostalAddress",
       addressCountry: site.organization.address.addressCountry,
       addressLocality: site.organization.address.addressLocality,
+      addressRegion: site.organization.address.addressRegion,
     },
     sameAs: [...site.organization.sameAs],
   };
@@ -45,11 +52,16 @@ export function buildLocalBusinessSchema(): WithContext<LocalBusiness> {
     "@type": "LocalBusiness",
     name: site.organization.name,
     url: site.organization.url,
+    logo: site.organization.logo,
+    image: site.organization.logo,
     email: site.organization.email,
+    telephone: site.contact.phone,
+    priceRange: "€€",
     address: {
       "@type": "PostalAddress",
       addressCountry: site.organization.address.addressCountry,
       addressLocality: site.organization.address.addressLocality,
+      addressRegion: site.organization.address.addressRegion,
     },
     areaServed: {
       "@type": "Country",
@@ -137,8 +149,50 @@ export function buildFaqPageSchema(items: FaqItem[]): WithContext<FAQPage> {
       name: item.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: stripFaqAnswerMarkdown(item.answer),
       },
+    })),
+  };
+}
+
+function parseSetupPrice(priceLabel: string): string {
+  const match = priceLabel.match(/€\s*([\d.]+)/);
+  return match?.[1]?.replace(".", "") ?? "999";
+}
+
+function buildPricingOfferSchema(tier: PricingTier): WithContext<Offer> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    name: tier.name,
+    description: tier.audience,
+    price: parseSetupPrice(tier.setup.price),
+    priceCurrency: "EUR",
+    url: absoluteUrl("/#prijzen"),
+    availability: "https://schema.org/InStock",
+    seller: {
+      "@type": "Organization",
+      name: site.organization.name,
+      url: site.organization.url,
+    },
+  };
+}
+
+export function buildPricingOffersSchema(): WithContext<Offer>[] {
+  return pricing.tiers.map((tier) => buildPricingOfferSchema(tier));
+}
+
+export function buildBreadcrumbSchema(
+  items: { name: string; pathname: string }[],
+): WithContext<BreadcrumbList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.pathname),
     })),
   };
 }
@@ -151,26 +205,32 @@ function parsePrice(priceLabel: string): { price: string; currency: string } {
   };
 }
 
-export function buildProductSchema(agent: AgentListing): WithContext<Product> {
+export function buildAgentServiceSchema(agent: AgentListing): WithContext<Service> {
   const { price, currency } = parsePrice(agent.price);
 
   return {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "Service",
     name: agent.title,
     description: agent.longDescription,
-    category: agent.category,
-    brand: {
-      "@type": "Brand",
+    serviceType: agent.category,
+    provider: {
+      "@type": "Organization",
       name: site.organization.name,
+      url: site.organization.url,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "België",
     },
     offers: {
       "@type": "Offer",
       price,
       priceCurrency: currency,
       availability: "https://schema.org/InStock",
-      url: absoluteUrl(`/agents#${agent.slug}`),
+      url: absoluteUrl(`/agents/${agent.slug}`),
     },
+    url: absoluteUrl(`/agents/${agent.slug}`),
   };
 }
 
@@ -183,7 +243,59 @@ export function buildAgentsItemListSchema(): WithContext<ItemList> {
       "@type": "ListItem",
       position: index + 1,
       name: agent.title,
-      url: absoluteUrl(`/agents#${agent.slug}`),
+      url: absoluteUrl(`/agents/${agent.slug}`),
+    })),
+  };
+}
+
+function buildHowWeWorkSchema(steps: HowWeWorkStep[]): WithContext<HowTo> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: home.howWeWork.heading,
+    description: home.howWeWork.subheading,
+    step: steps.map((step) => ({
+      "@type": "HowToStep",
+      position: step.step,
+      name: step.title,
+      text: step.description,
+    })),
+  };
+}
+
+export function buildScanWebApplicationSchema(): WithContext<SoftwareApplication> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: scanPage.heading,
+    description: scanPage.seo.description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR",
+    },
+    url: absoluteUrl("/gratis-scan"),
+    provider: {
+      "@type": "Organization",
+      name: site.organization.name,
+      url: site.organization.url,
+    },
+  };
+}
+
+export function buildScanHowToSchema(): WithContext<HowTo> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Gratis website scan uitvoeren",
+    description: scanPage.subheading,
+    step: scanPage.howItWorks.map((step) => ({
+      "@type": "HowToStep",
+      position: step.step,
+      name: step.title,
+      text: step.description,
     })),
   };
 }
@@ -197,7 +309,18 @@ export function buildSiteGraph(): Graph {
       buildWebSiteSchema(),
       buildPersonSchema(),
       ...buildServiceSchemas(),
+    ],
+  };
+}
+
+export function buildHomeGraph(): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
       buildWebPageSchema("/", site.seo.title, site.seo.description),
+      buildFaqPageSchema(home.faqTeaser.items),
+      buildHowWeWorkSchema(home.howWeWork.steps),
+      ...buildPricingOffersSchema(),
     ],
   };
 }
@@ -222,7 +345,47 @@ export function buildAgentsGraph(): Graph {
         agentsPage.seo.description,
       ),
       buildAgentsItemListSchema(),
-      ...agentsPage.agents.map((agent) => buildProductSchema(agent)),
+      ...agentsPage.agents.map((agent) => buildAgentServiceSchema(agent)),
     ],
   };
+}
+
+export function buildAgentGraph(agent: AgentListing): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        `/agents/${agent.slug}`,
+        `${agent.title} — ${site.name}`,
+        agent.longDescription,
+      ),
+      buildBreadcrumbSchema([
+        { name: "Home", pathname: "/" },
+        { name: "AI Agents", pathname: "/agents" },
+        { name: agent.title, pathname: `/agents/${agent.slug}` },
+      ]),
+      buildAgentServiceSchema(agent),
+    ],
+  };
+}
+
+export function buildScanGraph(): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        "/gratis-scan",
+        scanPage.seo.title,
+        scanPage.seo.description,
+      ),
+      buildScanWebApplicationSchema(),
+      buildScanHowToSchema(),
+    ],
+  };
+}
+
+export function buildHowWeWorkSummary(): string {
+  return home.howWeWork.steps
+    .map((step) => `${step.step}. ${step.title}: ${step.description}`)
+    .join("\n");
 }

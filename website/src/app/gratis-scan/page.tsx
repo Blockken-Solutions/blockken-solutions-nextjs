@@ -4,7 +4,7 @@ import { ScanPageContent } from "@/components/scan/scan-page-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { scanPage } from "@/content/scan";
 import { createMetadata } from "@/lib/metadata";
-import { buildWebPageSchema } from "@/lib/structured-data";
+import { buildScanGraph } from "@/lib/structured-data";
 
 export const metadata = createMetadata({
   pathname: "/gratis-scan",
@@ -15,13 +15,7 @@ export const metadata = createMetadata({
 export default function GratisScanPage() {
   return (
     <>
-      <JsonLd
-        data={buildWebPageSchema(
-          "/gratis-scan",
-          scanPage.seo.title,
-          scanPage.seo.description,
-        )}
-      />
+      <JsonLd data={buildScanGraph()} />
       <Suspense fallback={null}>
         <ScanPageContent content={scanPage} />
       </Suspense>
