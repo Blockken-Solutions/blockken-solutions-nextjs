@@ -9,6 +9,13 @@ import {
 } from "react";
 import { usePathname } from "next/navigation";
 
+import {
+  getHashSectionId,
+  getHeaderOffset,
+  resolveActiveSection,
+  SECTION_NAV_EVENT,
+} from "@/lib/scroll-to-section";
+
 type NavActiveContextValue = {
   activeSection: string | null;
 };
@@ -35,41 +42,73 @@ export function NavActiveProvider({
       return;
     }
 
-    const resolveActiveSection = () => {
-      const activationLine = window.innerHeight * 0.33;
-      let current: string | null = null;
+    let lockedSection: string | null = null;
+    let scrollTicking = false;
 
-      for (const id of sectionIds) {
-        const element = document.getElementById(id);
-        if (!element) continue;
+    const syncActiveSection = (preferHash = false) => {
+      if (lockedSection) {
+        const element = document.getElementById(lockedSection);
+        if (element) {
+          const distance = Math.abs(
+            element.getBoundingClientRect().top - getHeaderOffset(),
+          );
+          if (distance > 2) {
+            return;
+          }
+        }
+        lockedSection = null;
+      }
 
-        if (element.getBoundingClientRect().top <= activationLine) {
-          current = id;
+      if (preferHash) {
+        const hash = getHashSectionId();
+        if (hash && sectionIds.includes(hash)) {
+          setActiveSection(hash);
+          return;
         }
       }
 
-      setActiveSection(current);
+      setActiveSection(resolveActiveSection(sectionIds));
     };
 
-    const syncFromHash = () => {
-      const hash = window.location.hash.replace("#", "").split("?")[0];
-      if (hash && sectionIds.includes(hash)) {
-        setActiveSection(hash);
+    const handleScroll = () => {
+      if (scrollTicking) {
         return;
       }
 
-      resolveActiveSection();
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        syncActiveSection();
+        scrollTicking = false;
+      });
     };
 
-    syncFromHash();
-    window.addEventListener("scroll", resolveActiveSection, { passive: true });
-    window.addEventListener("resize", resolveActiveSection);
-    window.addEventListener("hashchange", syncFromHash);
+    const handleHashChange = () => {
+      lockedSection = null;
+      syncActiveSection(true);
+    };
+
+    const handleSectionNav = (event: Event) => {
+      const id = (event as CustomEvent<{ id: string }>).detail.id;
+      if (!sectionIds.includes(id)) {
+        return;
+      }
+
+      lockedSection = id;
+      setActiveSection(id);
+    };
+
+    syncActiveSection(true);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener(SECTION_NAV_EVENT, handleSectionNav);
 
     return () => {
-      window.removeEventListener("scroll", resolveActiveSection);
-      window.removeEventListener("resize", resolveActiveSection);
-      window.removeEventListener("hashchange", syncFromHash);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener(SECTION_NAV_EVENT, handleSectionNav);
     };
   }, [pathname, sectionIds]);
 

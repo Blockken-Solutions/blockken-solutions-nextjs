@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { HashScrollHandler } from "@/components/layout/hash-scroll-handler";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <JsonLd data={buildSiteGraph()} />
         <ThemeProvider>
+          <HashScrollHandler />
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />

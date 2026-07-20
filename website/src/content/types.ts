@@ -107,14 +107,37 @@ export type ScanMockResults = {
   loadTime: string;
 };
 
-export type ScanLeadMagnetContent = {
+export type ScanTeaserContent = {
   sectionLabel: string;
   heading: string;
   description: string;
   inputPlaceholder: string;
   buttonLabel: string;
   helperText: string;
+  errorMessage: string;
+};
+
+export type ScanPageContent = {
+  seo: SeoConfig;
+  heading: string;
+  subheading: string;
+  intro: {
+    heading: string;
+    items: { title: string; description: string }[];
+  };
+  howItWorks: { step: number; title: string; description: string }[];
+  form: {
+    inputPlaceholder: string;
+    buttonLabel: string;
+    helperText: string;
+    errorMessage: string;
+  };
   mockResults: ScanMockResults;
+  cta: {
+    heading: string;
+    subheading: string;
+    primary: CtaLink;
+  };
 };
 
 export type CredentialItem = {
@@ -185,11 +208,44 @@ export type LegalPageContent = {
   seo: SeoConfig;
 };
 
+export type PricingFeatureGroup = {
+  label: string;
+  price: string;
+  features: string[];
+};
+
+export type PricingTier = {
+  id: string;
+  name: string;
+  audience: string;
+  setup: PricingFeatureGroup;
+  subscription: PricingFeatureGroup;
+  isPopular?: boolean;
+  cta: CtaLink;
+};
+
+export type PricingAddon = {
+  name: string;
+  price: string;
+};
+
+export type PricingContent = {
+  sectionLabel: string;
+  heading: string;
+  subheading: string;
+  tiers: PricingTier[];
+  addons: {
+    heading: string;
+    items: PricingAddon[];
+  };
+};
+
 export type HomeContent = {
   hero: HeroContent;
   services: ServicesContent;
+  pricing: PricingContent;
   agents: AgentsPreviewContent;
-  scan: ScanLeadMagnetContent;
+  scan: ScanTeaserContent;
   about: AboutContent;
   faqTeaser: FaqTeaserContent;
   footerCta: FooterCtaContent;
@@ -198,8 +254,8 @@ export type HomeContent = {
 export type NavLink = {
   label: string;
   href: string;
+  type?: "section" | "page";
   sectionId?: string;
-  isPageLink?: boolean;
 };
 
 export type CustomAgentCta = {

@@ -1,27 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback } from "react";
 
-import { ScoreGauge } from "@/components/landing/score-gauge";
+import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { SectionLabel } from "@/components/landing/section-label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Section, SectionHeading } from "@/components/ui/section";
-import type { ScanLeadMagnetContent } from "@/content/types";
+import type { ScanTeaserContent } from "@/content/types";
+import { scanWithUrl } from "@/lib/paths";
 
 type ScanLeadMagnetProps = {
-  content: ScanLeadMagnetContent;
+  content: ScanTeaserContent;
 };
 
 export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
-  const [url, setUrl] = useState("");
-  const [showResults, setShowResults] = useState(true);
+  const router = useRouter();
 
-  const handleScan = () => {
-    if (url.trim()) {
-      setShowResults(true);
-    }
-  };
+  const handleSubmit = useCallback(
+    (url: string) => {
+      router.push(scanWithUrl(url));
+    },
+    [router],
+  );
 
   return (
     <Section id="gratis-scan" variant="elevated" overlap>
@@ -36,49 +36,14 @@ export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
           </p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-2xl">
-          <div className="flex items-center gap-2 rounded-full border border-border bg-background p-1.5 pl-5 shadow-sm">
-            <Input
-              type="url"
-              placeholder={content.inputPlaceholder}
-              value={url}
-              onChange={(event) => setUrl(event.target.value)}
-              className="h-10 flex-1 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
-            />
-            <Button
-              variant="orange"
-              shape="pill"
-              size="lg"
-              className="shrink-0"
-              onClick={handleScan}
-            >
-              {content.buttonLabel}
-            </Button>
-          </div>
-          <p className="mt-3 text-center text-sm text-muted-foreground">
-            {content.helperText}
-          </p>
-        </div>
-
-        {showResults ? (
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <ScoreGauge
-              label="Performance"
-              value={content.mockResults.performance}
-              color="red"
-            />
-            <ScoreGauge
-              label="SEO"
-              value={content.mockResults.seo}
-              color="green"
-            />
-            <ScoreGauge
-              label="Laadtijd"
-              value={content.mockResults.loadTime}
-              color="orange"
-            />
-          </div>
-        ) : null}
+        <ScanUrlForm
+          inputPlaceholder={content.inputPlaceholder}
+          buttonLabel={content.buttonLabel}
+          helperText={content.helperText}
+          errorMessage={content.errorMessage}
+          onSubmit={handleSubmit}
+          className="mt-8"
+        />
       </div>
     </Section>
   );

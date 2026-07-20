@@ -1,4 +1,5 @@
 import type { FaqItem, FaqPageContent } from "@/content/types";
+import { homeSection } from "@/lib/paths";
 
 export const faqPage: FaqPageContent = {
   heading: "Veelgestelde vragen",
@@ -101,7 +102,7 @@ export const faqPage: FaqPageContent = {
       "Plan een gratis strategiegesprek. Geen verkooppraat — wel concrete inzichten voor uw business.",
     primary: {
       label: "Plan een gratis gesprek →",
-      href: "/#contact",
+      href: homeSection("contact"),
     },
     secondary: {
       label: "Mail ons direct",

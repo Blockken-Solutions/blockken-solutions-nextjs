@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { CustomAgentCard } from "@/components/agents/custom-agent-card";
+import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -89,7 +90,7 @@ export function AgentPreview({ content }: AgentPreviewProps) {
                   <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
                     <span className="font-semibold text-foreground">{agent.price}</span>
                     <Button asChild variant="outline" shape="pill" size="sm">
-                      <Link href={contactWithAgent(agent.slug)}>Vraag demo →</Link>
+                      <SectionLink href={contactWithAgent(agent.slug)}>Vraag demo →</SectionLink>
                     </Button>
                   </div>
                 </CardContent>

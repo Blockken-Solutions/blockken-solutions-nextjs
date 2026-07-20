@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { HomeLink } from "@/components/layout/home-link";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/metadata";
@@ -21,7 +21,7 @@ export default function NotFound() {
       </p>
       <div className="mt-8">
         <Button asChild>
-          <Link href="/">Terug naar home</Link>
+          <HomeLink>Terug naar home</HomeLink>
         </Button>
       </div>
     </Section>

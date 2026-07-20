@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
+import { SectionLink } from "@/components/layout/section-link";
 import { TrustBar } from "@/components/landing/trust-bar";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
@@ -12,7 +12,10 @@ type HeroProps = {
 
 export function Hero({ content }: HeroProps) {
   return (
-    <Section id="hero" className="pb-8 pt-12 text-center sm:pt-16">
+    <Section
+      id="hero"
+      className="-mt-[var(--header-offset)] py-0 pb-8 pt-[calc(var(--header-offset)+2.5rem)] text-center sm:pt-[calc(var(--header-offset)+3.5rem)]"
+    >
       <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground shadow-sm">
         <Sparkles className="size-3.5 text-brand-orange" />
         {content.badge}
@@ -39,7 +42,7 @@ export function Hero({ content }: HeroProps) {
 
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <Button asChild variant="orange" shape="pill" size="lg" className="h-11 px-6 text-base">
-          <Link href={content.primaryCta.href}>{content.primaryCta.label}</Link>
+          <SectionLink href={content.primaryCta.href}>{content.primaryCta.label}</SectionLink>
         </Button>
         <Button
           asChild
@@ -48,7 +51,7 @@ export function Hero({ content }: HeroProps) {
           size="lg"
           className="h-11 border-border bg-card px-6 text-base shadow-sm"
         >
-          <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
+          <SectionLink href={content.secondaryCta.href}>{content.secondaryCta.label}</SectionLink>
         </Button>
       </div>
 

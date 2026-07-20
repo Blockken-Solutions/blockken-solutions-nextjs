@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { BackToHomeLink } from "@/components/layout/back-to-home-link";
+import { SectionLink } from "@/components/layout/section-link";
 import {
   AgentsListing,
   AgentsPageHeader,
@@ -7,6 +9,7 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section } from "@/components/ui/section";
 import { agentsPage } from "@/content/agents";
+import { homeSection } from "@/lib/paths";
 import { createMetadata } from "@/lib/metadata";
 import { buildAgentsGraph } from "@/lib/structured-data";
 
@@ -20,7 +23,8 @@ export default function AgentsPage() {
   return (
     <>
       <JsonLd data={buildAgentsGraph()} />
-      <Section>
+      <Section fade={false}>
+        <BackToHomeLink className="mb-6" />
         <AgentsPageHeader content={agentsPage} />
         <AgentsListing content={agentsPage} />
         <p className="mt-12 text-muted-foreground">
@@ -32,12 +36,12 @@ export default function AgentsPage() {
             Bekijk onze FAQ
           </Link>{" "}
           of{" "}
-          <Link
-            href="/#contact"
+          <SectionLink
+            href={homeSection("contact")}
             className="font-medium text-foreground underline-offset-4 hover:underline"
           >
             plan een gratis strategiegesprek
-          </Link>
+          </SectionLink>
           .
         </p>
       </Section>

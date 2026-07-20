@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { MenuIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Logo } from "@/components/layout/logo";
 import { NavActiveProvider } from "@/components/layout/nav-active-provider";
 import { NavLink } from "@/components/layout/nav-link";
+import { SectionLink } from "@/components/layout/section-link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -20,10 +20,42 @@ import { homeSection } from "@/lib/paths";
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = headerRef.current;
+    if (!element) {
+      return;
+    }
+
+    const updateOffset = () => {
+      const top = parseFloat(getComputedStyle(element).top) || 0;
+      const height = element.offsetHeight;
+      document.documentElement.style.setProperty(
+        "--header-offset",
+        `${top + height}px`,
+      );
+    };
+
+    updateOffset();
+
+    const observer = new ResizeObserver(updateOffset);
+    observer.observe(element);
+    window.addEventListener("resize", updateOffset);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateOffset);
+    };
+  }, []);
 
   return (
     <NavActiveProvider sectionIds={navSectionIds}>
-      <div className="sticky top-4 z-50 px-[var(--container-px)] pt-4">
+      <div
+        ref={headerRef}
+        data-site-header
+        className="sticky top-4 z-50 px-[var(--container-px)] pt-4"
+      >
         <header>
           <div className="mx-auto flex max-w-[56rem] items-center justify-between gap-4 rounded-full px-4 py-2.5 sm:px-6 glass-pill">
             <Logo />
@@ -42,7 +74,9 @@ export function SiteHeader() {
                 size="sm"
                 className="hidden sm:inline-flex"
               >
-                <Link href={homeSection("contact")}>Gratis gesprek</Link>
+                <SectionLink href={homeSection("contact")}>
+                  Gratis gesprek
+                </SectionLink>
               </Button>
 
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -77,7 +111,12 @@ export function SiteHeader() {
                       shape="pill"
                       className="mt-2 w-full"
                     >
-                      <Link href={homeSection("contact")}>Gratis gesprek</Link>
+                      <SectionLink
+                        href={homeSection("contact")}
+                        onNavigate={() => setMobileOpen(false)}
+                      >
+                        Gratis gesprek
+                      </SectionLink>
                     </Button>
                   </nav>
                 </SheetContent>

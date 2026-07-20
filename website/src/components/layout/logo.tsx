@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { HomeLink } from "@/components/layout/home-link";
 import { cn } from "@/lib/utils";
 
 type LogoProps = {
@@ -8,14 +7,13 @@ type LogoProps = {
 
 export function Logo({ className }: LogoProps) {
   return (
-    <Link
-      href="/"
+    <HomeLink
       className={cn(
         "text-base font-bold tracking-tight text-foreground sm:text-lg",
         className,
       )}
     >
       blockken<span className="text-brand-orange">.</span>solutions
-    </Link>
+    </HomeLink>
   );
 }

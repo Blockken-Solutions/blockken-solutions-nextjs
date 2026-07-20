@@ -1,7 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+
+import { BackToHomeLink } from "@/components/layout/back-to-home-link";
+import { SectionLink } from "@/components/layout/section-link";
 
 import { SectionLabel } from "@/components/landing/section-label";
 import {
@@ -42,8 +44,9 @@ export function FaqContent({ content }: FaqContentProps) {
   }, [activeCategory, content.categories]);
 
   return (
-    <Section>
+    <Section fade={false}>
       <div className="mx-auto max-w-3xl">
+        <BackToHomeLink className="mb-6" />
         <SectionLabel>FAQ</SectionLabel>
         <SectionHeading className="text-4xl font-bold sm:text-5xl">
           {content.heading}
@@ -104,7 +107,7 @@ export function FaqContent({ content }: FaqContentProps) {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild variant="orange" shape="pill" size="lg">
-              <Link href={content.cta.primary.href}>{content.cta.primary.label}</Link>
+              <SectionLink href={content.cta.primary.href}>{content.cta.primary.label}</SectionLink>
             </Button>
             <Button asChild variant="outline" shape="pill" size="lg">
               <a href={content.cta.secondary.href}>

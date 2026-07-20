@@ -1,8 +1,10 @@
 import Link from "next/link";
 
 import { Logo } from "@/components/layout/logo";
+import { SectionLink } from "@/components/layout/section-link";
 import { site } from "@/content/site";
 import { footerLinks } from "@/content/navigation";
+import { isHomeSectionHref } from "@/lib/paths";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -16,12 +18,21 @@ export function SiteFooter() {
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
-                  >
-                    {link.label}
-                  </Link>
+                  {isHomeSectionHref(link.href) ? (
+                    <SectionLink
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground"
+                    >
+                      {link.label}
+                    </SectionLink>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

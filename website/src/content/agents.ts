@@ -58,6 +58,70 @@ export const agentsPage: AgentsPageContent = {
         "Goedkeuringsflow vóór verzending naar klant",
       ],
     },
+    {
+      slug: "triage-agenda-planner",
+      title: "Triage & Agenda Planner",
+      description:
+        "Analyseert klantverzoeken en plant automatisch afspraken in uw kalender.",
+      longDescription:
+        "De Triage & Agenda Planner analyseert het probleem of verzoek van uw klant via de chat. De AI schat direct in hoeveel tijd of welke dienst er nodig is en plant, zonder menselijke tussenkomst, de juiste afspraak in uw bestaande kalendersysteem.",
+      price: "Vanaf €59/mnd",
+      category: "Klantenservice",
+      icon: "calendar-days",
+      useCases: [
+        "Probleemanalyse en slimme tijdsinschatting vooraf",
+        "Real-time koppeling met agenda's (Google Calendar, Calendly, etc.)",
+        "Voorkomt foutieve of dubbele boekingen",
+      ],
+    },
+    {
+      slug: "lead-pre-kwalificator",
+      title: "Lead Pre-kwalificator",
+      description:
+        "Kwalificeert websitebezoekers via intake-vragen en levert gestructureerde leadprofielen af.",
+      longDescription:
+        "Verlies geen tijd meer aan onserieuze aanvragen. Deze interactieve agent gaat in gesprek met websitebezoekers, stelt de cruciale intake-vragen over projectvereisten en budget, en levert een gekwalificeerd, gestructureerd profiel af in uw mailbox of CRM.",
+      price: "Vanaf €59/mnd",
+      category: "Sales",
+      icon: "user-check",
+      useCases: [
+        "Actieve uitvraging van specifieke projectdetails",
+        "Filtert aanvragen buiten uw regio of budget direct weg",
+        "Automatische doorsturing van warme leads naar uw salesteam",
+      ],
+    },
+    {
+      slug: "upsell-bestel-assistent",
+      title: "Upsell & Bestel Assistent",
+      description:
+        "Begeleidt klanten door uw assortiment en verhoogt uw gemiddelde bestelwaarde.",
+      longDescription:
+        "Verhoog direct uw gemiddelde bestelwaarde. Deze slimme assistent begeleidt klanten door uw assortiment, beantwoordt productvragen en stelt proactief bijpassende producten voor. De agent begeleidt de klant naadloos naar de checkout.",
+      price: "Vanaf €59/mnd",
+      category: "Sales",
+      icon: "shopping-cart",
+      useCases: [
+        "Gepersonaliseerd productadvies op basis van klantbehoeften",
+        "Proactieve up- en cross-selling (bijv. wijnsuggesties bij gerechten)",
+        "Klaarzetten van winkelmandjes of gestructureerde bestel-e-mails",
+      ],
+    },
+    {
+      slug: "storing-nazorg-bot",
+      title: "Storing & Nazorg Bot",
+      description:
+        "Voert eerstelijns diagnose uit bij defecten en bereidt reparatie-intakes voor.",
+      longDescription:
+        "Ontlast uw telefoonlijn bij technische vragen. Deze agent voert een eerstelijns diagnose uit bij defecten. Simpele problemen worden direct opgelost met uw standaardinstructies; bij complexe storingen bereidt de AI een compleet reparatie-ticket voor.",
+      price: "Vanaf €49/mnd",
+      category: "Klantenservice",
+      icon: "wrench",
+      useCases: [
+        "Stap-voor-stap probleemoplossing voor veelvoorkomende defecten",
+        "Verzamelen van foutcodes, modelnummers en foto's",
+        "Automatisch aanmaken van gestructureerde reparatie-intakes",
+      ],
+    },
   ],
   customAgent,
 };

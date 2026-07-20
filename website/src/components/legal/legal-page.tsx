@@ -1,3 +1,4 @@
+import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { LegalPageContent } from "@/content/types";
@@ -19,6 +20,7 @@ export function LegalPage({ content, pathname }: LegalPageProps) {
         )}
       />
       <Section containerClassName="max-w-3xl">
+        <BackToHomeLink className="mb-6" />
         <SectionHeading className="text-4xl font-bold">
           {content.title}
         </SectionHeading>

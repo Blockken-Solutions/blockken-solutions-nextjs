@@ -1,32 +1,32 @@
 import type { HomeContent } from "@/content/types";
+import { homeSection } from "@/lib/paths";
 
 import { customAgent } from "./custom-agent";
+import { pricing } from "./pricing";
 
 export const home: HomeContent = {
   hero: {
     badge: "Web · AI · Automatisering voor KMO's",
     headlineLines: [
-      "Uw website is traag.",
-      "Uw administratie kost te veel tijd.",
+      "Is uw website traag? Kost administratie u te veel tijd?",
     ],
-    headlineHighlight: "Wij lossen beide voor u op!",
+    headlineHighlight: "Wij lossen dit op!",
     subheadline:
       "Wij bouwen razendsnelle websites en slimme AI-agents die repetitief werk overnemen — zodat u zich kunt focussen op uw klanten.",
     summary:
-      "Veilig, op maat en persoonlijk begeleid door een fullstack engineer uit België.",
+      "Veilig, op maat en persoonlijk begeleid door een professional uit België.",
     primaryCta: {
       label: "Gratis Website Scan →",
-      href: "#gratis-scan",
+      href: homeSection("gratis-scan"),
     },
     secondaryCta: {
       label: "Bekijk Onze Agents",
-      href: "#ai-agents",
+      href: homeSection("ai-agents"),
     },
     trustBarItems: [
       "EUROPESE HOSTING",
       "GDPR-PROOF",
       "OP MAAT GEBOUWD",
-      "BELGISCHE KMO'S",
       "RAZENDSNELLE WEBSITES",
     ],
   },
@@ -54,6 +54,7 @@ export const home: HomeContent = {
       },
     ],
   },
+  pricing,
   agents: {
     sectionLabel: "AI AGENTS",
     heading: "Klare AI-werknemers, direct inzetbaar.",
@@ -92,6 +93,42 @@ export const home: HomeContent = {
         category: "Sales",
         icon: "clipboard-list",
       },
+      {
+        slug: "triage-agenda-planner",
+        title: "Triage & Agenda Planner",
+        description:
+          "Analyseert klantverzoeken en plant automatisch afspraken in uw kalender.",
+        price: "Vanaf €59/mnd",
+        category: "Klantenservice",
+        icon: "calendar-days",
+      },
+      {
+        slug: "lead-pre-kwalificator",
+        title: "Lead Pre-kwalificator",
+        description:
+          "Kwalificeert websitebezoekers via intake-vragen en levert gestructureerde leadprofielen af.",
+        price: "Vanaf €59/mnd",
+        category: "Sales",
+        icon: "user-check",
+      },
+      {
+        slug: "upsell-bestel-assistent",
+        title: "Upsell & Bestel Assistent",
+        description:
+          "Begeleidt klanten door uw assortiment en verhoogt uw gemiddelde bestelwaarde.",
+        price: "Vanaf €59/mnd",
+        category: "Sales",
+        icon: "shopping-cart",
+      },
+      {
+        slug: "storing-nazorg-bot",
+        title: "Storing & Nazorg Bot",
+        description:
+          "Voert eerstelijns diagnose uit bij defecten en bereidt reparatie-intakes voor.",
+        price: "Vanaf €49/mnd",
+        category: "Klantenservice",
+        icon: "wrench",
+      },
     ],
     customAgent,
   },
@@ -103,15 +140,12 @@ export const home: HomeContent = {
     inputPlaceholder: "https://uw-website.be",
     buttonLabel: "Start Scan →",
     helperText: "Geen registratie. Resultaat in < 10 seconden.",
-    mockResults: {
-      performance: 48,
-      seo: 92,
-      loadTime: "4.2s",
-    },
+    errorMessage:
+      "Voer een geldige website-URL in (bijv. https://uw-website.be).",
   },
   about: {
     sectionLabel: "OVER MIJ",
-    heading: "Gebouwd door een engineer, niet door een marketingbureau.",
+    heading: "Gebouwd door een professional, niet door een marketingbureau.",
     body: "Hoi, ik ben Wouter. Als fullstack developer zag ik KMO's worstelen met dure, logge systemen en trage websites. Mijn missie: professionele automatisering toegankelijk maken voor uw bedrijf — persoonlijk, veilig en volledig op maat.",
     portrait: "/images/wouter-portrait.jpg",
     portraitAlt: "Wouter Blockken, fullstack developer",
@@ -180,6 +214,6 @@ export const home: HomeContent = {
     subheading:
       "Vertel kort waar u mee zit — ik denk graag vrijblijvend mee over wat haalbaar is voor uw bedrijf.",
     buttonLabel: "Plan een gratis strategiegesprek →",
-    buttonHref: "#contact",
+    buttonHref: homeSection("contact"),
   },
 };

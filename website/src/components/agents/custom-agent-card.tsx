@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SectionLink } from "@/components/layout/section-link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -49,7 +49,7 @@ export function CustomAgentCard({
         <div className="mt-6 flex items-center justify-between border-t border-brand-orange/15 pt-4">
           <span className="font-semibold text-foreground">{content.price}</span>
           <Button asChild variant="orange" shape="pill" size="sm">
-            <Link href={content.cta.href}>{content.cta.label}</Link>
+            <SectionLink href={content.cta.href}>{content.cta.label}</SectionLink>
           </Button>
         </div>
       </CardContent>

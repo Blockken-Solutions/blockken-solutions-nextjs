@@ -38,6 +38,7 @@ ${getAllFaqItems().slice(0, 5).map((item) => `- **${item.question}** ${item.answ
 ## Pagina's
 
 - [Homepage](${absoluteUrl("/")})
+- [Gratis Website Scan](${absoluteUrl("/gratis-scan")})
 - [FAQ](${absoluteUrl("/faq")})
 - [AI Agents](${absoluteUrl("/agents")})
 - [Privacybeleid](${absoluteUrl("/privacy")})
