@@ -80,10 +80,10 @@ Build settings live in [`netlify.toml`](netlify.toml) at the repo root. After co
 
 1. Go to **Site configuration → Build & deploy → Continuous deployment → Build settings**
 2. Click **Edit settings**
-3. Set **Base directory**, **Build command**, and **Publish directory** to empty (or click **Clear** / use defaults) so `netlify.toml` controls the build
+3. Set **Base directory**, **Build command**, and **Publish directory** to empty so `netlify.toml` controls the build (or set **Publish directory** to `.next` if Netlify requires a value)
 4. Save and trigger a new deploy
 
-Do not set a publish directory. `@netlify/plugin-nextjs` handles Next.js output automatically. The old Angular path `dist/blockken-solutions/browser` must be removed if it is still configured.
+Do not use the old Angular path `dist/blockken-solutions/browser`. The publish directory must be `.next` (relative to `website/`), which `@netlify/plugin-nextjs` expects.
 
 Add environment variables under **Site configuration → Environment variables** (see table above).
 
