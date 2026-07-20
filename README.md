@@ -74,7 +74,22 @@ Update brand tokens in [`website/src/app/globals.css`](website/src/app/globals.c
 
 ## Deploy
 
-Deploy the `website/` directory to Netlify or Vercel. No CMS or webhook configuration needed.
+### Netlify
+
+Build settings live in [`netlify.toml`](netlify.toml) at the repo root. After connecting the repo, clear any overrides in the Netlify UI so the file is used:
+
+1. Go to **Site configuration → Build & deploy → Continuous deployment → Build settings**
+2. Click **Edit settings**
+3. Set **Base directory**, **Build command**, and **Publish directory** to empty (or click **Clear** / use defaults) so `netlify.toml` controls the build
+4. Save and trigger a new deploy
+
+Do not set a publish directory. `@netlify/plugin-nextjs` handles Next.js output automatically. The old Angular path `dist/blockken-solutions/browser` must be removed if it is still configured.
+
+Add environment variables under **Site configuration → Environment variables** (see table above).
+
+### Vercel
+
+Set the project root to `website`. No CMS or webhook configuration needed.
 
 ## Tech stack
 
