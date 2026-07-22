@@ -44,6 +44,7 @@
   --color-card: var(--card);
   --color-brand-accent: var(--brand-accent);
   --color-brand-highlight: var(--brand-highlight);
+  --color-brand-highlight-text: var(--brand-highlight-text);
   --color-section-muted: var(--section-muted);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -58,6 +59,7 @@
   --brand-primary: oklch(0.145 0 0);
   --brand-accent: oklch(0.22 0.02 75);
   --brand-highlight: oklch(0.68 0.19 45);
+  --brand-highlight-text: oklch(0.55 0.19 45);
   --brand-radius: 1rem;
 
   --section-py: 5rem;
