@@ -40,7 +40,7 @@ export function AboutSection({ content }: AboutSectionProps) {
                   key={credential.label}
                   className="glass-pill flex items-center gap-3 rounded-2xl px-4 py-3"
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-orange text-white">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-accent text-white">
                     <Icon className="size-4" />
                   </div>
                   <div className="min-w-0">
@@ -72,8 +72,8 @@ export function AboutSection({ content }: AboutSectionProps) {
           <ul className="mt-8 space-y-4">
             {content.skills.map((skill) => (
               <li key={skill} className="flex items-start gap-3">
-                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
-                  <Check className="size-3.5 text-brand-orange" />
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10">
+                  <Check className="size-3.5 text-brand-accent" />
                 </span>
                 <span className="text-foreground">{skill}</span>
               </li>
@@ -91,7 +91,7 @@ export function AboutSection({ content }: AboutSectionProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.label}
-                      className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:border-brand-orange/40 hover:bg-brand-orange/5 hover:text-brand-orange"
+                      className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:border-brand-highlight/40 hover:bg-brand-highlight/5 hover:text-brand-accent"
                     >
                       <Icon className="size-5" />
                     </a>

@@ -20,7 +20,7 @@ export default function NotFound() {
         De pagina die u zoekt bestaat niet of is verplaatst.
       </p>
       <div className="mt-8">
-        <Button asChild>
+        <Button asChild variant="primary" shape="pill" size="lg">
           <HomeLink>Terug naar home</HomeLink>
         </Button>
       </div>

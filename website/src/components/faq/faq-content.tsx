@@ -71,8 +71,8 @@ export function FaqContent({ content }: FaqContentProps) {
                 className={cn(
                   "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                   activeCategory === category.id
-                    ? "border-brand-orange bg-brand-orange text-white shadow-sm"
-                    : "border-border bg-card text-muted-foreground hover:border-brand-orange/30 hover:text-foreground",
+                    ? "border-brand-accent bg-brand-accent font-semibold text-white shadow-sm"
+                    : "border-border bg-card text-muted-foreground hover:border-brand-highlight/30 hover:text-foreground",
                 )}
               >
                 {category.label}
@@ -87,7 +87,7 @@ export function FaqContent({ content }: FaqContentProps) {
               {activeCategory === "alle" ? (
                 <h2
                   id={`faq-${category.id}`}
-                  className="mb-4 text-sm font-semibold tracking-wide text-brand-orange uppercase"
+                  className="mb-4 text-sm font-semibold tracking-wide text-brand-accent uppercase"
                 >
                   {category.label}
                 </h2>
@@ -117,10 +117,10 @@ export function FaqContent({ content }: FaqContentProps) {
             {content.cta.subheading}
           </SectionDescription>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="orange" shape="pill" size="lg">
+            <Button asChild variant="primary" shape="pill" size="lg">
               <SectionLink href={content.cta.primary.href}>{content.cta.primary.label}</SectionLink>
             </Button>
-            <Button asChild variant="outline" shape="pill" size="lg">
+            <Button asChild variant="secondary" shape="pill" size="lg">
               <a href={content.cta.secondary.href}>
                 {content.cta.secondary.label}
               </a>

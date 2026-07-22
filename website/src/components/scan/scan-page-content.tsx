@@ -83,7 +83,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                 key={step.step}
                 className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm"
               >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-orange/10 text-sm font-bold text-brand-orange">
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10 text-sm font-bold text-brand-accent">
                   {step.step}
                 </span>
                 <div>
@@ -127,7 +127,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                   role="status"
                   aria-live="polite"
                 >
-                  <Loader2 className="size-8 animate-spin text-brand-orange" />
+                  <Loader2 className="size-8 animate-spin text-brand-accent" />
                   <p className="text-sm text-muted-foreground">
                     Website wordt geanalyseerd… (kan 30 seconden duren)
                   </p>
@@ -154,7 +154,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                   />
                   <ScanFindings findings={scanState.result.findings} />
                   <div className="flex justify-center pt-2">
-                    <Button asChild variant="orange" shape="pill" size="lg">
+                    <Button asChild variant="primary" shape="pill" size="lg">
                       <SectionLink
                         href={contactWithScan({
                           url: scanState.result.url,
@@ -182,13 +182,13 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
             {content.cta.subheading}
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="orange" shape="pill" size="lg">
+            <Button asChild variant="primary" shape="pill" size="lg">
               <SectionLink href={content.cta.primary.href}>
                 {content.cta.primary.label}
               </SectionLink>
             </Button>
             {content.cta.secondary ? (
-              <Button asChild variant="outline" shape="pill" size="lg">
+              <Button asChild variant="secondary" shape="pill" size="lg">
                 <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
               </Button>
             ) : null}

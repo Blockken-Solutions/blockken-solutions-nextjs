@@ -72,14 +72,14 @@ export function ContactDetails() {
               href={buildMailtoHref(contact.email)}
               className="group flex min-w-0 flex-1 items-center gap-4 rounded-xl px-2 py-2 transition-colors hover:bg-muted/40"
             >
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
-                <Mail className="size-4 text-brand-orange" />
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10">
+                <Mail className="size-4 text-brand-accent" />
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
                   E-mail
                 </p>
-                <p className="mt-1 break-all text-sm font-medium text-foreground transition-colors group-hover:text-brand-orange">
+                <p className="mt-1 break-all text-sm font-medium text-foreground transition-colors group-hover:text-brand-accent">
                   {contact.email}
                 </p>
               </div>
@@ -88,10 +88,10 @@ export function ContactDetails() {
               type="button"
               onClick={copyEmail}
               aria-label={copied ? "E-mail gekopieerd" : "E-mail kopiëren"}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-brand-orange/30 hover:bg-brand-orange/5 hover:text-brand-orange"
+              className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-brand-highlight/30 hover:bg-brand-highlight/5 hover:text-brand-accent"
             >
               {copied ? (
-                <Check className="size-4 text-brand-orange" />
+                <Check className="size-4 text-brand-accent" />
               ) : (
                 <Copy className="size-4" />
               )}
@@ -109,8 +109,8 @@ export function ContactDetails() {
                 rel={item.external ? "noopener noreferrer" : undefined}
                 className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-muted/40"
               >
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
-                  <Icon className="size-4 text-brand-orange" />
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10">
+                  <Icon className="size-4 text-brand-accent" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
@@ -118,7 +118,7 @@ export function ContactDetails() {
                   </p>
                   <p
                     className={cn(
-                      "mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-brand-orange",
+                      "mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-brand-accent",
                       item.breakAll && "break-all",
                     )}
                   >

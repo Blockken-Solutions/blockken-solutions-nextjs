@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { AgentCategoryFilters } from "@/components/agents/agent-category-filters";
 import { CustomAgentCard } from "@/components/agents/custom-agent-card";
 import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
@@ -14,8 +15,6 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import type { AgentsPreviewContent } from "@/content/types";
 import { contactWithAgent } from "@/lib/paths";
 import { getIcon } from "@/lib/icons";
-import { cn } from "@/lib/utils";
-
 type AgentPreviewProps = {
   content: AgentsPreviewContent;
 };
@@ -42,30 +41,17 @@ export function AgentPreview({ content }: AgentPreviewProps) {
         </div>
         <Link
           href={content.marketplaceLink.href}
-          className="shrink-0 text-sm font-medium text-foreground hover:underline"
+          className="inline-flex min-h-11 shrink-0 items-center text-sm font-medium text-foreground hover:underline"
         >
           {content.marketplaceLink.label}
         </Link>
       </div>
 
-      <div className="mt-8 inline-flex flex-wrap gap-1 rounded-full border border-border bg-card p-1.5 shadow-sm">
-        {content.filterCategories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            aria-pressed={activeCategory === category}
-            onClick={() => setActiveCategory(category)}
-            className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-              activeCategory === category
-                ? "bg-foreground text-background"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <AgentCategoryFilters
+        categories={content.filterCategories}
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+      />
 
       <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {filteredAgents.map((agent) => {
@@ -75,8 +61,8 @@ export function AgentPreview({ content }: AgentPreviewProps) {
               <Card className="flex h-full flex-col rounded-2xl border-border/80 py-0 shadow-sm">
                 <CardContent className="flex flex-1 flex-col p-6">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-orange/10">
-                      <Icon className="size-4 text-brand-orange" />
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-highlight/10">
+                      <Icon className="size-4 text-brand-accent" />
                     </div>
                     <Badge variant="secondary" className="rounded-full">
                       {agent.category}
@@ -85,7 +71,7 @@ export function AgentPreview({ content }: AgentPreviewProps) {
                   <h3 className="mt-4 text-lg font-bold text-foreground">
                     <Link
                       href={`/agents/${agent.slug}`}
-                      className="hover:text-brand-orange"
+                      className="hover:text-brand-accent"
                     >
                       {agent.title}
                     </Link>
@@ -96,10 +82,10 @@ export function AgentPreview({ content }: AgentPreviewProps) {
                   <div className="mt-6 space-y-4 border-t border-border pt-5">
                     <p className="text-base font-semibold text-foreground">{agent.price}</p>
                     <div className="flex flex-col gap-2.5">
-                      <Button asChild variant="outline" shape="pill" className="w-full">
+                      <Button asChild variant="secondary" shape="pill" size="sm" className="w-full">
                         <Link href={`/agents/${agent.slug}`}>Meer info</Link>
                       </Button>
-                      <Button asChild variant="orange" shape="pill" className="w-full">
+                      <Button asChild variant="primary" shape="pill" size="sm" className="w-full">
                         <SectionLink href={contactWithAgent(agent.slug)}>
                           Vraag demo →
                         </SectionLink>

@@ -25,17 +25,17 @@ export function CustomAgentCard({
   return (
     <Card
       className={cn(
-        "flex h-full flex-col rounded-2xl border-dashed border-brand-orange/30 bg-brand-orange/[0.03] py-0 shadow-sm",
+        "flex h-full flex-col rounded-2xl border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] py-0 shadow-sm",
       )}
     >
       <CardContent className="flex flex-1 flex-col p-6">
         <div className="flex items-start justify-between gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-brand-orange/15">
-            <Icon className="size-4 text-brand-orange" />
+          <div className="flex size-10 items-center justify-center rounded-xl bg-brand-highlight/15">
+            <Icon className="size-4 text-brand-accent" />
           </div>
           <Badge
             variant="secondary"
-            className="rounded-full border border-brand-orange/20 bg-brand-orange/10 text-brand-orange"
+            className="rounded-full border border-brand-highlight/20 bg-brand-highlight/10 text-brand-accent"
           >
             Maatwerk
           </Badge>
@@ -46,9 +46,9 @@ export function CustomAgentCard({
           {description}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-brand-orange/15 pt-4">
+        <div className="mt-6 flex items-center justify-between border-t border-brand-highlight/15 pt-4">
           <span className="font-semibold text-foreground">{content.price}</span>
-          <Button asChild variant="orange" shape="pill" size="sm">
+          <Button asChild variant="primary" shape="pill" size="sm">
             <SectionLink href={content.cta.href}>{content.cta.label}</SectionLink>
           </Button>
         </div>

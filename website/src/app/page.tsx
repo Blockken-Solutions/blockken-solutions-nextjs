@@ -1,15 +1,30 @@
+import dynamic from "next/dynamic";
+
 import { AboutSection } from "@/components/landing/about-section";
-import { AgentPreview } from "@/components/landing/agent-preview";
 import { FaqTeaser } from "@/components/landing/faq-teaser";
-import { FooterCta } from "@/components/landing/footer-cta";
 import { Hero } from "@/components/landing/hero";
 import { HowWeWorkSection } from "@/components/landing/how-we-work-section";
 import { PricingSection } from "@/components/landing/pricing-section";
-import { ScanLeadMagnet } from "@/components/landing/scan-lead-magnet";
 import { ServicesBento } from "@/components/landing/services-bento";
 import { JsonLd } from "@/components/seo/json-ld";
 import { home } from "@/content/home";
 import { buildHomeGraph } from "@/lib/structured-data";
+
+const AgentPreview = dynamic(
+  () =>
+    import("@/components/landing/agent-preview").then((mod) => mod.AgentPreview),
+);
+
+const ScanLeadMagnet = dynamic(
+  () =>
+    import("@/components/landing/scan-lead-magnet").then(
+      (mod) => mod.ScanLeadMagnet,
+    ),
+);
+
+const FooterCta = dynamic(
+  () => import("@/components/landing/footer-cta").then((mod) => mod.FooterCta),
+);
 
 export default function Home() {
   return (

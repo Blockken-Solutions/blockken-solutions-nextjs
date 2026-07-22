@@ -18,7 +18,7 @@ export function Hero({ content }: HeroProps) {
       className="-mt-[var(--header-offset)] py-0 pb-8 pt-[calc(var(--header-offset)+2.5rem)] text-center sm:pt-[calc(var(--header-offset)+3.5rem)]"
     >
       <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground shadow-sm">
-        <Sparkles className="size-3.5 text-brand-orange" />
+        <Sparkles className="size-3.5 text-brand-highlight" />
         {content.badge}
       </div>
 
@@ -28,7 +28,7 @@ export function Hero({ content }: HeroProps) {
             {line}
           </span>
         ))}
-        <span className="block text-brand-orange">{content.headlineHighlight}</span>
+        <span className="block text-brand-highlight">{content.headlineHighlight}</span>
       </h1>
 
       <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -42,16 +42,10 @@ export function Hero({ content }: HeroProps) {
       ) : null}
 
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <Button asChild variant="orange" shape="pill" size="lg" className="h-11 px-6 text-base">
+        <Button asChild variant="primary" shape="pill" size="cta">
           <SectionLink href={content.primaryCta.href}>{content.primaryCta.label}</SectionLink>
         </Button>
-        <Button
-          asChild
-          variant="outline"
-          shape="pill"
-          size="lg"
-          className="h-11 border-border bg-card px-6 text-base shadow-sm"
-        >
+        <Button asChild variant="secondary" shape="pill" size="cta">
           <SectionLink href={content.secondaryCta.href}>{content.secondaryCta.label}</SectionLink>
         </Button>
       </div>

@@ -172,13 +172,13 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left">
       {agentTitle ? (
-        <p className="rounded-xl border border-brand-orange/20 bg-brand-orange/5 px-4 py-3 text-base text-foreground">
+        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
           Demo-aanvraag voor: <span className="font-semibold">{agentTitle}</span>
         </p>
       ) : null}
 
       {searchParams.get("scan") ? (
-        <p className="rounded-xl border border-brand-orange/20 bg-brand-orange/5 px-4 py-3 text-base text-foreground">
+        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
           Scan-resultaten voor:{" "}
           <span className="font-semibold">{searchParams.get("scan")}</span>
         </p>
@@ -287,11 +287,11 @@ export function ContactForm() {
 
       <Button
         type="submit"
-        variant="orange"
+        variant="primary"
         shape="pill"
-        size="lg"
+        size="cta"
         disabled={formState === "submitting"}
-        className="h-12 w-full px-8 text-base sm:w-auto"
+        className="w-full sm:w-auto"
       >
         {formState === "submitting" ? "Versturen..." : "Verstuur bericht →"}
       </Button>

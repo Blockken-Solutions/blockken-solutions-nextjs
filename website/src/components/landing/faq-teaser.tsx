@@ -43,7 +43,7 @@ export function FaqTeaser({ content }: FaqTeaserProps) {
       </dl>
 
       <div className="mt-8">
-        <Button asChild variant="outline" shape="pill">
+        <Button asChild variant="secondary" shape="pill" size="lg">
           <Link href={content.cta.href}>{content.cta.label}</Link>
         </Button>
       </div>

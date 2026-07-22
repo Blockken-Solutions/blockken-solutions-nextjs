@@ -33,8 +33,8 @@ export function AgentDetail({ agent }: AgentDetailProps) {
         </Link>
 
         <div className="mt-6 flex items-start gap-4">
-          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-orange/10">
-            <Icon className="size-7 text-brand-orange" aria-hidden="true" />
+          <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-highlight/10">
+            <Icon className="size-7 text-brand-accent" aria-hidden="true" />
           </div>
           <div>
             <Badge variant="secondary" className="rounded-full">
@@ -73,7 +73,7 @@ export function AgentDetail({ agent }: AgentDetailProps) {
                 key={useCase}
                 className="flex items-start gap-3 text-base leading-relaxed text-muted-foreground"
               >
-                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-orange" />
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-highlight" />
                 {useCase}
               </li>
             ))}
@@ -102,12 +102,12 @@ export function AgentDetail({ agent }: AgentDetailProps) {
         ) : null}
 
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-          <Button asChild variant="orange" shape="pill" size="lg">
+          <Button asChild variant="primary" shape="pill" size="lg">
             <SectionLink href={contactWithAgent(agent.slug)}>
               Vraag demo aan →
             </SectionLink>
           </Button>
-          <Button asChild variant="outline" shape="pill" size="lg">
+          <Button asChild variant="secondary" shape="pill" size="lg">
             <Link href="/agents">Bekijk andere agents</Link>
           </Button>
         </div>

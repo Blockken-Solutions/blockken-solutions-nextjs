@@ -28,6 +28,7 @@ export function Section({
     <section
       className={cn(
         "px-[var(--container-px)] py-[var(--section-py)]",
+        variant === "default" && "bg-background",
         variant === "muted" && "bg-muted section-recessed",
         variant === "card" && "border-b border-border bg-card",
         isLayered && "relative z-10 bg-background",

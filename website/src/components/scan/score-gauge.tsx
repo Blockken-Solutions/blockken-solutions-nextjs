@@ -9,7 +9,7 @@ type ScoreGaugeProps = {
 const colorMap = {
   red: "stroke-red-500 text-red-500",
   green: "stroke-green-500 text-green-500",
-  orange: "stroke-brand-orange text-brand-orange",
+  orange: "stroke-brand-accent text-brand-accent",
   blue: "stroke-blue-500 text-blue-500",
 };
 

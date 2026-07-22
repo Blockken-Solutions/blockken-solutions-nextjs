@@ -38,15 +38,15 @@ export function NavLink({ link, variant = "desktop", onNavigate }: NavLinkProps)
   const className = cn(
     "relative font-medium transition-colors",
     variant === "desktop"
-      ? "text-[0.9375rem] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-orange after:transition-opacity"
+      ? "text-[0.9375rem] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-highlight after:transition-opacity"
       : "text-base after:hidden",
     isActive
       ? variant === "desktop"
         ? "font-semibold text-foreground after:opacity-100"
-        : "font-semibold text-brand-orange"
+        : "font-semibold text-brand-accent"
       : variant === "desktop"
         ? "text-muted-foreground after:opacity-0 hover:text-foreground hover:after:opacity-40"
-        : "text-foreground hover:text-brand-orange",
+        : "text-foreground hover:text-brand-accent",
   );
 
   if (link.type === "section" && link.sectionId) {

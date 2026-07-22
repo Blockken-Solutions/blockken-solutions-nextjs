@@ -29,8 +29,8 @@ function FeatureList({ group }: FeatureListProps) {
       <ul className="mt-4 space-y-4">
         {group.features.map((feature) => (
           <li key={feature} className="flex items-start gap-3">
-            <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-orange/10">
-              <Check className="size-3.5 text-brand-orange" />
+            <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10">
+              <Check className="size-3.5 text-brand-accent" />
             </span>
             <span className="text-base leading-relaxed text-foreground">{feature}</span>
           </li>
@@ -48,7 +48,7 @@ function PricingCard({ tier }: PricingCardProps) {
   return (
     <li className={cn(tier.isPopular && "relative pt-4 md:pt-0")}>
       {tier.isPopular ? (
-        <Badge className="absolute top-0 left-1/2 z-10 -translate-x-1/2 rounded-full border border-brand-orange/20 bg-brand-orange px-3 py-1 text-white">
+        <Badge className="absolute top-0 left-1/2 z-10 -translate-x-1/2 rounded-full border border-brand-highlight/20 bg-brand-accent px-3 py-1 font-semibold text-white">
           Meest Gekozen
         </Badge>
       ) : null}
@@ -56,7 +56,7 @@ function PricingCard({ tier }: PricingCardProps) {
         className={cn(
           "flex h-full flex-col rounded-3xl py-0 shadow-sm",
           tier.isPopular
-            ? "border-2 border-brand-orange bg-brand-orange/3 shadow-orange-glow"
+            ? "border-2 border-brand-accent bg-brand-highlight/3 shadow-accent-glow"
             : "border-border/80",
         )}
       >
@@ -77,8 +77,9 @@ function PricingCard({ tier }: PricingCardProps) {
           <div className="mt-auto pt-8">
             <Button
               asChild
-              variant={tier.isPopular ? "orange" : "outline"}
+              variant={tier.isPopular ? "primary" : "secondary"}
               shape="pill"
+              size="lg"
               className="w-full"
             >
               <SectionLink href={tier.cta.href}>{tier.cta.label}</SectionLink>

@@ -13,7 +13,7 @@ export function Logo({ className }: LogoProps) {
         className,
       )}
     >
-      blockken<span className="text-brand-orange">.</span>solutions
+      blockken<span className="text-brand-highlight">.</span>solutions
     </HomeLink>
   );
 }

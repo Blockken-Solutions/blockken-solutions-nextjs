@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { AgentCategoryFilters } from "@/components/agents/agent-category-filters";
 import { CustomAgentCard } from "@/components/agents/custom-agent-card";
 import { SectionLink } from "@/components/layout/section-link";
 import { Badge } from "@/components/ui/badge";
@@ -12,8 +13,6 @@ import { Section, PageHeading } from "@/components/ui/section";
 import type { AgentsPageContent } from "@/content/types";
 import { contactWithAgent } from "@/lib/paths";
 import { getIcon } from "@/lib/icons";
-import { cn } from "@/lib/utils";
-
 type AgentsListingProps = {
   content: AgentsPageContent;
 };
@@ -30,24 +29,11 @@ export function AgentsListing({ content }: AgentsListingProps) {
 
   return (
     <>
-      <div className="mt-8 inline-flex flex-wrap gap-1 rounded-full border border-border bg-card p-1.5 shadow-sm">
-        {content.filterCategories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            aria-pressed={activeCategory === category}
-            onClick={() => setActiveCategory(category)}
-            className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-              activeCategory === category
-                ? "bg-foreground text-background"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <AgentCategoryFilters
+        categories={content.filterCategories}
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+      />
 
       <ul className="mt-8 grid gap-6 md:grid-cols-2">
         {filteredAgents.map((agent) => {
@@ -57,8 +43,8 @@ export function AgentsListing({ content }: AgentsListingProps) {
               <Card className="flex h-full flex-col rounded-2xl border-border/80 py-0 shadow-sm">
                 <CardContent className="flex flex-1 flex-col p-6">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-orange/10">
-                      <Icon className="size-4 text-brand-orange" />
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-highlight/10">
+                      <Icon className="size-4 text-brand-accent" />
                     </div>
                     <Badge variant="secondary" className="rounded-full">
                       {agent.category}
@@ -67,7 +53,7 @@ export function AgentsListing({ content }: AgentsListingProps) {
                   <h2 className="mt-4 text-lg font-bold text-foreground">
                     <Link
                       href={`/agents/${agent.slug}`}
-                      className="hover:text-brand-orange"
+                      className="hover:text-brand-accent"
                     >
                       {agent.title}
                     </Link>
@@ -79,7 +65,7 @@ export function AgentsListing({ content }: AgentsListingProps) {
                     {agent.useCases.map((useCase) => (
                       <li
                         key={useCase}
-                        className="text-base text-muted-foreground before:mr-2 before:text-brand-orange before:content-['•']"
+                        className="text-base text-muted-foreground before:mr-2 before:text-brand-highlight before:content-['•']"
                       >
                         {useCase}
                       </li>
@@ -90,10 +76,10 @@ export function AgentsListing({ content }: AgentsListingProps) {
                       {agent.price}
                     </p>
                     <div className="flex flex-col gap-2.5 sm:flex-row">
-                      <Button asChild variant="outline" shape="pill" className="sm:flex-1">
+                      <Button asChild variant="secondary" shape="pill" size="sm" className="sm:flex-1">
                         <Link href={`/agents/${agent.slug}`}>Meer info</Link>
                       </Button>
-                      <Button asChild variant="orange" shape="pill" className="sm:flex-1">
+                      <Button asChild variant="primary" shape="pill" size="sm" className="sm:flex-1">
                         <SectionLink href={contactWithAgent(agent.slug)}>
                           Vraag demo →
                         </SectionLink>

@@ -29,8 +29,8 @@ export function ServicesBento({ content }: ServicesBentoProps) {
             <li key={item.title}>
               <Card className="h-full rounded-3xl border-border/80 py-0 shadow-sm">
                 <CardContent className="flex h-full flex-col p-8">
-                  <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-brand-orange/10">
-                    <Icon className="size-5 text-brand-orange" aria-hidden="true" />
+                  <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-brand-highlight/10">
+                    <Icon className="size-5 text-brand-accent" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
                   <SectionDescription className="mt-3">{item.description}</SectionDescription>

@@ -67,7 +67,7 @@ export function ScanUrlForm({
         />
         <Button
           type="submit"
-          variant="orange"
+          variant="primary"
           shape="pill"
           size="lg"
           className="shrink-0"
