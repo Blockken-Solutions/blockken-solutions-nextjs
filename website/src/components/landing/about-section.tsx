@@ -38,7 +38,7 @@ export function AboutSection({ content }: AboutSectionProps) {
               return (
                 <div
                   key={credential.label}
-                  className="glass-pill flex items-center gap-3 rounded-2xl px-4 py-3"
+                  className="credential-pill flex items-center gap-3 rounded-2xl px-4 py-3"
                 >
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-accent text-white">
                     <Icon className="size-4" />

@@ -24,7 +24,7 @@ export function FaqTeaser({ content }: FaqTeaserProps) {
         {content.items.map((item) => (
           <div
             key={item.id}
-            className="rounded-2xl border border-border bg-card p-5"
+            className="rounded-3xl border border-border bg-card p-5 shadow-sm"
           >
             <dt className="font-semibold text-foreground">{item.question}</dt>
             <SectionDescription as="dd" className="mt-2">

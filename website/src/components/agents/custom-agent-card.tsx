@@ -25,13 +25,13 @@ export function CustomAgentCard({
   return (
     <Card
       className={cn(
-        "flex h-full flex-col rounded-2xl border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] py-0 shadow-sm",
+        "flex h-full flex-col rounded-3xl border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] py-0 shadow-sm",
       )}
     >
       <CardContent className="flex flex-1 flex-col p-6">
         <div className="flex items-start justify-between gap-3">
-          <div className="flex size-10 items-center justify-center rounded-xl bg-brand-highlight/15">
-            <Icon className="size-4 text-brand-accent" />
+          <div className="flex size-12 items-center justify-center rounded-full bg-brand-highlight/15">
+            <Icon className="size-5 text-brand-accent" />
           </div>
           <Badge
             variant="secondary"

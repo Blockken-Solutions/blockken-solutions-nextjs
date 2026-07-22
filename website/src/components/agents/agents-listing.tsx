@@ -40,11 +40,11 @@ export function AgentsListing({ content }: AgentsListingProps) {
           const Icon = getIcon(agent.icon);
           return (
             <li key={agent.slug} id={agent.slug}>
-              <Card className="flex h-full flex-col rounded-2xl border-border/80 py-0 shadow-sm">
+              <Card className="flex h-full flex-col rounded-3xl border-border/80 py-0 shadow-sm">
                 <CardContent className="flex flex-1 flex-col p-6">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-highlight/10">
-                      <Icon className="size-4 text-brand-accent" />
+                    <div className="flex size-12 items-center justify-center rounded-full bg-brand-highlight/10">
+                      <Icon className="size-5 text-brand-accent" />
                     </div>
                     <Badge variant="secondary" className="rounded-full">
                       {agent.category}

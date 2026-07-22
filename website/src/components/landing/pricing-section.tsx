@@ -56,7 +56,7 @@ function PricingCard({ tier }: PricingCardProps) {
         className={cn(
           "flex h-full flex-col rounded-3xl py-0 shadow-sm",
           tier.isPopular
-            ? "border-2 border-brand-accent bg-brand-highlight/3 shadow-accent-glow"
+            ? "border-2 border-brand-highlight/30 bg-brand-highlight/3 transition-shadow hover:shadow-accent-glow"
             : "border-border/80",
         )}
       >
@@ -93,7 +93,7 @@ function PricingCard({ tier }: PricingCardProps) {
 
 export function PricingSection({ content }: PricingSectionProps) {
   return (
-    <Section id="prijzen" overhang>
+    <Section id="prijzen" variant="muted" overhang>
       <div className="text-center">
         <SectionLabel className="mb-4">{content.sectionLabel}</SectionLabel>
         <SectionHeading className="mx-auto max-w-3xl text-4xl font-bold sm:text-5xl">

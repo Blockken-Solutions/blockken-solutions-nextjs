@@ -39,14 +39,14 @@ export function ServicesBento({ content }: ServicesBentoProps) {
                       {item.href.startsWith("/#") ? (
                         <SectionLink
                           href={item.href}
-                          className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                          className="text-sm font-medium text-foreground underline-offset-4 hover:text-brand-accent hover:underline"
                         >
                           {item.linkLabel ?? "Meer info →"}
                         </SectionLink>
                       ) : (
                         <Link
                           href={item.href}
-                          className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                          className="text-sm font-medium text-foreground underline-offset-4 hover:text-brand-accent hover:underline"
                         >
                           {item.linkLabel ?? "Meer info →"}
                         </Link>

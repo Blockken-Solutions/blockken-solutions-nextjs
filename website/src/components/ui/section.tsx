@@ -31,7 +31,7 @@ export function Section({
         variant === "default" && "bg-background",
         variant === "muted" && "bg-muted section-recessed",
         variant === "card" && "border-b border-border bg-card",
-        isLayered && "relative z-10 bg-background",
+        isLayered && "relative z-10",
         hasTopLayer && "section-shadow-top",
         hasBottomLayer && "section-shadow-bottom",
         overlap && "section-overlap",

@@ -1,6 +1,5 @@
-import { Sparkles } from "lucide-react";
-
 import { SectionLink } from "@/components/layout/section-link";
+import { SectionLabel } from "@/components/landing/section-label";
 import { TrustBar } from "@/components/landing/trust-bar";
 import { Button } from "@/components/ui/button";
 import { SectionDescription } from "@/components/ui/section-description";
@@ -17,12 +16,9 @@ export function Hero({ content }: HeroProps) {
       id="hero"
       className="-mt-[var(--header-offset)] py-0 pb-8 pt-[calc(var(--header-offset)+2.5rem)] text-center sm:pt-[calc(var(--header-offset)+3.5rem)]"
     >
-      <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground shadow-sm">
-        <Sparkles className="size-3.5 text-brand-highlight" />
-        {content.badge}
-      </div>
+      <SectionLabel className="mb-8">{content.badge}</SectionLabel>
 
-      <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+      <h1 className="font-lcp mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
         {content.headlineLines.map((line) => (
           <span key={line} className="block">
             {line}
