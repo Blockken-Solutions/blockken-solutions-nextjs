@@ -1,6 +1,7 @@
 export type ContactFormValues = {
   name: string;
   email: string;
+  phone: string;
   company: string;
   message: string;
   agent: string;
@@ -11,6 +12,7 @@ export type ContactFieldErrors = Partial<
 >;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_CHARS_PATTERN = /^[+\d\s()\-]+$/;
 
 export function validateContactField(
   field: keyof ContactFormValues,
@@ -29,6 +31,17 @@ export function validateContactField(
         return "Vul een geldig e-mailadres in (bijv. naam@bedrijf.be).";
       }
       return undefined;
+    case "phone": {
+      if (!trimmed) return undefined;
+      if (!PHONE_CHARS_PATTERN.test(trimmed)) {
+        return "Vul een geldig telefoonnummer in.";
+      }
+      const digits = trimmed.replace(/\D/g, "");
+      if (digits.length < 8 || digits.length > 15) {
+        return "Vul een geldig telefoonnummer in.";
+      }
+      return undefined;
+    }
     case "message":
       if (!trimmed) return "Vul een bericht in.";
       if (trimmed.length < 10) {
@@ -49,6 +62,7 @@ export function validateContactForm(
   const fields: Array<keyof ContactFormValues> = [
     "name",
     "email",
+    "phone",
     "message",
   ];
 

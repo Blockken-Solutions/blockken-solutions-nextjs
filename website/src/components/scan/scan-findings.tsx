@@ -6,9 +6,9 @@ type ScanFindingsProps = {
 };
 
 const severityLabels = {
-  critical: "Kritiek",
-  warning: "Waarschuwing",
-  info: "Info",
+  critical: "Belangrijk",
+  warning: "Aandachtspunt",
+  info: "Tip",
 } as const;
 
 const severityStyles = {
@@ -29,7 +29,7 @@ export function ScanFindings({ findings }: ScanFindingsProps) {
           Verbeterpunten
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Geen kritieke problemen gevonden in deze scan.
+          Geen belangrijke problemen gevonden in deze scan.
         </p>
       </section>
     );

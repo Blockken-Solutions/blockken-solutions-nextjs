@@ -61,34 +61,36 @@ export function ScanCoreWebVitals({
         id="scan-cwv-heading"
         className="text-lg font-semibold text-foreground"
       >
-        Core Web Vitals
+        Bezoekerservaring
       </h3>
       {!hasFieldData ? (
         <p className="mt-2 text-sm text-muted-foreground">
-          Onvoldoende publieke data — lab-scores hierboven zijn indicatief.
+          Nog geen bezoekersdata beschikbaar voor deze pagina.
         </p>
       ) : (
-        <p className="mt-2 text-sm text-muted-foreground">
-          Gebaseerd op echte gebruikersdata (Chrome UX Report).
-        </p>
+        <>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Gebaseerd op echte gebruikersdata (Chrome UX Report).
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            <CwvCard
+              label="Laadtijd"
+              metric={lcp}
+              description="Hoe snel het belangrijkste inhoudsblok verschijnt"
+            />
+            <CwvCard
+              label="Responsiviteit"
+              metric={inp}
+              description="Hoe snel de pagina reageert op klikken en tikken"
+            />
+            <CwvCard
+              label="Stabiliteit"
+              metric={cls}
+              description="Of de pagina verspringt tijdens het laden"
+            />
+          </div>
+        </>
       )}
-      <div className="mt-4 grid gap-4 sm:grid-cols-3">
-        <CwvCard
-          label="LCP"
-          metric={lcp}
-          description="Laadtijd van het grootste element"
-        />
-        <CwvCard
-          label="INP"
-          metric={inp}
-          description="Responsiviteit bij interactie"
-        />
-        <CwvCard
-          label="CLS"
-          metric={cls}
-          description="Visuele stabiliteit van de pagina"
-        />
-      </div>
     </section>
   );
 }

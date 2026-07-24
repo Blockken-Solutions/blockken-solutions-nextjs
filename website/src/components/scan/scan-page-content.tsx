@@ -28,6 +28,9 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
   const searchParams = useSearchParams();
   const scannedUrl = parseScanUrlParam(searchParams.get("url"));
   const scanState = useScan(scannedUrl);
+  const isScanning = Boolean(scannedUrl);
+  const showMarketing = !isScanning;
+  const showBottomCta = !isScanning || scanState.status === "success";
 
   const handleSubmit = useCallback(
     (url: string) => {
@@ -48,54 +51,58 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           {content.subheading}
         </p>
 
-        <section className="mt-12" aria-labelledby="scan-intro-heading">
-          <h2
-            id="scan-intro-heading"
-            className="text-2xl font-bold text-foreground sm:text-3xl"
-          >
-            {content.intro.heading}
-          </h2>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {content.intro.items.map((item) => (
-              <li
-                key={item.title}
-                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+        {showMarketing ? (
+          <>
+            <section className="mt-12" aria-labelledby="scan-intro-heading">
+              <h2
+                id="scan-intro-heading"
+                className="text-2xl font-bold text-foreground sm:text-3xl"
               >
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+                {content.intro.heading}
+              </h2>
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {content.intro.items.map((item) => (
+                  <li
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+                  >
+                    <h3 className="font-semibold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-        <section className="mt-12" aria-labelledby="scan-steps-heading">
-          <h2
-            id="scan-steps-heading"
-            className="text-2xl font-bold text-foreground sm:text-3xl"
-          >
-            Hoe werkt het?
-          </h2>
-          <ol className="mt-6 space-y-4">
-            {content.howItWorks.map((step) => (
-              <li
-                key={step.step}
-                className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm"
+            <section className="mt-12" aria-labelledby="scan-steps-heading">
+              <h2
+                id="scan-steps-heading"
+                className="text-2xl font-bold text-foreground sm:text-3xl"
               >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10 text-sm font-bold text-brand-accent">
-                  {step.step}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-foreground">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
+                Hoe werkt het?
+              </h2>
+              <ol className="mt-6 space-y-4">
+                {content.howItWorks.map((step) => (
+                  <li
+                    key={step.step}
+                    className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm"
+                  >
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10 text-sm font-bold text-brand-accent">
+                      {step.step}
+                    </span>
+                    <div>
+                      <h3 className="font-semibold text-foreground">{step.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </>
+        ) : null}
 
         <section
           className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-12"
@@ -116,20 +123,18 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
 
           {scannedUrl ? (
             <div className="mt-10 space-y-10">
-              <p className="text-center text-sm text-muted-foreground">
-                Resultaten voor{" "}
-                <span className="font-medium text-foreground">{scannedUrl}</span>
-              </p>
-
               {scanState.status === "loading" ? (
                 <div
-                  className="flex flex-col items-center gap-3 py-8"
+                  className="flex flex-col items-center gap-3 py-12"
                   role="status"
                   aria-live="polite"
                 >
-                  <Loader2 className="size-8 animate-spin text-brand-accent" />
+                  <Loader2 className="size-10 animate-spin text-brand-accent" />
+                  <p className="text-sm font-medium text-foreground">
+                    Even geduld — we analyseren uw website…
+                  </p>
                   <p className="text-sm text-muted-foreground">
-                    Website wordt geanalyseerd… (kan 30 seconden duren)
+                    Dit kan 10–30 seconden duren.
                   </p>
                 </div>
               ) : null}
@@ -145,6 +150,10 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
 
               {scanState.status === "success" ? (
                 <>
+                  <p className="text-center text-sm text-muted-foreground">
+                    Resultaten voor{" "}
+                    <span className="font-medium text-foreground">{scannedUrl}</span>
+                  </p>
                   <ScanResults result={scanState.result} />
                   <ScanCoreWebVitals
                     lcp={scanState.result.coreWebVitals.lcp}
@@ -174,26 +183,28 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           ) : null}
         </section>
 
-        <div className="mt-16 rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-sm sm:px-12">
-          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
-            {content.cta.heading}
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
-            {content.cta.subheading}
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="primary" shape="pill" size="lg">
-              <SectionLink href={content.cta.primary.href}>
-                {content.cta.primary.label}
-              </SectionLink>
-            </Button>
-            {content.cta.secondary ? (
-              <Button asChild variant="secondary" shape="pill" size="lg">
-                <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
+        {showBottomCta ? (
+          <div className="mt-16 rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-sm sm:px-12">
+            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+              {content.cta.heading}
+            </h2>
+            <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
+              {content.cta.subheading}
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild variant="primary" shape="pill" size="lg">
+                <SectionLink href={content.cta.primary.href}>
+                  {content.cta.primary.label}
+                </SectionLink>
               </Button>
-            ) : null}
+              {content.cta.secondary ? (
+                <Button asChild variant="secondary" shape="pill" size="lg">
+                  <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
+                </Button>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </Section>
   );

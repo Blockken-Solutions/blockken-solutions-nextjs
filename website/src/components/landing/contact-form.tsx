@@ -20,12 +20,16 @@ type FormState = "idle" | "submitting" | "success" | "error";
 const initialFormData: ContactFormValues = {
   name: "",
   email: "",
+  phone: "",
   company: "",
   message: "",
   agent: "",
 };
 
-type ValidatedField = keyof Pick<ContactFormValues, "name" | "email" | "message">;
+type ValidatedField = keyof Pick<
+  ContactFormValues,
+  "name" | "email" | "phone" | "message"
+>;
 
 export function ContactForm() {
   const searchParams = useSearchParams();
@@ -90,7 +94,12 @@ export function ContactForm() {
   ) {
     setFormData((current) => ({ ...current, [field]: value }));
 
-    if (field === "name" || field === "email" || field === "message") {
+    if (
+      field === "name" ||
+      field === "email" ||
+      field === "phone" ||
+      field === "message"
+    ) {
       const error = validateContactField(field, value);
       setFieldErrors((current) => {
         const next = { ...current };
@@ -121,7 +130,7 @@ export function ContactForm() {
 
     const errors = validateContactForm(formData);
     setFieldErrors(errors);
-    setTouched({ name: true, email: true, message: true });
+    setTouched({ name: true, email: true, phone: true, message: true });
 
     if (hasContactFieldErrors(errors)) {
       setFormState("idle");
@@ -233,19 +242,45 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="space-y-1.5">
-        <label htmlFor="contact-company" className="text-base font-medium text-foreground">
-          Bedrijf
-        </label>
-        <Input
-          id="contact-company"
-          name="company"
-          type="text"
-          autoComplete="organization"
-          value={formData.company}
-          onChange={(event) => updateField("company", event.target.value)}
-          className="h-10"
-        />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-1.5">
+          <label htmlFor="contact-phone" className="text-base font-medium text-foreground">
+            Telefoon
+          </label>
+          <Input
+            id="contact-phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            value={formData.phone}
+            onChange={(event) => updateField("phone", event.target.value)}
+            onBlur={() => handleBlur("phone")}
+            aria-invalid={showFieldError("phone")}
+            aria-describedby={showFieldError("phone") ? "contact-phone-error" : undefined}
+            className={cn("h-10", showFieldError("phone") && "border-destructive ring-3 ring-destructive/20")}
+          />
+          {showFieldError("phone") ? (
+            <p id="contact-phone-error" className="text-sm text-destructive" role="alert">
+              {fieldErrors.phone}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="space-y-1.5">
+          <label htmlFor="contact-company" className="text-base font-medium text-foreground">
+            Bedrijf
+          </label>
+          <Input
+            id="contact-company"
+            name="company"
+            type="text"
+            autoComplete="organization"
+            value={formData.company}
+            onChange={(event) => updateField("company", event.target.value)}
+            className="h-10"
+          />
+        </div>
       </div>
 
       <div className="space-y-1.5">

@@ -20,7 +20,7 @@ export const privacyPage: LegalPageContent = {
         "We verzamelen alleen gegevens die u vrijwillig verstrekt of die automatisch worden gegenereerd bij het gebruik van onze diensten:",
       ],
       list: [
-        "Contactgegevens (naam, e-mailadres) wanneer u ons mailt of een strategiegesprek plant",
+        "Contactgegevens (naam, e-mailadres, telefoonnummer) wanneer u ons mailt of een strategiegesprek plant",
         "Website-URL wanneer u onze gratis website scan gebruikt",
         "Technische loggegevens (IP-adres, browsertype) via onze hostingprovider",
       ],

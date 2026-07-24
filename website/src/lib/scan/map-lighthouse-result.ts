@@ -1,3 +1,4 @@
+import { toFriendlyFinding } from "@/lib/scan/friendly-findings";
 import type {
   CwvMetric,
   CwvRating,
@@ -88,7 +89,7 @@ function findingSeverity(score: number): ScanFindingSeverity {
 
 function extractFindings(
   lighthouse: NonNullable<PageSpeedInsightsResponse["lighthouseResult"]>,
-  limit = 8,
+  limit = 5,
 ): ScanFinding[] {
   const auditWeights = new Map<string, number>();
 
@@ -116,12 +117,20 @@ function extractFindings(
     })
     .slice(0, limit);
 
-  return failedAudits.map((audit) => ({
-    id: audit.id,
-    title: audit.title,
-    description: audit.description ?? "",
-    severity: findingSeverity(audit.score ?? 1),
-  }));
+  return failedAudits.map((audit) => {
+    const friendly = toFriendlyFinding(
+      audit.id,
+      audit.title,
+      audit.description ?? "",
+    );
+
+    return {
+      id: audit.id,
+      title: friendly.title,
+      description: friendly.description,
+      severity: findingSeverity(audit.score ?? 1),
+    };
+  });
 }
 
 export function mapPageSpeedResponse(

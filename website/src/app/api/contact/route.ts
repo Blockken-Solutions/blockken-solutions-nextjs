@@ -1,10 +1,12 @@
 import { Resend } from "resend";
 
 import { agentsPage } from "@/content/agents";
+import { validateContactField } from "@/lib/validation/contact";
 
 type ContactRequestBody = {
   name?: string;
   email?: string;
+  phone?: string;
   company?: string;
   message?: string;
   agent?: string;
@@ -57,6 +59,7 @@ export async function POST(request: Request) {
 
   const name = body.name?.trim();
   const email = body.email?.trim();
+  const phone = body.phone?.trim();
   const company = body.company?.trim();
   const message = body.message?.trim();
   const agentSlug = body.agent?.trim();
@@ -73,6 +76,10 @@ export async function POST(request: Request) {
     return Response.json({ error: "Ongeldig e-mailadres." }, { status: 400 });
   }
 
+  if (phone && validateContactField("phone", phone)) {
+    return Response.json({ error: "Ongeldig telefoonnummer." }, { status: 400 });
+  }
+
   const agentTitle = agentSlug ? getAgentTitle(agentSlug) : null;
   const subject = agentTitle
     ? `Demo-aanvraag: ${agentTitle} — ${name}`
@@ -87,6 +94,7 @@ export async function POST(request: Request) {
   const textLines = [
     `Naam: ${name}`,
     `E-mail: ${email}`,
+    phone ? `Telefoon: ${phone}` : null,
     company ? `Bedrijf: ${company}` : null,
     agentLine,
     "",

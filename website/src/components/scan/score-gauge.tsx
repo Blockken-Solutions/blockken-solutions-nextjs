@@ -1,26 +1,29 @@
 import { cn } from "@/lib/utils";
 
+type ScoreColor = "red" | "green" | "orange";
+
 type ScoreGaugeProps = {
   label: string;
-  value: string | number;
-  color?: "red" | "green" | "orange" | "blue";
+  value: number;
 };
 
-const colorMap = {
+const colorMap: Record<ScoreColor, string> = {
   red: "stroke-red-500 text-red-500",
   green: "stroke-green-500 text-green-500",
   orange: "stroke-brand-accent text-brand-accent",
-  blue: "stroke-blue-500 text-blue-500",
 };
 
-export function ScoreGauge({ label, value, color = "orange" }: ScoreGaugeProps) {
-  const numericValue =
-    typeof value === "number" ? Math.min(100, Math.max(0, value)) : null;
+export function scoreToColor(score: number): ScoreColor {
+  if (score >= 90) return "green";
+  if (score >= 50) return "orange";
+  return "red";
+}
+
+export function ScoreGauge({ label, value }: ScoreGaugeProps) {
+  const numericValue = Math.min(100, Math.max(0, value));
+  const color = scoreToColor(numericValue);
   const circumference = 2 * Math.PI * 36;
-  const offset =
-    numericValue !== null
-      ? circumference - (numericValue / 100) * circumference
-      : circumference * 0.25;
+  const offset = circumference - (numericValue / 100) * circumference;
 
   return (
     <div className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6">
