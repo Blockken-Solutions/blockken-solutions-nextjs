@@ -164,11 +164,25 @@ export type AboutContent = {
   sameAs: { label: string; href: string; icon?: string }[];
 };
 
+export type ContactCalendlyContent = {
+  heading: string;
+  description: string;
+  ctaLabel: string;
+};
+
+export type ContactBlockContent = {
+  heading: string;
+  description: string;
+};
+
 export type FooterCtaContent = {
   heading: string;
   subheading: string;
-  buttonLabel: string;
-  buttonHref: string;
+  directContact: ContactBlockContent;
+  calendly: ContactCalendlyContent;
+  form: ContactBlockContent;
+  buttonLabel?: string;
+  buttonHref?: string;
 };
 
 export type FaqItem = {
@@ -214,6 +228,14 @@ export type LegalPageContent = {
   title: string;
   sections: LegalSection[];
   seo: SeoConfig;
+};
+
+export type PlanGesprekPageContent = {
+  seo: SeoConfig;
+  sectionLabel: string;
+  heading: string;
+  subheading: string;
+  highlights: string[];
 };
 
 export type PricingFeatureGroup = {

@@ -17,7 +17,15 @@ function buildMailtoHref(email: string): string {
   return `mailto:${email}?subject=${subject}`;
 }
 
-export function ContactDetails() {
+type ContactDetailsProps = {
+  heading?: string;
+  description?: string;
+};
+
+export function ContactDetails({
+  heading = "Direct contact",
+  description = "Liever niet wachten? Neem rechtstreeks contact op via onderstaande kanalen.",
+}: ContactDetailsProps) {
   const contact: ContactInfo = site.contact;
   const linkedin = site.organization.sameAs[0];
   const [copied, setCopied] = useState(false);
@@ -58,10 +66,9 @@ export function ContactDetails() {
   return (
     <div className="flex h-full flex-col text-left">
       <div>
-        <p className="text-base font-semibold text-foreground">Direct contact</p>
+        <p className="text-base font-semibold text-foreground">{heading}</p>
         <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-          Liever niet wachten? Neem rechtstreeks contact op via onderstaande
-          kanalen.
+          {description}
         </p>
       </div>
 

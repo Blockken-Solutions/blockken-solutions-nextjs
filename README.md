@@ -29,6 +29,7 @@ The site runs at [http://localhost:3000](http://localhost:3000).
 | `GOOGLE_PAGESPEED_API_KEY` | For `/gratis-scan` | Google PageSpeed Insights API key (server-only) |
 | `RESEND_API_KEY` | For contact form | Email delivery via Resend |
 | `CONTACT_EMAIL_TO` | Optional | Recipient for contact form submissions |
+| `CALENDLY_URL` | For kennismakingsgesprek | Calendly event URL embedded in the contact section (server-only) |
 
 #### PageSpeed Insights API key setup
 

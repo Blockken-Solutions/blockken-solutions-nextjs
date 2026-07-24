@@ -9,6 +9,7 @@ import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -87,7 +88,7 @@ export function AgentPreview({ content }: AgentPreviewProps) {
                       </Button>
                       <Button asChild variant="primary" shape="pill" size="sm" className="w-full">
                         <SectionLink href={contactWithAgent(agent.slug)}>
-                          Vraag demo →
+                          <ButtonLabel>Vraag demo →</ButtonLabel>
                         </SectionLink>
                       </Button>
                     </div>

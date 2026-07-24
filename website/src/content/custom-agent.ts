@@ -1,5 +1,5 @@
 import type { CustomAgentCta } from "@/content/types";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 export const customAgent: CustomAgentCta = {
   title: "Agent op maat",
@@ -11,6 +11,6 @@ export const customAgent: CustomAgentCta = {
   icon: "sparkles",
   cta: {
     label: "Bespreek uw idee →",
-    href: homeSection("contact"),
+    href: contactPlanSection(),
   },
 };

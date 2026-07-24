@@ -163,7 +163,8 @@
   }
 
   section[id],
-  [id="contact"] {
+  [id="contact"],
+  [id="contact-plan"] {
     scroll-margin-top: var(--header-offset);
   }
 
@@ -271,5 +272,33 @@
     background: var(--card);
     border: 1px solid var(--border);
     box-shadow: 0 1px 3px oklch(0 0 0 / 4%);
+  }
+
+  .calendly-inline-widget {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .calendly-inline-widget--page {
+    min-height: 1060px;
+  }
+
+  .calendly-inline-widget--page iframe {
+    display: block;
+    width: 100% !important;
+    min-height: 1060px;
+    height: 100%;
+    border: 0;
+  }
+
+  .calendly-inline-widget--inline {
+    min-height: 200px;
+  }
+
+  .calendly-inline-widget--inline iframe {
+    display: block;
+    width: 100% !important;
+    border: 0;
   }
 }

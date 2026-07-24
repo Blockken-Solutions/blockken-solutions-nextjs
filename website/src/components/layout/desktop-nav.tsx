@@ -6,7 +6,7 @@ import { NavLink } from "@/components/layout/nav-link";
 import { SectionLink } from "@/components/layout/section-link";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/content/navigation";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 type HeaderActionsProps = {
   mobileNav: ReactNode;
@@ -32,7 +32,7 @@ export function HeaderActions({ mobileNav }: HeaderActionsProps) {
         size="sm"
         className="hidden sm:inline-flex"
       >
-        <SectionLink href={homeSection("contact")}>Gratis gesprek</SectionLink>
+        <SectionLink href={contactPlanSection()}>Gratis gesprek</SectionLink>
       </Button>
       {mobileNav}
     </div>

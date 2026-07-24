@@ -51,6 +51,7 @@ export const privacyPage: LegalPageContent = {
       list: [
         "Netlify — website hosting",
         "Resend — e-mailverzending voor contactformulieren",
+        "Calendly — online planning van kennismakingsgesprekken",
         "Google PageSpeed Insights — gratis website scan",
         "OpenAI / Anthropic — AI-verwerking voor agentdiensten (indien van toepassing)",
       ],

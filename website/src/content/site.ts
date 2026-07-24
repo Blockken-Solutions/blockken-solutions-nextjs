@@ -51,6 +51,7 @@ export const site = {
 export const indexableRoutes = [
   { pathname: "/", lastModified: site.lastModified },
   { pathname: "/gratis-scan", lastModified: site.lastModified },
+  { pathname: "/plan-gesprek", lastModified: site.lastModified },
   { pathname: "/faq", lastModified: site.lastModified },
   { pathname: "/agents", lastModified: site.lastModified },
   { pathname: "/privacy", lastModified: site.lastModified },

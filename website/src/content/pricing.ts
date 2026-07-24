@@ -1,5 +1,5 @@
 import type { PricingContent } from "@/content/types";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 export const pricing: PricingContent = {
   sectionLabel: "PRIJZEN & PAKKETTEN",
@@ -35,7 +35,7 @@ export const pricing: PricingContent = {
       },
       cta: {
         label: "Plan een gesprek →",
-        href: homeSection("contact"),
+        href: contactPlanSection(),
       },
     },
     {
@@ -65,7 +65,7 @@ export const pricing: PricingContent = {
       isPopular: true,
       cta: {
         label: "Plan een gesprek →",
-        href: homeSection("contact"),
+        href: contactPlanSection(),
       },
     },
     {
@@ -93,7 +93,7 @@ export const pricing: PricingContent = {
       },
       cta: {
         label: "Plan een gesprek →",
-        href: homeSection("contact"),
+        href: contactPlanSection(),
       },
     },
   ],

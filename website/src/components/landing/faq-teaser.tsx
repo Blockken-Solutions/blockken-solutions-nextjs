@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaqAnswer } from "@/components/faq/faq-answer";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { FaqTeaserContent } from "@/content/types";
@@ -43,8 +44,10 @@ export function FaqTeaser({ content }: FaqTeaserProps) {
       </dl>
 
       <div className="mt-8">
-        <Button asChild variant="secondary" shape="pill" size="lg">
-          <Link href={content.cta.href}>{content.cta.label}</Link>
+        <Button asChild variant="secondary" shape="pill" size="cta">
+          <Link href={content.cta.href}>
+            <ButtonLabel>{content.cta.label}</ButtonLabel>
+          </Link>
         </Button>
       </div>
     </Section>

@@ -8,6 +8,7 @@ import { CustomAgentCard } from "@/components/agents/custom-agent-card";
 import { SectionLink } from "@/components/layout/section-link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section, PageHeading } from "@/components/ui/section";
 import type { AgentsPageContent } from "@/content/types";
@@ -81,7 +82,7 @@ export function AgentsListing({ content }: AgentsListingProps) {
                       </Button>
                       <Button asChild variant="primary" shape="pill" size="sm" className="sm:flex-1">
                         <SectionLink href={contactWithAgent(agent.slug)}>
-                          Vraag demo →
+                          <ButtonLabel>Vraag demo →</ButtonLabel>
                         </SectionLink>
                       </Button>
                     </div>

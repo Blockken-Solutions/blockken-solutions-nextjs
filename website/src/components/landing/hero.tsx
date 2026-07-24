@@ -2,6 +2,7 @@ import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
 import { TrustBar } from "@/components/landing/trust-bar";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section } from "@/components/ui/section";
 import type { HeroContent } from "@/content/types";
@@ -39,10 +40,14 @@ export function Hero({ content }: HeroProps) {
 
       <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <Button asChild variant="primary" shape="pill" size="cta">
-          <SectionLink href={content.primaryCta.href}>{content.primaryCta.label}</SectionLink>
+          <SectionLink href={content.primaryCta.href}>
+            <ButtonLabel>{content.primaryCta.label}</ButtonLabel>
+          </SectionLink>
         </Button>
         <Button asChild variant="secondary" shape="pill" size="cta">
-          <SectionLink href={content.secondaryCta.href}>{content.secondaryCta.label}</SectionLink>
+          <SectionLink href={content.secondaryCta.href}>
+            <ButtonLabel>{content.secondaryCta.label}</ButtonLabel>
+          </SectionLink>
         </Button>
       </div>
 

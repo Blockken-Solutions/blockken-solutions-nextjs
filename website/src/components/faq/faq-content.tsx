@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, PageHeading } from "@/components/ui/section";
 import type { FaqPageContent } from "@/content/types";
@@ -117,10 +118,12 @@ export function FaqContent({ content }: FaqContentProps) {
             {content.cta.subheading}
           </SectionDescription>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="primary" shape="pill" size="lg">
-              <SectionLink href={content.cta.primary.href}>{content.cta.primary.label}</SectionLink>
+            <Button asChild variant="primary" shape="pill" size="cta">
+              <SectionLink href={content.cta.primary.href}>
+                <ButtonLabel>{content.cta.primary.label}</ButtonLabel>
+              </SectionLink>
             </Button>
-            <Button asChild variant="secondary" shape="pill" size="lg">
+            <Button asChild variant="secondary" shape="pill" size="cta">
               <a href={content.cta.secondary.href}>
                 {content.cta.secondary.label}
               </a>

@@ -2,6 +2,7 @@ import { SectionLink } from "@/components/layout/section-link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Card, CardContent } from "@/components/ui/card";
 import type { CustomAgentCta } from "@/content/types";
 import { getIcon } from "@/lib/icons";
@@ -49,7 +50,9 @@ export function CustomAgentCard({
         <div className="mt-6 flex items-center justify-between border-t border-brand-highlight/15 pt-4">
           <span className="font-semibold text-foreground">{content.price}</span>
           <Button asChild variant="primary" shape="pill" size="sm">
-            <SectionLink href={content.cta.href}>{content.cta.label}</SectionLink>
+            <SectionLink href={content.cta.href}>
+              <ButtonLabel>{content.cta.label}</ButtonLabel>
+            </SectionLink>
           </Button>
         </div>
       </CardContent>

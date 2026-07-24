@@ -9,7 +9,7 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import { Section } from "@/components/ui/section";
 import { agentsPage } from "@/content/agents";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 import { createMetadata } from "@/lib/metadata";
 import { buildAgentsGraph } from "@/lib/structured-data";
 
@@ -37,7 +37,7 @@ export default function AgentsPage() {
           </Link>{" "}
           of{" "}
           <SectionLink
-            href={homeSection("contact")}
+            href={contactPlanSection()}
             className="font-medium text-foreground underline-offset-4 hover:underline"
           >
             plan een gratis strategiegesprek

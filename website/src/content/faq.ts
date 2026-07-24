@@ -1,5 +1,5 @@
 import type { FaqItem, FaqPageContent } from "@/content/types";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 const MARKDOWN_LINK_PATTERN = /\[([^\]]+)\]\([^)]+\)/g;
 
@@ -200,7 +200,7 @@ export const faqPage: FaqPageContent = {
       "Plan een gratis strategiegesprek. Geen verkooppraat — wel concrete inzichten voor uw bedrijf.",
     primary: {
       label: "Plan een gratis gesprek →",
-      href: homeSection("contact"),
+      href: contactPlanSection(),
     },
     secondary: {
       label: "Mail ons direct",

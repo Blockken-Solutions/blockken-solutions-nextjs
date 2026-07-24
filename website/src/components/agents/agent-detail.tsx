@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SectionLink } from "@/components/layout/section-link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Section, PageHeading } from "@/components/ui/section";
 import { getAgentBySlug } from "@/content/agents";
 import type { AgentListing } from "@/content/types";
@@ -102,12 +103,12 @@ export function AgentDetail({ agent }: AgentDetailProps) {
         ) : null}
 
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-          <Button asChild variant="primary" shape="pill" size="lg">
+          <Button asChild variant="primary" shape="pill" size="cta">
             <SectionLink href={contactWithAgent(agent.slug)}>
-              Vraag demo aan →
+              <ButtonLabel>Vraag demo aan →</ButtonLabel>
             </SectionLink>
           </Button>
-          <Button asChild variant="secondary" shape="pill" size="lg">
+          <Button asChild variant="secondary" shape="pill" size="cta">
             <Link href="/agents">Bekijk andere agents</Link>
           </Button>
         </div>

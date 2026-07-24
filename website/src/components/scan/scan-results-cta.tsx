@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { SectionLink } from "@/components/layout/section-link";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { contactWithScan } from "@/lib/paths";
 import type { ScanVerdict } from "@/lib/scan/scan-verdict";
 import type { ScanResult } from "@/lib/scan/types";
@@ -22,7 +23,7 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
         {verdict.ctaSubheading}
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Button asChild variant="primary" shape="pill" size="lg">
+        <Button asChild variant="primary" shape="pill" size="cta">
           <SectionLink
             href={contactWithScan({
               url: result.url,
@@ -32,17 +33,17 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
               bestPractices: result.scores.bestPractices,
             })}
           >
-            Plan optimalisatiegesprek →
+            <ButtonLabel>Plan optimalisatiegesprek →</ButtonLabel>
           </SectionLink>
         </Button>
         {faqHref ? (
-          <Button asChild variant="secondary" shape="pill" size="lg">
+          <Button asChild variant="secondary" shape="pill" size="cta">
             <Link href={faqHref}>Veelgestelde vragen</Link>
           </Button>
         ) : null}
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        Gratis · 15 minuten · Geen verplichtingen
+        Gratis · 30 minuten · Geen verplichtingen
       </p>
     </div>
   );

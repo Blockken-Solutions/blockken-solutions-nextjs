@@ -1,5 +1,5 @@
 import type { ScanPageContent } from "@/content/types";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 export const scanPage: ScanPageContent = {
   seo: {
@@ -72,7 +72,7 @@ export const scanPage: ScanPageContent = {
       "Plan een gratis strategiegesprek en ontdek wat wij concreet voor uw bedrijf kunnen verbeteren.",
     primary: {
       label: "Plan een gratis gesprek →",
-      href: homeSection("contact"),
+      href: contactPlanSection(),
     },
     secondary: {
       label: "Veelgestelde vragen over scores",

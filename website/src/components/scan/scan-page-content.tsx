@@ -15,6 +15,7 @@ import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { ScanVerdictCard } from "@/components/scan/scan-verdict";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Section, PageHeading } from "@/components/ui/section";
 import type { ScanPageContent } from "@/content/types";
 import { scanWithUrl } from "@/lib/paths";
@@ -188,13 +189,13 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
               {content.cta.subheading}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild variant="primary" shape="pill" size="lg">
+              <Button asChild variant="primary" shape="pill" size="cta">
                 <SectionLink href={content.cta.primary.href}>
-                  {content.cta.primary.label}
+                  <ButtonLabel>{content.cta.primary.label}</ButtonLabel>
                 </SectionLink>
               </Button>
               {content.cta.secondary ? (
-                <Button asChild variant="secondary" shape="pill" size="lg">
+                <Button asChild variant="secondary" shape="pill" size="cta">
                   <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
                 </Button>
               ) : null}

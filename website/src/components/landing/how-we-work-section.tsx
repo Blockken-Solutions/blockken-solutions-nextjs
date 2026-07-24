@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SectionLabel } from "@/components/landing/section-label";
 import { SectionLink } from "@/components/layout/section-link";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { HowWeWorkContent } from "@/content/types";
@@ -88,13 +89,15 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
       </ol>
 
       <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Button asChild variant="primary" shape="pill" size="lg">
+        <Button asChild variant="primary" shape="pill" size="cta">
           <SectionLink href={content.primaryCta.href}>
-            {content.primaryCta.label}
+            <ButtonLabel>{content.primaryCta.label}</ButtonLabel>
           </SectionLink>
         </Button>
-        <Button asChild variant="secondary" shape="pill" size="lg">
-          <Link href={content.secondaryCta.href}>{content.secondaryCta.label}</Link>
+        <Button asChild variant="secondary" shape="pill" size="cta">
+          <Link href={content.secondaryCta.href}>
+            <ButtonLabel>{content.secondaryCta.label}</ButtonLabel>
+          </Link>
         </Button>
       </div>
     </Section>

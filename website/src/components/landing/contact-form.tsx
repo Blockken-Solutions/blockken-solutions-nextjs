@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Input } from "@/components/ui/input";
 import { agentsPage } from "@/content/agents";
 import {
@@ -328,7 +329,9 @@ export function ContactForm() {
         disabled={formState === "submitting"}
         className="w-full sm:w-auto"
       >
-        {formState === "submitting" ? "Versturen..." : "Verstuur bericht →"}
+        <ButtonLabel showArrow={formState !== "submitting"}>
+          {formState === "submitting" ? "Versturen..." : "Verstuur bericht →"}
+        </ButtonLabel>
       </Button>
     </form>
   );

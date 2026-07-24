@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { CalendlyScripts } from "@/components/calendly/calendly-scripts";
 import { HashScrollHandler } from "@/components/layout/hash-scroll-handler";
+import { CALENDLY_CSS } from "@/lib/calendly/constants";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -27,6 +29,9 @@ export default function RootLayout({
       lang="nl-BE"
       className={`${geistSans.variable} h-full antialiased`}
     >
+      <head>
+        <link href={CALENDLY_CSS} rel="stylesheet" />
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"
@@ -35,12 +40,14 @@ export default function RootLayout({
           Ga naar inhoud
         </a>
         <JsonLd data={buildSiteGraph()} />
-        <HashScrollHandler />
-        <SiteHeader />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        <CalendlyScripts>
+          <HashScrollHandler />
+          <SiteHeader />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+        </CalendlyScripts>
       </body>
     </html>
   );

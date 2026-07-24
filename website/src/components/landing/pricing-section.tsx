@@ -5,6 +5,7 @@ import { SectionLink } from "@/components/layout/section-link";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -79,10 +80,12 @@ function PricingCard({ tier }: PricingCardProps) {
               asChild
               variant={tier.isPopular ? "primary" : "secondary"}
               shape="pill"
-              size="lg"
+              size="cta"
               className="w-full"
             >
-              <SectionLink href={tier.cta.href}>{tier.cta.label}</SectionLink>
+              <SectionLink href={tier.cta.href}>
+                <ButtonLabel>{tier.cta.label}</ButtonLabel>
+              </SectionLink>
             </Button>
           </div>
         </CardContent>

@@ -1,5 +1,5 @@
 import type { HomeContent } from "@/content/types";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection, homeSection } from "@/lib/paths";
 
 import { getAgentPreviewItems } from "./agents";
 import { customAgent } from "./custom-agent";
@@ -104,7 +104,7 @@ export const home: HomeContent = {
     },
     secondaryCta: {
       label: "Plan een gesprek →",
-      href: homeSection("contact"),
+      href: contactPlanSection(),
     },
   },
   agents: {
@@ -178,8 +178,23 @@ export const home: HomeContent = {
   footerCta: {
     heading: "Klaar om uren per week te besparen?",
     subheading:
-      "Vertel kort waar u mee zit — ik denk graag vrijblijvend mee over wat haalbaar is voor uw bedrijf.",
+      "Kies hoe u contact opneemt — direct, via een kennismakingsgesprek of met een bericht.",
+    directContact: {
+      heading: "Direct contact",
+      description:
+        "Liever niet wachten? Neem rechtstreeks contact op via onderstaande kanalen.",
+    },
+    calendly: {
+      heading: "Kennismakingsgesprek inplannen",
+      description:
+        "Kies direct een vrij moment voor een gratis strategiegesprek van 30 minuten — langer indien nodig.",
+      ctaLabel: "Kies een moment →",
+    },
+    form: {
+      heading: "Stuur een bericht",
+      description: "Vul het formulier in en ik neem contact met u op.",
+    },
     buttonLabel: "Plan een gratis strategiegesprek →",
-    buttonHref: homeSection("contact"),
+    buttonHref: contactPlanSection(),
   },
 };

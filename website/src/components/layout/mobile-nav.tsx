@@ -15,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navLinks } from "@/content/navigation";
-import { homeSection } from "@/lib/paths";
+import { contactPlanSection } from "@/lib/paths";
 
 export function MobileNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,7 +54,7 @@ export function MobileNav() {
             className="mt-2 w-full"
           >
             <SectionLink
-              href={homeSection("contact")}
+              href={contactPlanSection()}
               onNavigate={() => setMobileOpen(false)}
             >
               Gratis gesprek
