@@ -36,10 +36,12 @@ export const site = {
     url: "https://blockken.solutions/#over-mij",
     sameAs: [
       "https://www.linkedin.com/in/wouter-blockken",
+      "https://wouterblockken.me/",
     ],
     credentials: [
-      "AI Technology Architect (Howest, 2024)",
-      "Gecertificeerd Fullstack Developer",
+      "AI Technology Architect (Hogeschool PXL, 2026)",
+      "AWS Solutions Architect Associate (2025)",
+      "Toegepaste Informatica (Hogeschool PXL, 2021)",
     ],
   },
   contact: {

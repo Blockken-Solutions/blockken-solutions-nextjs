@@ -80,6 +80,19 @@ export function AboutSection({ content }: AboutSectionProps) {
             ))}
           </ul>
 
+          {content.portfolioLink ? (
+            <p className="mt-8">
+              <a
+                href={content.portfolioLink.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+              >
+                {content.portfolioLink.label}
+              </a>
+            </p>
+          ) : null}
+
           {content.sameAs.length > 0 ? (
             <ul className="mt-8 flex flex-wrap gap-3">
               {content.sameAs.map((link) => {

@@ -133,30 +133,42 @@ export const home: HomeContent = {
   },
   about: {
     sectionLabel: "OVER MIJ",
-    heading: "Gebouwd door een professional, niet door een marketingbureau.",
-    body: "Hoi, ik ben Wouter. Als fullstack developer zag ik KMO's worstelen met dure, logge systemen en trage websites. Mijn missie: professionele automatisering toegankelijk maken voor uw bedrijf — persoonlijk, veilig en volledig op maat.",
+    heading: "5 jaar ervaring, één aanspreekpunt — geen marketingbureau.",
+    body: "Hoi, ik ben Wouter. Al meer dan vijf jaar bouw ik als fullstack developer performante webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites en logge systemen — terwijl ik bij grotere projecten juist moderne JAMstack-architecturen, cloud-optimalisatie en UX-verbeteringen implementeerde. Met blockken.solutions zet ik die expertise in voor Belgische KMO's: razendsnelle websites, slimme AI-automatisering en persoonlijk contact — van intake tot oplevering.",
     portrait: "/images/wouter-portrait.jpg",
-    portraitAlt: "Wouter Blockken, fullstack developer",
+    portraitAlt: "Wouter Blockken, fullstack developer en oprichter van blockken.solutions",
     credentials: [
       {
         type: "Diploma",
         label: "AI Technology Architect",
-        issuer: "Howest",
-        year: "2024",
+        issuer: "Hogeschool PXL",
+        year: "2026",
         icon: "graduation-cap",
       },
       {
         type: "Gecertificeerd",
-        label: "Fullstack Developer",
-        issuer: "Professionele certificering",
+        label: "AWS Solutions Architect Associate",
+        issuer: "Amazon Web Services",
+        year: "2025",
         icon: "scroll-text",
+      },
+      {
+        type: "Diploma",
+        label: "Toegepaste Informatica",
+        issuer: "Hogeschool PXL",
+        year: "2021",
+        icon: "graduation-cap",
       },
     ],
     skills: [
-      "Volledige websites van ontwerp tot oplevering",
-      "AI-agents die uw administratie automatiseren",
-      "Veilige hosting binnen Europa (GDPR-conform)",
+      "Performante websites met moderne architectuur — van ontwerp tot live",
+      "Cloud & AWS — veilige hosting binnen Europa (GDPR-conform)",
+      "AI-automatisering en direct contact — één developer, geen tussenpersonen",
     ],
+    portfolioLink: {
+      label: "Bekijk mijn volledige portfolio →",
+      href: "https://wouterblockken.me/",
+    },
     sameAs: [
       {
         label: "LinkedIn",

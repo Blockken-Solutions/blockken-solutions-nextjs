@@ -161,6 +161,7 @@ export type AboutContent = {
   portraitAlt: string;
   credentials: CredentialItem[];
   skills: string[];
+  portfolioLink?: CtaLink;
   sameAs: { label: string; href: string; icon?: string }[];
 };
 
