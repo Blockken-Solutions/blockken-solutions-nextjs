@@ -125,6 +125,7 @@ export type ScanPageContent = {
   seo: SeoConfig;
   heading: string;
   subheading: string;
+  painPoints: string[];
   intro: {
     heading: string;
     items: { title: string; description: string }[];

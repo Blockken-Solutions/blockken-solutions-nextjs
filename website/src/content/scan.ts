@@ -3,35 +3,40 @@ import { homeSection } from "@/lib/paths";
 
 export const scanPage: ScanPageContent = {
   seo: {
-    title: "Gratis Website Scan — Performance, SEO & Laadtijd",
+    title: "Gratis Website Scan — Kost uw site u klanten?",
     description:
-      "Test uw website gratis op laadtijd, SEO en performance. Vul uw URL in en ontvang binnen 10–30 seconden een Lighthouse-analyse — geen registratie nodig.",
+      "Test gratis of uw website bezoekers verliest door trage laadtijd of slechte vindbaarheid. Vul uw URL in en ontvang binnen 30 seconden een duidelijk rapport — geen registratie nodig.",
   },
-  heading: "Gratis Website Scan",
+  heading: "Kost uw huidige website u klanten? Test het in 30 seconden.",
   subheading:
-    "Ontdek hoe uw website scoort op performance, SEO, toegankelijkheid en laadtijd. Google Lighthouse analyseert uw pagina en geeft u direct inzicht in verbeterpunten.",
+    "Ontdek of trage laadtijd, slechte vindbaarheid of technische fouten bezoekers en leads kosten. Vul uw URL in en ontvang direct een helder rapport.",
+  painPoints: [
+    "Trage laadtijd laat bezoekers afhaken vóór ze contact opnemen",
+    "Slechte vindbaarheid betekent minder aanvragen via Google",
+    "Technische fouten ondermijnen vertrouwen en conversie",
+  ],
   intro: {
-    heading: "Wat analyseren we?",
+    heading: "Wat kost u dit?",
     items: [
       {
-        title: "Performance",
+        title: "Bezoekers die afhaken",
         description:
-          "We meten hoe snel uw pagina laadt en hoe goed de technische basis is opgebouwd — cruciaal voor conversie en Google-ranking.",
+          "Elke seconde laadtijd telt. Trage pagina's zorgen ervoor dat potentiële klanten vertrekken voordat ze iets kopen of contact opnemen.",
       },
       {
-        title: "SEO",
+        title: "Minder Google-verkeer",
         description:
-          "We controleren meta-tags, structuur, vindbaarheid en content-kwaliteit zodat uw site beter scoort in zoekmachines en AI-antwoorden.",
+          "Sites die slecht scoren op snelheid en structuur worden minder goed gevonden — en missen daardoor aanvragen en omzet.",
       },
       {
-        title: "Laadtijd",
+        title: "Gemiste leads",
         description:
-          "We brengen de werkelijke laadtijd in kaart en identificeren knelpunten die bezoekers kunnen doen afhaken.",
+          "Onzichtbare technische problemen (broken links, ontbrekende meta-data) kosten u aanvragen zonder dat u het merkt.",
       },
       {
-        title: "Toegankelijkheid",
+        title: "Smaller bereik",
         description:
-          "We controleren contrast, labels, structuur en andere toegankelijkheidsaspecten zodat uw site bruikbaar is voor iedereen.",
+          "Toegankelijkheidsproblemen sluiten een deel van uw doelgroep uit — en schaden uw imago als professioneel bedrijf.",
       },
     ],
   },
@@ -44,15 +49,15 @@ export const scanPage: ScanPageContent = {
     },
     {
       step: 2,
-      title: "Lighthouse-analyse",
+      title: "Automatische analyse",
       description:
-        "Google Lighthouse scant uw pagina op performance, SEO, toegankelijkheid en best practices.",
+        "We scannen uw pagina op snelheid, vindbaarheid, toegankelijkheid en technische kwaliteit.",
     },
     {
       step: 3,
       title: "Bekijk uw rapport",
       description:
-        "U ziet direct uw scores en concrete verbeterpunten — gratis en zonder registratie.",
+        "U ziet direct uw scores en de belangrijkste verbeterpunten — gratis en zonder registratie.",
     },
   ],
   form: {

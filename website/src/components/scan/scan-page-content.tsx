@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
@@ -9,13 +8,17 @@ import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { SectionLink } from "@/components/layout/section-link";
 import { ScanCoreWebVitals } from "@/components/scan/scan-core-web-vitals";
 import { ScanFindings } from "@/components/scan/scan-findings";
+import { ScanLoadingSteps } from "@/components/scan/scan-loading-steps";
 import { ScanResults } from "@/components/scan/scan-results";
+import { ScanResultsCta } from "@/components/scan/scan-results-cta";
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
+import { ScanVerdictCard } from "@/components/scan/scan-verdict";
 import { SectionLabel } from "@/components/landing/section-label";
 import { Button } from "@/components/ui/button";
 import { Section, PageHeading } from "@/components/ui/section";
 import type { ScanPageContent } from "@/content/types";
-import { contactWithScan, scanWithUrl } from "@/lib/paths";
+import { scanWithUrl } from "@/lib/paths";
+import { buildScanVerdict } from "@/lib/scan/scan-verdict";
 import { useScan } from "@/lib/scan/use-scan";
 import { parseScanUrlParam } from "@/lib/scan-url";
 
@@ -31,6 +34,8 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
   const isScanning = Boolean(scannedUrl);
   const showMarketing = !isScanning;
   const showBottomCta = !isScanning || scanState.status === "success";
+  const successVerdict =
+    scanState.status === "success" ? buildScanVerdict(scanState.result) : null;
 
   const handleSubmit = useCallback(
     (url: string) => {
@@ -111,6 +116,20 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
           <h2 id="scan-form-heading" className="text-center text-2xl font-bold text-foreground">
             Start uw scan
           </h2>
+
+          {showMarketing ? (
+            <ul className="mx-auto mt-6 max-w-xl space-y-2 text-sm text-muted-foreground">
+              {content.painPoints.map((point) => (
+                <li key={point} className="flex gap-2">
+                  <span className="text-brand-accent" aria-hidden="true">
+                    •
+                  </span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
           <ScanUrlForm
             defaultUrl={searchParams.get("url") ?? ""}
             inputPlaceholder={content.form.inputPlaceholder}
@@ -123,21 +142,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
 
           {scannedUrl ? (
             <div className="mt-10 space-y-10">
-              {scanState.status === "loading" ? (
-                <div
-                  className="flex flex-col items-center gap-3 py-12"
-                  role="status"
-                  aria-live="polite"
-                >
-                  <Loader2 className="size-10 animate-spin text-brand-accent" />
-                  <p className="text-sm font-medium text-foreground">
-                    Even geduld — we analyseren uw website…
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Dit kan 10–30 seconden duren.
-                  </p>
-                </div>
-              ) : null}
+              {scanState.status === "loading" ? <ScanLoadingSteps /> : null}
 
               {scanState.status === "error" ? (
                 <div
@@ -148,12 +153,13 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                 </div>
               ) : null}
 
-              {scanState.status === "success" ? (
+              {scanState.status === "success" && successVerdict ? (
                 <>
                   <p className="text-center text-sm text-muted-foreground">
                     Resultaten voor{" "}
                     <span className="font-medium text-foreground">{scannedUrl}</span>
                   </p>
+                  <ScanVerdictCard verdict={successVerdict} />
                   <ScanResults result={scanState.result} />
                   <ScanCoreWebVitals
                     lcp={scanState.result.coreWebVitals.lcp}
@@ -162,21 +168,11 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                     hasFieldData={scanState.result.coreWebVitals.hasFieldData}
                   />
                   <ScanFindings findings={scanState.result.findings} />
-                  <div className="flex justify-center pt-2">
-                    <Button asChild variant="primary" shape="pill" size="lg">
-                      <SectionLink
-                        href={contactWithScan({
-                          url: scanState.result.url,
-                          performance: scanState.result.scores.performance,
-                          seo: scanState.result.scores.seo,
-                          accessibility: scanState.result.scores.accessibility,
-                          bestPractices: scanState.result.scores.bestPractices,
-                        })}
-                      >
-                        Plan optimalisatiegesprek →
-                      </SectionLink>
-                    </Button>
-                  </div>
+                  <ScanResultsCta
+                    result={scanState.result}
+                    verdict={successVerdict}
+                    faqHref={content.cta.secondary?.href}
+                  />
                 </>
               ) : null}
             </div>
