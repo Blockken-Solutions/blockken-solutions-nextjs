@@ -5,7 +5,7 @@ export const alt = faqPage.seo.title;
 export const size = ogImageSize;
 export const contentType = ogImageContentType;
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
   return createOgImage({
     title: faqPage.heading,
     description: faqPage.subheading,

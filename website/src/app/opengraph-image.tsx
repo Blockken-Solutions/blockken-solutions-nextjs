@@ -5,7 +5,7 @@ export const alt = site.seo.title;
 export const size = ogImageSize;
 export const contentType = ogImageContentType;
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
   return createOgImage({
     title: "Web, AI & Automatisering voor KMO's",
     description:
