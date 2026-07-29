@@ -40,7 +40,7 @@ export function HeaderOffsetTracker({ children }: HeaderOffsetTrackerProps) {
     <div
       ref={headerRef}
       data-site-header
-      className="sticky top-4 z-50 px-[var(--container-px)] pt-4"
+      className="sticky top-[max(0.5rem,env(safe-area-inset-top))] z-50 px-[var(--container-px)] pt-[max(0.5rem,env(safe-area-inset-top))] sm:top-4 sm:pt-4"
     >
       {children}
     </div>

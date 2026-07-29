@@ -22,8 +22,14 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
       <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
         {verdict.ctaSubheading}
       </p>
-      <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Button asChild variant="primary" shape="pill" size="cta">
+      <div className="mx-auto mt-6 flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
+        <Button
+          asChild
+          variant="primary"
+          shape="pill"
+          size="cta"
+          className="h-auto min-h-11 w-full whitespace-normal py-2.5 leading-snug sm:h-11 sm:w-auto sm:whitespace-nowrap sm:py-0"
+        >
           <SectionLink
             href={contactWithScan({
               url: result.url,
@@ -37,7 +43,13 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
           </SectionLink>
         </Button>
         {faqHref ? (
-          <Button asChild variant="secondary" shape="pill" size="cta">
+          <Button
+            asChild
+            variant="secondary"
+            shape="pill"
+            size="cta"
+            className="h-auto min-h-11 w-full whitespace-normal py-2.5 leading-snug sm:h-11 sm:w-auto sm:whitespace-nowrap sm:py-0"
+          >
             <Link href={faqHref}>Veelgestelde vragen</Link>
           </Button>
         ) : null}

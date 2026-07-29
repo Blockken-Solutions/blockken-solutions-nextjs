@@ -32,6 +32,33 @@ type ValidatedField = keyof Pick<
   "name" | "email" | "phone" | "message"
 >;
 
+function buildAgentDemoMessage(slug: string, title: string | null): string {
+  return title
+    ? `Ik ben geïnteresseerd in een demo van de ${title}.`
+    : `Ik ben geïnteresseerd in een demo van de agent "${slug}".`;
+}
+
+function buildScanContactMessage(
+  scanUrl: string,
+  scores: {
+    performance: string | null;
+    seo: string | null;
+    accessibility: string | null;
+    bestPractices: string | null;
+  },
+): string {
+  const scoreLines = [
+    scores.performance ? `Performance: ${scores.performance}/100` : null,
+    scores.seo ? `SEO: ${scores.seo}/100` : null,
+    scores.accessibility ? `Toegankelijkheid: ${scores.accessibility}/100` : null,
+    scores.bestPractices ? `Best practices: ${scores.bestPractices}/100` : null,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe jullie mijn website kunnen verbeteren.`;
+}
+
 export function ContactForm() {
   const searchParams = useSearchParams();
   const agentSlug = searchParams.get("agent");
@@ -55,11 +82,7 @@ export function ContactForm() {
     setFormData((current) => ({
       ...current,
       agent: agentSlug,
-      message:
-        current.message ||
-        (agentTitle
-          ? `Ik ben geïnteresseerd in een demo van de ${agentTitle}.`
-          : `Ik ben geïnteresseerd in een demo van de agent "${agentSlug}".`),
+      message: buildAgentDemoMessage(agentSlug, agentTitle),
     }));
   }, [agentSlug, agentTitle]);
 
@@ -67,25 +90,14 @@ export function ContactForm() {
     const scanUrl = searchParams.get("scan");
     if (!scanUrl) return;
 
-    const performance = searchParams.get("perf");
-    const seo = searchParams.get("seo");
-    const accessibility = searchParams.get("a11y");
-    const bestPractices = searchParams.get("bp");
-
-    const scoreLines = [
-      performance ? `Performance: ${performance}/100` : null,
-      seo ? `SEO: ${seo}/100` : null,
-      accessibility ? `Toegankelijkheid: ${accessibility}/100` : null,
-      bestPractices ? `Best practices: ${bestPractices}/100` : null,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
     setFormData((current) => ({
       ...current,
-      message:
-        current.message ||
-        `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe jullie mijn website kunnen verbeteren.`,
+      message: buildScanContactMessage(scanUrl, {
+        performance: searchParams.get("perf"),
+        seo: searchParams.get("seo"),
+        accessibility: searchParams.get("a11y"),
+        bestPractices: searchParams.get("bp"),
+      }),
     }));
   }, [searchParams]);
 

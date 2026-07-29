@@ -116,10 +116,10 @@ export function PricingSection({ content }: PricingSectionProps) {
       <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
         {content.extraAgentNote}{" "}
         <Link
-          href="/faq#kosten-ai-agent"
+          href="/faq#waarom-slimme-groei-agent"
           className="font-medium text-foreground underline-offset-4 hover:underline"
         >
-          Meer over agent-prijzen
+          Waarom agents vanaf Slimme Groei?
         </Link>{" "}
         of{" "}
         <Link
@@ -127,6 +127,17 @@ export function PricingSection({ content }: PricingSectionProps) {
           className="font-medium text-foreground underline-offset-4 hover:underline"
         >
           bekijk alle FAQ
+        </Link>
+        .
+      </p>
+
+      <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+        {content.extraContentNote}{" "}
+        <Link
+          href="/faq#content-aanpassen"
+          className="font-medium text-foreground underline-offset-4 hover:underline"
+        >
+          Meer over content-aanpassingen
         </Link>
         .
       </p>

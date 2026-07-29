@@ -133,7 +133,7 @@ export function ContactDetails({
                   </p>
                 </div>
                 {item.external ? (
-                  <ExternalLink className="size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                  <ExternalLink className="size-4 shrink-0 text-muted-foreground opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100" />
                 ) : null}
               </a>
             </li>

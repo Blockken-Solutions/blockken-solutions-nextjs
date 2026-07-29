@@ -38,7 +38,7 @@ function ContactColumn({
 export function FooterCta({ content }: FooterCtaProps) {
   return (
     <Section id="contact" overlap className="pb-16">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card px-8 py-14 shadow-sm sm:px-10 lg:px-14 lg:py-16">
+      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card px-5 py-10 shadow-sm sm:px-8 sm:py-14 lg:px-14 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <SectionHeading className="text-3xl font-bold sm:text-4xl">
             {content.heading}
@@ -46,7 +46,7 @@ export function FooterCta({ content }: FooterCtaProps) {
           <SectionDescription className="mt-4">{content.subheading}</SectionDescription>
         </div>
 
-        <div className="mt-10 border-b border-border pb-12 mb-12 sm:mt-12">
+        <div className="mt-10 border-b border-border pb-8 mb-8 sm:mt-12 sm:pb-12 sm:mb-12">
           <ContactPlanCta content={content.calendly} variant="banner" />
         </div>
 

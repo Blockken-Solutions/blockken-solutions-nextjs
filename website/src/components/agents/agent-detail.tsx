@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Section, PageHeading } from "@/components/ui/section";
-import { getAgentBySlug } from "@/content/agents";
+import { agentsPage, getAgentBySlug } from "@/content/agents";
 import type { AgentListing } from "@/content/types";
 import { contactWithAgent, homeSection } from "@/lib/paths";
 import { getIcon } from "@/lib/icons";
@@ -47,7 +47,7 @@ export function AgentDetail({ agent }: AgentDetailProps) {
             <p className="mt-2 text-lg font-semibold text-foreground">{agent.price}</p>
             {agent.includedInTier ? (
               <p className="mt-2 text-sm text-muted-foreground">
-                Inbegrepen in pakket{" "}
+                Inbegrepen als keuze-agent in pakket{" "}
                 <SectionLink
                   href={homeSection("prijzen")}
                   className="font-medium text-foreground underline-offset-4 hover:underline"
@@ -57,6 +57,9 @@ export function AgentDetail({ agent }: AgentDetailProps) {
                 .
               </p>
             ) : null}
+            <p className="mt-2 text-sm text-muted-foreground">
+              {agentsPage.tierRequirementNote}
+            </p>
           </div>
         </div>
 
@@ -102,13 +105,13 @@ export function AgentDetail({ agent }: AgentDetailProps) {
           </section>
         ) : null}
 
-        <div className="mt-12 flex flex-col gap-3 sm:flex-row">
-          <Button asChild variant="primary" shape="pill" size="cta">
+        <div className="mx-auto mt-12 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row">
+          <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
             <SectionLink href={contactWithAgent(agent.slug)}>
               <ButtonLabel>Vraag demo aan →</ButtonLabel>
             </SectionLink>
           </Button>
-          <Button asChild variant="secondary" shape="pill" size="cta">
+          <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
             <Link href="/agents">Bekijk andere agents</Link>
           </Button>
         </div>
@@ -116,10 +119,10 @@ export function AgentDetail({ agent }: AgentDetailProps) {
         <p className="mt-6 text-sm text-muted-foreground">
           Vragen over prijs of implementatie?{" "}
           <Link
-            href="/faq#kosten-ai-agent"
+            href="/faq#waarom-slimme-groei-agent"
             className="font-medium text-foreground underline-offset-4 hover:underline"
           >
-            Bekijk FAQ over agent-prijzen
+            Waarom agents vanaf Slimme Groei?
           </Link>
           .
         </p>

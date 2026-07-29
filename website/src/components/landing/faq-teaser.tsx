@@ -44,7 +44,7 @@ export function FaqTeaser({ content }: FaqTeaserProps) {
       </dl>
 
       <div className="mt-8">
-        <Button asChild variant="secondary" shape="pill" size="cta">
+        <Button asChild variant="secondary" shape="pill" size="cta" className="w-full max-w-sm sm:w-auto">
           <Link href={content.cta.href}>
             <ButtonLabel>{content.cta.label}</ButtonLabel>
           </Link>

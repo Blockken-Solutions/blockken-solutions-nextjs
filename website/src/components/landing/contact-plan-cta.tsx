@@ -4,7 +4,7 @@ import { Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import type { ContactCalendlyContent } from "@/content/types";
-import { CONTACT_PLAN_SECTION_ID, contactPlanSection } from "@/lib/paths";
+import { CONTACT_PLAN_SECTION_ID, PLAN_GESPREK_PATH } from "@/lib/paths";
 import { cn } from "@/lib/utils";
 
 type ContactPlanCtaProps = {
@@ -18,7 +18,7 @@ export function ContactPlanCta({ content, variant = "banner" }: ContactPlanCtaPr
       id={CONTACT_PLAN_SECTION_ID}
       className={cn(
         "rounded-3xl border border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] shadow-sm",
-        variant === "banner" ? "p-6 sm:p-8" : "p-6",
+        variant === "banner" ? "p-5 sm:p-8" : "p-6",
       )}
     >
       <div
@@ -28,12 +28,25 @@ export function ContactPlanCta({ content, variant = "banner" }: ContactPlanCtaPr
           variant === "card" && "flex flex-col",
         )}
       >
-        <div className={cn("flex gap-4", variant === "banner" && "sm:flex-1 sm:items-center")}>
+        <div
+          className={cn(
+            "flex flex-col gap-3",
+            variant === "banner" && "sm:flex-1 sm:flex-row sm:items-center sm:gap-4",
+            variant === "card" && "gap-4",
+          )}
+        >
           <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15">
             <Calendar className="size-5 text-brand-accent" aria-hidden="true" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-lg font-bold text-foreground">{content.heading}</h3>
+            <h3
+              className={cn(
+                "font-bold text-foreground",
+                variant === "banner" ? "text-base sm:text-lg" : "text-lg",
+              )}
+            >
+              {content.heading}
+            </h3>
             <p className="mt-1 text-base leading-relaxed text-muted-foreground">
               {content.description}
             </p>
@@ -47,7 +60,7 @@ export function ContactPlanCta({ content, variant = "banner" }: ContactPlanCtaPr
           size="cta"
           className={cn(variant === "banner" ? "w-full shrink-0 sm:w-auto" : "mt-6 w-full")}
         >
-          <Link href={contactPlanSection()}>
+          <Link href={PLAN_GESPREK_PATH}>
             <ButtonLabel>{content.ctaLabel}</ButtonLabel>
           </Link>
         </Button>

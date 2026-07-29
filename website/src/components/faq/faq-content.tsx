@@ -58,29 +58,35 @@ export function FaqContent({ content }: FaqContentProps) {
           {content.subheading}
         </p>
 
-        <nav
-          className="mt-8 -mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0"
-          aria-label="FAQ-categorieën"
-        >
-          <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
-            {filterCategories.map((category) => (
-              <button
-                key={category.id}
-                type="button"
-                aria-pressed={activeCategory === category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={cn(
-                  "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-                  activeCategory === category.id
-                    ? "border-brand-accent bg-brand-accent font-semibold text-white shadow-sm"
-                    : "border-border bg-card text-muted-foreground hover:border-brand-highlight/30 hover:text-foreground",
-                )}
-              >
-                {category.label}
-              </button>
-            ))}
-          </div>
-        </nav>
+        <div className="relative mt-8">
+          <nav
+            className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:overflow-visible sm:px-0"
+            aria-label="FAQ-categorieën"
+          >
+            <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+              {filterCategories.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  aria-pressed={activeCategory === category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={cn(
+                    "min-h-11 shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                    activeCategory === category.id
+                      ? "border-brand-accent bg-brand-accent font-semibold text-white shadow-sm"
+                      : "border-border bg-card text-muted-foreground hover:border-brand-highlight/30 hover:text-foreground",
+                  )}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-background to-transparent sm:hidden"
+          />
+        </div>
 
         <div className="mt-10 space-y-10">
           {visibleCategories.map((category) => (
@@ -117,13 +123,13 @@ export function FaqContent({ content }: FaqContentProps) {
           <SectionDescription className="mx-auto mt-3 max-w-lg">
             {content.cta.subheading}
           </SectionDescription>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild variant="primary" shape="pill" size="cta">
+          <div className="mx-auto mt-8 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+            <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
               <SectionLink href={content.cta.primary.href}>
                 <ButtonLabel>{content.cta.primary.label}</ButtonLabel>
               </SectionLink>
             </Button>
-            <Button asChild variant="secondary" shape="pill" size="cta">
+            <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
               <a href={content.cta.secondary.href}>
                 {content.cta.secondary.label}
               </a>

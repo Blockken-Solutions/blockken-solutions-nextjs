@@ -42,6 +42,8 @@ ${pricing.tiers
 
 ${pricing.extraAgentNote}
 
+${pricing.extraContentNote}
+
 ## Werkwijze
 
 ${buildHowWeWorkSummary()}

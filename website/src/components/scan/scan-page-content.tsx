@@ -188,14 +188,14 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
             <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
               {content.cta.subheading}
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild variant="primary" shape="pill" size="cta">
+            <div className="mx-auto mt-8 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+              <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
                 <SectionLink href={content.cta.primary.href}>
                   <ButtonLabel>{content.cta.primary.label}</ButtonLabel>
                 </SectionLink>
               </Button>
               {content.cta.secondary ? (
-                <Button asChild variant="secondary" shape="pill" size="cta">
+                <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
                   <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
                 </Button>
               ) : null}

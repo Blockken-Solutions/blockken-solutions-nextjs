@@ -39,23 +39,23 @@ export const home: HomeContent = {
       {
         title: "Razendsnelle Websites",
         description:
-          "We bouwen moderne, op maat gemaakte websites die direct laden en er prachtig uitzien. Geen trage standaardthema's, maar een snelle ervaring die van bezoekers klanten maakt.",
+          "Een website die meteen laadt en er professioneel uitziet — op maat voor uw bedrijf, geen trage standaardtemplates. Bezoekers nemen vaker contact op en vullen vaker een formulier in. Meer klanten, minder gemiste kansen.",
         icon: "zap",
         href: "/#prijzen",
-        linkLabel: "Bekijk pakketten →",
+        linkLabel: "Meer over websites →",
       },
       {
-        title: "Slimme AI-Automatisering",
+        title: "Minder administratie, meer tijd voor klanten",
         description:
-          "We automatiseren uw saaie beheer via kant-en-klare AI-agents — van offertes genereren tot facturen inlezen. Inbegrepen in Slimme Groei of apart af te nemen naast uw website.",
+          "Onze digitale assistenten nemen repetitief werk over: offertes opstellen, facturen verwerken, klantvragen beantwoorden. U houdt altijd de controle — zij doen het voorbereidende werk.",
         icon: "bot",
         href: "/agents",
-        linkLabel: "Bekijk agents →",
+        linkLabel: "Bekijk voorbeelden →",
       },
       {
-        title: "Vindbaarheid (Google & AI)",
+        title: "Gevonden worden — online én in AI-zoekmachines",
         description:
-          "Basis SEO zit in elk websitepakket. Vanaf Slimme Groei optimaliseren we ook voor AI-chatbots zoals ChatGPT — zodat uw bedrijf bovenaan staat, online én in antwoordmachines.",
+          "Wij zorgen dat klanten u vinden via Google én via AI-tools zoals ChatGPT. Inclusief basis SEO, cookiebanner en GDPR-setup — zodat u zichtbaar én in orde bent.",
         icon: "search",
         href: "/gratis-scan",
         linkLabel: "Start gratis scan →",
@@ -94,7 +94,7 @@ export const home: HomeContent = {
         step: 4,
         title: "Live & ondersteund",
         description:
-          "U gaat live met persoonlijke onboarding. Daarna zorgen wij voor hosting, updates en support.",
+          "U gaat live met persoonlijke onboarding. Daarna zorgen wij voor hosting, updates en support — of u past zelf teksten en afbeeldingen aan via uw beheersysteem.",
         icon: "rocket",
       },
     ],
@@ -111,7 +111,7 @@ export const home: HomeContent = {
     sectionLabel: "AI AGENTS",
     heading: "Klare AI-werknemers, direct inzetbaar.",
     subheading:
-      "Ontdek kant-en-klare AI-agents die direct inzetbaar zijn. Transparante prijs, geen technische kennis nodig.",
+      "Beschikbaar vanaf Slimme Groei — één agent inbegrepen, extra agents op aanvraag.",
     marketplaceLink: {
       label: "Alle agents bekijken →",
       href: "/agents",
@@ -134,7 +134,7 @@ export const home: HomeContent = {
   about: {
     sectionLabel: "OVER MIJ",
     heading: "5 jaar ervaring, één aanspreekpunt — geen marketingbureau.",
-    body: "Hoi, ik ben Wouter. Al meer dan vijf jaar bouw ik als fullstack developer performante webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites en logge systemen — terwijl ik bij grotere projecten juist moderne JAMstack-architecturen, cloud-optimalisatie en UX-verbeteringen implementeerde. Met blockken.solutions zet ik die expertise in voor Belgische KMO's: razendsnelle websites, slimme AI-automatisering en persoonlijk contact — van intake tot oplevering.",
+    body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik als fullstack developer performante webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites en logge systemen — terwijl ik bij grotere projecten juist moderne JAMstack-architecturen, cloud-optimalisatie en UX-verbeteringen implementeerde. Met blockken.solutions zet ik die expertise in voor Belgische KMO's: razendsnelle websites, slimme AI-automatisering en persoonlijk contact — van intake tot oplevering.",
     portrait: "/images/wouter-portrait.jpg",
     portraitAlt: "Wouter Blockken, fullstack developer en oprichter van blockken.solutions",
     credentials: [

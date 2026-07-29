@@ -10,7 +10,7 @@ export function homeSection(id: string): string {
 }
 
 export function contactPlanSection(): string {
-  return PLAN_GESPREK_PATH;
+  return homeSection(CONTACT_SECTION_ID);
 }
 
 export function scanWithUrl(url: string): string {
@@ -35,5 +35,5 @@ export function contactWithScan(result: {
     a11y: String(result.accessibility),
     bp: String(result.bestPractices),
   });
-  return `${PLAN_GESPREK_PATH}?${params.toString()}`;
+  return `/?${params.toString()}#${CONTACT_SECTION_ID}`;
 }

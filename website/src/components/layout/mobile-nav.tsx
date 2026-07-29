@@ -25,8 +25,8 @@ export function MobileNav() {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          size="icon-sm"
-          className="md:hidden"
+          size="icon"
+          className="size-11 md:hidden"
           aria-label="Menu openen"
         >
           <MenuIcon />

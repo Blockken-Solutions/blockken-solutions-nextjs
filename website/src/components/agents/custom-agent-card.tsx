@@ -47,9 +47,9 @@ export function CustomAgentCard({
           {description}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-brand-highlight/15 pt-4">
+        <div className="mt-6 flex flex-col gap-3 border-t border-brand-highlight/15 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <span className="font-semibold text-foreground">{content.price}</span>
-          <Button asChild variant="primary" shape="pill" size="sm">
+          <Button asChild variant="primary" shape="pill" className="min-h-11 w-full sm:w-auto sm:min-h-0 sm:h-7 sm:px-4 sm:text-[0.8rem]">
             <SectionLink href={content.cta.href}>
               <ButtonLabel>{content.cta.label}</ButtonLabel>
             </SectionLink>

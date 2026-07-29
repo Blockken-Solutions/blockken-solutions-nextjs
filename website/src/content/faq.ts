@@ -31,7 +31,7 @@ export const faqPage: FaqPageContent = {
           id: "wat-is-ai-vindbaarheid",
           question: "Wat is AI-vindbaarheid?",
           answer:
-            "AI-vindbaarheid (ook wel AEO genoemd) is optimalisatie zodat uw bedrijf correct wordt genoemd in antwoordmachines zoals ChatGPT, Perplexity en Google AI Overviews. Dat bereiken we via duidelijke content, gestructureerde data, llms.txt en een goed vindbare website.",
+            "AI-vindbaarheid (ook wel AEO genoemd) is optimalisatie zodat uw bedrijf correct wordt genoemd in antwoordmachines zoals ChatGPT, Gemini, Google AI Overviews en andere AI-assistenten. Dat bereiken we via duidelijke content, gestructureerde data, llms.txt en een goed vindbare website.",
         },
         {
           id: "wat-is-llms-txt",
@@ -57,29 +57,53 @@ export const faqPage: FaqPageContent = {
           id: "verschil-pakketten",
           question: "Wat is het verschil tussen de drie pakketten?",
           teaser:
-            "Digitale Fundering levert een snelle website; Slimme Groei voegt AI-vindbaarheid en een agent toe; Digitaal Maatwerk bouwt verder met integraties.",
+            "Digitale Fundering levert een website met cookie/GDPR-basis; Slimme Groei voegt AI-vindbaarheid, infrastructuur en een agent toe; Digitaal Maatwerk bouwt verder met integraties.",
           answer:
-            "[Digitale Fundering](/#prijzen) levert een snelle, professionele website met basis SEO en EU-hosting. [Slimme Groei](/#prijzen) voegt daar AI-vindbaarheid, social previews en één kant-en-klare [AI-agent](/agents) aan toe. [Digitaal Maatwerk](/#prijzen) bouwt verder met systeemintegraties (CRM, boekhouding) en custom AI-functionaliteiten op maat van uw processen.",
+            "[Digitale Fundering](/#prijzen) levert een snelle, professionele website met basis SEO, cookiebanner, GDPR-basissetup en EU-hosting — zonder AI-automatisering. [Slimme Groei](/#prijzen) voegt daar vindbaarheid in Google én AI-chatbots (ChatGPT, Gemini, e.a.), linkpreviews, AI-infrastructuur en één kant-en-klare [AI-agent](/agents) aan toe. [Digitaal Maatwerk](/#prijzen) bouwt verder met systeemintegraties (CRM, boekhouding) en custom AI-functionaliteiten op maat van uw processen.",
         },
         {
           id: "kosten-ai-agent",
           question: "Wat kost een AI-agent voor mijn bedrijf?",
           teaser:
-            "Een kant-en-klare agent kost vanaf € 499 setup plus € 49/mnd. In Slimme Groei zit één inbegrepen.",
+            "Agents zijn beschikbaar vanaf Slimme Groei — één inbegrepen, extra agents € 499 setup + € 49/mnd.",
           answer:
-            "Een kant-en-klare [agent](/agents) uit onze bibliotheek kost vanaf € 499 eenmalige setup plus € 49/mnd. In het [Slimme Groei-pakket](/#prijzen) zit één kant-en-klare agent inbegrepen; elke extra kant-en-klare agent volgt hetzelfde tarief. Een volledig op maat gebouwde agent begint typisch rond € 2.500 eenmalig, afhankelijk van integraties en complexiteit.",
+            "Kant-en-klare [agents](/agents) zijn beschikbaar vanaf [Slimme Groei](/#prijzen). Eén agent zit inbegrepen; extra agents kosten € 499 setup plus € 49/mnd. Het Slimme Groei-abonnement (€ 149/mnd) dekt de AI-infrastructuur (fair-use systeemkosten, kwaliteitsmonitoring) — losse agents zonder dit abonnement zijn niet beschikbaar. Een volledig op maat gebouwde agent begint typisch rond € 2.500 eenmalig, afhankelijk van integraties en complexiteit.",
+        },
+        {
+          id: "waarom-slimme-groei-agent",
+          question: "Waarom Slimme Groei en niet Digitale Fundering met een losse agent?",
+          teaser:
+            "AI-agents vereisen AI-infrastructuur — dat zit in het Slimme Groei-abonnement, niet in Digitale Fundering.",
+          answer:
+            "AI-agents draaien op dedicated infrastructuur: fair-use AI-kosten, kwaliteitsmonitoring en naadloze integratie met uw website. Dat zit in het [Slimme Groei-abonnement](/#prijzen) (€ 149/mnd), niet in [Digitale Fundering](/#prijzen) (€ 49/mnd — hosting en onderhoud only). Bij Slimme Groei zit één agent inbegrepen; extra agents zijn € 499 setup plus € 49/mnd.",
         },
         {
           id: "agent-zonder-website",
           question: "Kan ik een agent afnemen zonder nieuwe website?",
           answer:
-            "Ja, losse [agents](/agents) zijn apart af te nemen naast een bestaande website. Wel koppelen we de agent aan uw huidige site of systemen. Heeft u nog geen professionele website, dan raden we aan te starten met [Digitale Fundering](/#prijzen) of [Slimme Groei](/#prijzen) zodat alles naadloos samenwerkt.",
+            "Agents zijn standaard onderdeel van [Slimme Groei](/#prijzen) en hoger. Heeft u al een website en wilt u een agent koppelen? [Plan een gesprek](/plan-gesprek) — we bekijken samen wat technisch en commercieel haalbaar is.",
         },
         {
           id: "abonnement-inhoud",
           question: "Wat zit er in het maandelijks abonnement?",
           answer:
-            "Het basisabonnement (€ 49/mnd) omvat EU-hosting, back-ups en onderhoud van uw website. Het Slimme Groei-abonnement (€ 149/mnd) voegt daar AI-systeemkosten (fair-use), kwaliteitsmonitoring van de AI en alles uit het basisabonnement aan toe. Digitaal Maatwerk (€ 299/mnd) voegt API-beheer en prioritaire support toe.",
+            "Het basisabonnement (€ 49/mnd) omvat EU-hosting, back-ups en onderhoud van uw website. Het Slimme Groei-abonnement (€ 149/mnd) voegt daar AI-systeemkosten (fair-use), kwaliteitsmonitoring van de AI en alles uit het basisabonnement aan toe. Digitaal Maatwerk (€ 299/mnd) voegt API-beheer en prioritaire support met vaste contactpersoon toe.",
+        },
+        {
+          id: "cookie-gdpr",
+          question: "Zit een cookiebanner in mijn pakket?",
+          teaser:
+            "Ja — elk pakket bevat een GDPR-conforme cookiebanner en basissetup.",
+          answer:
+            "Ja. Elk [pakket](/#prijzen) bevat een GDPR-conforme cookiebanner en basissetup, inclusief contactformulier en koppeling naar uw privacyverklaring — zodat uw website voldoet aan Belgische en Europese privacywetgeving.",
+        },
+        {
+          id: "content-aanpassen",
+          question: "Kan ik mijn website zelf aanpassen, of doen jullie dat?",
+          teaser:
+            "Elk pakket bevat een beheersysteem om zelf teksten en afbeeldingen aan te passen. Liever doorsturen? Content Support vanaf € 49/mnd.",
+          answer:
+            "Ja, op beide manieren. Elk pakket bevat een gebruiksvriendelijk beheersysteem waarmee u zelf teksten en afbeeldingen aanpast — zonder technische kennis. Tijdens de onboarding leren we u hoe dat werkt. Liever dat wij het doen? Met Content Support (vanaf € 49/mnd) stuurt u uw wijzigingen door en passen wij ze doorgaans binnen 5 werkdagen aan. Grotere wijzigingen, zoals een nieuwe pagina of herstructurering, behandelen we apart als projectwerk.",
         },
         {
           id: "website-live",
@@ -145,7 +169,7 @@ export const faqPage: FaqPageContent = {
           id: "seo-ai-vindbaarheid",
           question: "Bieden jullie ook SEO en vindbaarheid in AI-chatbots?",
           answer:
-            "Ja. Basis SEO en lokale vindbaarheid zitten in elk websitepakket. AI-vindbaarheid (optimalisatie voor antwoordmachines via llms.txt, gestructureerde data en content) is inbegrepen vanaf [Slimme Groei](/#prijzen). We optimaliseren uw site voor Google én voor AI-chatbots zoals ChatGPT.",
+            "Ja. Basis SEO, cookie/GDPR-basis en lokale vindbaarheid zitten in elk websitepakket. AI-vindbaarheid (optimalisatie voor antwoordmachines via llms.txt, gestructureerde data en content) is inbegrepen vanaf [Slimme Groei](/#prijzen). We optimaliseren uw site voor Google én voor AI-chatbots zoals ChatGPT, Gemini en andere AI-assistenten.",
         },
         {
           id: "eigendom-website",

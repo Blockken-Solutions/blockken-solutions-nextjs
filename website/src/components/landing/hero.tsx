@@ -38,13 +38,13 @@ export function Hero({ content }: HeroProps) {
         </SectionDescription>
       ) : null}
 
-      <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <Button asChild variant="primary" shape="pill" size="cta">
+      <div className="mx-auto mt-10 flex w-full max-w-sm flex-col gap-4 sm:max-w-none sm:flex-row sm:justify-center">
+        <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
           <SectionLink href={content.primaryCta.href}>
             <ButtonLabel>{content.primaryCta.label}</ButtonLabel>
           </SectionLink>
         </Button>
-        <Button asChild variant="secondary" shape="pill" size="cta">
+        <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
           <SectionLink href={content.secondaryCta.href}>
             <ButtonLabel>{content.secondaryCta.label}</ButtonLabel>
           </SectionLink>

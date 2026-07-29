@@ -44,15 +44,21 @@ export function ScanUrlForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn("mx-auto max-w-2xl", className)}>
-      <label htmlFor="scan-url" className="sr-only">
+    <form onSubmit={handleSubmit} className={cn("mx-auto max-w-2xl text-left", className)}>
+      <label
+        htmlFor="scan-url"
+        className="mb-2 block text-sm font-medium text-foreground sm:sr-only"
+      >
         Website-URL
       </label>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:rounded-full sm:border sm:border-border sm:bg-background sm:p-1.5 sm:pl-5 sm:shadow-sm">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:border sm:border-border sm:bg-background sm:p-1.5 sm:pl-5 sm:shadow-sm">
         <Input
           id="scan-url"
           type="url"
           name="url"
+          inputMode="url"
+          autoComplete="url"
+          autoCapitalize="none"
           placeholder={inputPlaceholder}
           value={url}
           onChange={(event) => {
@@ -62,15 +68,19 @@ export function ScanUrlForm({
             }
           }}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? "scan-url-error" : undefined}
-          className="h-10 flex-1 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
+          aria-describedby={error ? "scan-url-error" : "scan-url-helper"}
+          className={cn(
+            "h-11 flex-1 rounded-xl border border-input bg-background px-4 shadow-sm",
+            "sm:h-10 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:shadow-none sm:focus-visible:ring-0",
+            error && "border-destructive ring-3 ring-destructive/20",
+          )}
         />
         <Button
           type="submit"
           variant="primary"
           shape="pill"
-          size="lg"
-          className="shrink-0"
+          size="cta"
+          className="w-full shrink-0 sm:w-auto"
         >
           {buttonLabel}
         </Button>
@@ -80,7 +90,9 @@ export function ScanUrlForm({
           {error}
         </p>
       ) : (
-        <p className="mt-3 text-center text-sm text-muted-foreground">{helperText}</p>
+        <p id="scan-url-helper" className="mt-3 text-center text-sm text-muted-foreground">
+          {helperText}
+        </p>
       )}
     </form>
   );

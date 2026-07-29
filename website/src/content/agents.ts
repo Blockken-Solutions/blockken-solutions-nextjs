@@ -5,11 +5,13 @@ import { customAgent } from "./custom-agent";
 export const agentsPage: AgentsPageContent = {
   heading: "AI Agents voor KMO's",
   subheading:
-    "Kant-en-klare AI-werknemers die direct inzetbaar zijn. Transparante prijs, geen technische kennis vereist.",
+    "Kant-en-klare AI-agents, beschikbaar vanaf Slimme Groei. Eén agent inbegrepen; extra agents vanaf € 499 setup + € 49/mnd.",
+  tierRequirementNote:
+    "Vereist Slimme Groei-abonnement (€ 149/mnd). Extra agents bovenop het inbegrepen exemplaar.",
   seo: {
     title: "AI Agents voor KMO's — blockken.solutions",
     description:
-      "Ontdek kant-en-klare AI-agents voor boekhouding, klantenservice en sales. Vanaf € 499 setup plus € 49/mnd, direct inzetbaar voor Belgische KMO's.",
+      "Kant-en-klare AI-agents voor boekhouding, klantenservice en sales. Beschikbaar vanaf Slimme Groei — één agent inbegrepen, extra agents vanaf € 499 setup + € 49/mnd.",
   },
   filterCategories: ["Alle", "Klantenservice", "Boekhouding", "Sales"],
   agents: [
@@ -19,7 +21,7 @@ export const agentsPage: AgentsPageContent = {
       description: "Beantwoordt klantvragen automatisch via chat en e-mail.",
       longDescription:
         "De Support Agent 24/7 beantwoordt veelgestelde klantvragen via uw website-chat en e-mail, 24 uur per dag. Getraind op uw producten, FAQ en tone-of-voice. Complexe vragen worden doorgestuurd naar uw team.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Klantenservice",
       icon: "message-circle",
       useCases: [
@@ -36,7 +38,7 @@ export const agentsPage: AgentsPageContent = {
       description: "Leest automatisch PDF-facturen in naar uw boekhouding.",
       longDescription:
         "De Factuur Extractor scant inkomende PDF-facturen, extraheert leverancier, bedrag, BTW en vervaldatum, en zet deze automatisch klaar in uw boekhoudsoftware. Ideaal voor KMO's die wekelijks tientallen facturen manueel verwerken.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Boekhouding",
       icon: "file-text",
       useCases: [
@@ -53,7 +55,7 @@ export const agentsPage: AgentsPageContent = {
       description: "Maakt professionele offertes op basis van uw templates en klantgegevens.",
       longDescription:
         "De Offerte Generator vult uw templates automatisch in met klantgegevens, producten en prijzen, en levert een kant-en-klare PDF-offerte. U keurt altijd goed vóór verzending — geen fouten, geen copy-paste.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Sales",
       icon: "clipboard-list",
       useCases: [
@@ -70,7 +72,7 @@ export const agentsPage: AgentsPageContent = {
         "Analyseert klantverzoeken en plant automatisch afspraken in uw kalender.",
       longDescription:
         "De Triage & Agenda Planner analyseert het probleem of verzoek van uw klant via de chat. De AI schat direct in hoeveel tijd of welke dienst er nodig is en plant, zonder menselijke tussenkomst, de juiste afspraak in uw bestaande kalendersysteem.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Klantenservice",
       icon: "calendar-days",
       useCases: [
@@ -87,7 +89,7 @@ export const agentsPage: AgentsPageContent = {
         "Kwalificeert websitebezoekers via intake-vragen en levert gestructureerde leadprofielen af.",
       longDescription:
         "Verlies geen tijd meer aan onserieuze aanvragen. Deze interactieve agent gaat in gesprek met websitebezoekers, stelt de cruciale intake-vragen over projectvereisten en budget, en levert een gekwalificeerd, gestructureerd profiel af in uw mailbox of CRM.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Sales",
       icon: "user-check",
       useCases: [
@@ -104,7 +106,7 @@ export const agentsPage: AgentsPageContent = {
         "Begeleidt klanten door uw assortiment en verhoogt uw gemiddelde bestelwaarde.",
       longDescription:
         "Verhoog direct uw gemiddelde bestelwaarde. Deze slimme assistent begeleidt klanten door uw assortiment, beantwoordt productvragen en stelt proactief bijpassende producten voor. De agent begeleidt de klant naadloos naar de checkout.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Sales",
       icon: "shopping-cart",
       useCases: [
@@ -121,7 +123,7 @@ export const agentsPage: AgentsPageContent = {
         "Voert eerstelijns diagnose uit bij defecten en bereidt reparatie-intakes voor.",
       longDescription:
         "Ontlast uw telefoonlijn bij technische vragen. Deze agent voert een eerstelijns diagnose uit bij defecten. Simpele problemen worden direct opgelost met uw standaardinstructies; bij complexe storingen bereidt de AI een compleet reparatie-ticket voor.",
-      price: "Vanaf € 499 setup + € 49/mnd",
+      price: "Extra agent: € 499 setup + € 49/mnd",
       category: "Klantenservice",
       icon: "wrench",
       useCases: [

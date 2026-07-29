@@ -105,6 +105,7 @@ export type AgentsPreviewContent = {
 export type AgentsPageContent = {
   heading: string;
   subheading: string;
+  tierRequirementNote: string;
   filterCategories: string[];
   agents: AgentListing[];
   customAgent: CustomAgentCta;
@@ -260,6 +261,7 @@ export type PricingContent = {
   heading: string;
   subheading: string;
   extraAgentNote: string;
+  extraContentNote: string;
   tiers: PricingTier[];
 };
 

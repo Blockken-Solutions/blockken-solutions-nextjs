@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { SectionLabel } from "@/components/landing/section-label";
 import { SectionLink } from "@/components/layout/section-link";
 import { Button } from "@/components/ui/button";
@@ -88,16 +86,16 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
         })}
       </ol>
 
-      <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <Button asChild variant="primary" shape="pill" size="cta">
+      <div className="mx-auto mt-12 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+        <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
           <SectionLink href={content.primaryCta.href}>
             <ButtonLabel>{content.primaryCta.label}</ButtonLabel>
           </SectionLink>
         </Button>
-        <Button asChild variant="secondary" shape="pill" size="cta">
-          <Link href={content.secondaryCta.href}>
+        <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
+          <SectionLink href={content.secondaryCta.href}>
             <ButtonLabel>{content.secondaryCta.label}</ButtonLabel>
-          </Link>
+          </SectionLink>
         </Button>
       </div>
     </Section>

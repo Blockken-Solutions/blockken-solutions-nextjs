@@ -77,10 +77,10 @@ export function AgentsListing({ content }: AgentsListingProps) {
                       {agent.price}
                     </p>
                     <div className="flex flex-col gap-2.5 sm:flex-row">
-                      <Button asChild variant="secondary" shape="pill" size="sm" className="sm:flex-1">
+                      <Button asChild variant="secondary" shape="pill" className="min-h-11 w-full sm:flex-1 sm:min-h-0 sm:h-7 sm:px-4 sm:text-[0.8rem]">
                         <Link href={`/agents/${agent.slug}`}>Meer info</Link>
                       </Button>
-                      <Button asChild variant="primary" shape="pill" size="sm" className="sm:flex-1">
+                      <Button asChild variant="primary" shape="pill" className="min-h-11 w-full sm:flex-1 sm:min-h-0 sm:h-7 sm:px-4 sm:text-[0.8rem]">
                         <SectionLink href={contactWithAgent(agent.slug)}>
                           <ButtonLabel>Vraag demo →</ButtonLabel>
                         </SectionLink>
