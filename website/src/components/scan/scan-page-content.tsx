@@ -49,7 +49,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
     <Section fade={false}>
       <div className="mx-auto max-w-4xl">
         <BackToHomeLink className="mb-6" />
-        <SectionLabel>Gratis Scan</SectionLabel>
+        <SectionLabel>Gratis scan</SectionLabel>
         <PageHeading className="text-4xl font-bold sm:text-5xl">
           {content.heading}
         </PageHeading>

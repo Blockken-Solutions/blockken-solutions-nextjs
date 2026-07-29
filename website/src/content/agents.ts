@@ -3,135 +3,119 @@ import type { AgentItem, AgentsPageContent } from "@/content/types";
 import { customAgent } from "./custom-agent";
 
 export const agentsPage: AgentsPageContent = {
-  heading: "AI Agents voor KMO's",
+  heading: "AI-agents voor KMO's",
   subheading:
-    "Kant-en-klare AI-agents, beschikbaar vanaf Slimme Groei. Eén agent inbegrepen; extra agents vanaf € 499 setup + € 49/mnd.",
+    "Kant-en-klare AI-agents, beschikbaar vanaf Slimme groei — één agent inbegrepen in uw pakket.",
   tierRequirementNote:
-    "Vereist Slimme Groei-abonnement (€ 149/mnd). Extra agents bovenop het inbegrepen exemplaar.",
+    "Beschikbaar vanaf pakket Slimme groei. Prijzen voor extra agents vindt u bij onze pakketten.",
   seo: {
-    title: "AI Agents voor KMO's — blockken.solutions",
+    title: "AI-agents voor KMO's — blockken.solutions",
     description:
-      "Kant-en-klare AI-agents voor boekhouding, klantenservice en sales. Beschikbaar vanaf Slimme Groei — één agent inbegrepen, extra agents vanaf € 499 setup + € 49/mnd.",
+      "Kant-en-klare AI-agents voor klantenservice, administratie en verkoop. Beschikbaar vanaf Slimme groei — één agent inbegrepen in uw pakket.",
   },
-  filterCategories: ["Alle", "Klantenservice", "Boekhouding", "Sales"],
+  filterCategories: ["Alle", "Klantenservice", "Administratie", "Verkoop"],
   agents: [
     {
-      slug: "support-agent-247",
-      title: "Support Agent 24/7",
-      description: "Beantwoordt klantvragen automatisch via chat en e-mail.",
-      longDescription:
-        "De Support Agent 24/7 beantwoordt veelgestelde klantvragen via uw website-chat en e-mail, 24 uur per dag. Getraind op uw producten, FAQ en tone-of-voice. Complexe vragen worden doorgestuurd naar uw team.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Klantenservice",
-      icon: "message-circle",
-      useCases: [
-        "Automatische beantwoording van FAQ's",
-        "E-mail triage en concept-antwoorden",
-        "Doorgifte naar medewerker bij complexe vragen",
-      ],
-      includedInTier: "Slimme Groei",
-      relatedSlugs: ["triage-agenda-planner", "storing-nazorg-bot"],
-    },
-    {
-      slug: "factuur-extractor",
-      title: "Factuur Extractor",
-      description: "Leest automatisch PDF-facturen in naar uw boekhouding.",
-      longDescription:
-        "De Factuur Extractor scant inkomende PDF-facturen, extraheert leverancier, bedrag, BTW en vervaldatum, en zet deze automatisch klaar in uw boekhoudsoftware. Ideaal voor KMO's die wekelijks tientallen facturen manueel verwerken.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Boekhouding",
-      icon: "file-text",
-      useCases: [
-        "Automatisch facturen inlezen uit e-mail of upload",
-        "Koppeling met Exact Online, Yuki of Billit",
-        "Foutdetectie bij ontbrekende velden",
-      ],
-      includedInTier: "Slimme Groei",
-      relatedSlugs: ["offerte-generator"],
-    },
-    {
-      slug: "offerte-generator",
-      title: "Offerte Generator",
-      description: "Maakt professionele offertes op basis van uw templates en klantgegevens.",
-      longDescription:
-        "De Offerte Generator vult uw templates automatisch in met klantgegevens, producten en prijzen, en levert een kant-en-klare PDF-offerte. U keurt altijd goed vóór verzending — geen fouten, geen copy-paste.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Sales",
-      icon: "clipboard-list",
-      useCases: [
-        "Offertes genereren vanuit CRM of formulier",
-        "Consistente huisstijl en prijsberekening",
-        "Goedkeuringsflow vóór verzending naar klant",
-      ],
-      relatedSlugs: ["lead-pre-kwalificator", "factuur-extractor"],
-    },
-    {
-      slug: "triage-agenda-planner",
-      title: "Triage & Agenda Planner",
-      description:
-        "Analyseert klantverzoeken en plant automatisch afspraken in uw kalender.",
-      longDescription:
-        "De Triage & Agenda Planner analyseert het probleem of verzoek van uw klant via de chat. De AI schat direct in hoeveel tijd of welke dienst er nodig is en plant, zonder menselijke tussenkomst, de juiste afspraak in uw bestaande kalendersysteem.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Klantenservice",
-      icon: "calendar-days",
-      useCases: [
-        "Probleemanalyse en slimme tijdsinschatting vooraf",
-        "Real-time koppeling met agenda's (Google Calendar, Calendly, etc.)",
-        "Voorkomt foutieve of dubbele boekingen",
-      ],
-      relatedSlugs: ["support-agent-247", "storing-nazorg-bot"],
-    },
-    {
       slug: "lead-pre-kwalificator",
-      title: "Lead Pre-kwalificator",
+      title: "Lead pre-kwalificator",
       description:
         "Kwalificeert websitebezoekers via intake-vragen en levert gestructureerde leadprofielen af.",
       longDescription:
-        "Verlies geen tijd meer aan onserieuze aanvragen. Deze interactieve agent gaat in gesprek met websitebezoekers, stelt de cruciale intake-vragen over projectvereisten en budget, en levert een gekwalificeerd, gestructureerd profiel af in uw mailbox of CRM.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Sales",
+        "Verlies geen tijd meer aan onserieuze aanvragen. Deze interactieve agent gaat in gesprek met websitebezoekers, stelt de cruciale intake-vragen over projectvereisten en budget, en levert een gekwalificeerd, gestructureerd profiel af in uw mailbox. Werkt standalone — koppeling met uw andere tools is optioneel.",
+      category: "Verkoop",
       icon: "user-check",
       useCases: [
         "Actieve uitvraging van specifieke projectdetails",
         "Filtert aanvragen buiten uw regio of budget direct weg",
-        "Automatische doorsturing van warme leads naar uw salesteam",
+        "Gestructureerde leadprofielen via e-mail of webhook",
       ],
-      relatedSlugs: ["offerte-generator", "upsell-bestel-assistent"],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["offerte-generator", "support-agent-247"],
     },
     {
-      slug: "upsell-bestel-assistent",
-      title: "Upsell & Bestel Assistent",
+      slug: "support-agent-247",
+      title: "Supportagent 24/7",
       description:
-        "Begeleidt klanten door uw assortiment en verhoogt uw gemiddelde bestelwaarde.",
+        "Beantwoordt klantvragen via chat — ook technische eerstelijns-hulp.",
       longDescription:
-        "Verhoog direct uw gemiddelde bestelwaarde. Deze slimme assistent begeleidt klanten door uw assortiment, beantwoordt productvragen en stelt proactief bijpassende producten voor. De agent begeleidt de klant naadloos naar de checkout.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
-      category: "Sales",
-      icon: "shopping-cart",
-      useCases: [
-        "Gepersonaliseerd productadvies op basis van klantbehoeften",
-        "Proactieve up- en cross-selling (bijv. wijnsuggesties bij gerechten)",
-        "Klaarzetten van winkelmandjes of gestructureerde bestel-e-mails",
-      ],
-      relatedSlugs: ["lead-pre-kwalificator", "offerte-generator"],
-    },
-    {
-      slug: "storing-nazorg-bot",
-      title: "Storing & Nazorg Bot",
-      description:
-        "Voert eerstelijns diagnose uit bij defecten en bereidt reparatie-intakes voor.",
-      longDescription:
-        "Ontlast uw telefoonlijn bij technische vragen. Deze agent voert een eerstelijns diagnose uit bij defecten. Simpele problemen worden direct opgelost met uw standaardinstructies; bij complexe storingen bereidt de AI een compleet reparatie-ticket voor.",
-      price: "Extra agent: € 499 setup + € 49/mnd",
+        "De supportagent 24/7 beantwoordt veelgestelde klantvragen via uw website-chat, 24 uur per dag. Getraind op uw FAQ, producten en tone-of-voice. Bij technische bedrijven kan de agent ook eerstelijns troubleshooting doen op basis van uw standaardinstructies. Complexe vragen worden doorgestuurd naar uw team.",
       category: "Klantenservice",
-      icon: "wrench",
+      icon: "message-circle",
       useCases: [
-        "Stap-voor-stap probleemoplossing voor veelvoorkomende defecten",
-        "Verzamelen van foutcodes, modelnummers en foto's",
-        "Automatisch aanmaken van gestructureerde reparatie-intakes",
+        "Automatische beantwoording van FAQ's via website-chat",
+        "Eerstelijns troubleshooting op basis van uw handleidingen",
+        "Doorgifte naar medewerker bij complexe vragen",
       ],
-      relatedSlugs: ["support-agent-247", "triage-agenda-planner"],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["email-review-assistent", "afspraak-doorverwijzer"],
+    },
+    {
+      slug: "email-review-assistent",
+      title: "E-mail- en reviewassistent",
+      description:
+        "Schrijft concept-antwoorden voor e-mails en Google-reviews in uw tone-of-voice.",
+      longDescription:
+        "Geen uren meer besteden aan formuleren van e-mails of Google-reviews. Plak een inkomende mail of review, en de agent levert een professioneel concept-antwoord in uw tone-of-voice. U keurt altijd goed vóór verzending — geen automatische replies, wel uren tijdsbesparing.",
+      category: "Administratie",
+      icon: "pen-line",
+      useCases: [
+        "Concept-antwoorden voor klant-e-mails in uw stijl",
+        "Professionele reacties op Google-reviews",
+        "Consistente tone-of-voice zonder copy-paste",
+      ],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["support-agent-247", "lead-pre-kwalificator"],
+    },
+    {
+      slug: "offerte-generator",
+      title: "Offertegenerator",
+      description:
+        "Maakt professionele offertes op basis van uw templates en klantgegevens.",
+      longDescription:
+        "De offertegenerator vult uw templates automatisch in met klantgegevens, producten en prijzen, en levert een kant-en-klare PDF-offerte. U keurt altijd goed vóór verzending — geen fouten, geen copy-paste. Koppeling met uw bestaande tools is beschikbaar in Digitaal maatwerk.",
+      category: "Verkoop",
+      icon: "clipboard-list",
+      useCases: [
+        "Offertes genereren vanuit formulier of intake",
+        "Consistente huisstijl en prijsberekening",
+        "Goedkeuringsflow vóór verzending naar klant",
+      ],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["lead-pre-kwalificator", "factuur-extractor"],
+    },
+    {
+      slug: "factuur-extractor",
+      title: "Factuurextractor",
+      description:
+        "Leest PDF-facturen uit en zet gestructureerde gegevens klaar ter controle.",
+      longDescription:
+        "De factuurextractor scant inkomende PDF-facturen, extraheert leverancier, bedrag, BTW en vervaldatum, en zet deze klaar ter controle via e-mail of spreadsheet. U keurt goed vóór verdere verwerking. Automatische doorstuur naar uw boekhoud- of andere bedrijfssoftware is beschikbaar in Digitaal maatwerk.",
+      category: "Administratie",
+      icon: "file-text",
+      useCases: [
+        "Facturen inlezen via upload of e-mail doorsturen",
+        "Gestructureerde output naar review-e-mail of spreadsheet",
+        "Foutdetectie bij ontbrekende velden",
+      ],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["offerte-generator", "email-review-assistent"],
+    },
+    {
+      slug: "afspraak-doorverwijzer",
+      title: "Afspraakdoorverwijzer",
+      description:
+        "Analyseert klantverzoeken en verwijst door naar het juiste afspraaktype of planningslink.",
+      longDescription:
+        "De afspraakdoorverwijzer analyseert het verzoek van uw klant via chat, stelt gerichte vervolgvragen en verwijst door naar het juiste afspraaktype of uw planningslink. Slimme intake vóór de afspraak — zonder complexe softwarekoppelingen. Diepere koppeling met agenda, CRM of andere tools is beschikbaar in Digitaal maatwerk.",
+      category: "Klantenservice",
+      icon: "calendar-days",
+      useCases: [
+        "Probleemanalyse en intake vóór afspraak",
+        "Doorverwijzing naar planningslink of het juiste contactkanaal",
+        "Filtert verzoeken buiten uw dienstenaanbod",
+      ],
+      includedInTier: "Slimme groei",
+      relatedSlugs: ["support-agent-247", "lead-pre-kwalificator"],
     },
   ],
   customAgent,
@@ -139,11 +123,10 @@ export const agentsPage: AgentsPageContent = {
 
 export function getAgentPreviewItems(): AgentItem[] {
   return agentsPage.agents.map(
-    ({ slug, title, description, price, category, icon }) => ({
+    ({ slug, title, description, category, icon }) => ({
       slug,
       title,
       description,
-      price,
       category,
       icon,
     }),

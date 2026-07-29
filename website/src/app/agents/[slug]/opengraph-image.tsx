@@ -19,7 +19,7 @@ export default async function OpenGraphImage({ params }: AgentOgImageProps) {
 
   if (!agent) {
     return createOgImage({
-      title: "AI Agent voor KMO's",
+      title: "AI-agent voor KMO's",
       description: site.seo.description,
     });
   }
@@ -27,6 +27,8 @@ export default async function OpenGraphImage({ params }: AgentOgImageProps) {
   return createOgImage({
     title: agent.title,
     description: agent.description,
-    footer: agent.price,
+    footer: agent.includedInTier
+      ? `Inbegrepen in ${agent.includedInTier}`
+      : undefined,
   });
 }

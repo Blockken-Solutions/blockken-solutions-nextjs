@@ -4,9 +4,9 @@ import { contactPlanSection } from "@/lib/paths";
 export const customAgent: CustomAgentCta = {
   title: "Agent op maat",
   description:
-    "Heeft u een proces dat nergens in een standaardpakket past? Samen ontwerpen we een agent die exact aansluit op uw werking.",
+    "Webshop-advies, planning, documentverwerking of sector-specifieke workflows — als het repetitief is maar nergens in onze standaardbibliotheek past, bouwen we het op maat.",
   longDescription:
-    "Van interne workflows tot koppelingen met uw bestaande software — als het repetitief is, kunnen wij het automatiseren. We starten met een gratis strategiegesprek en leveren een heldere offerte, zonder verplichtingen.",
+    "Voorbeelden: productadvies in webshops, koppeling met uw agenda of CRM, automatische documentverwerking of volledig geautomatiseerde workflows. We starten met een gratis strategiegesprek en bekijken samen wat technisch haalbaar is — zonder verplichtingen.",
   price: "Op offerte",
   icon: "sparkles",
   cta: {

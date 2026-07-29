@@ -72,10 +72,7 @@ export function AgentsListing({ content }: AgentsListingProps) {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 space-y-4 border-t border-border pt-5">
-                    <p className="text-base font-semibold text-foreground">
-                      {agent.price}
-                    </p>
+                  <div className="mt-6 border-t border-border pt-5">
                     <div className="flex flex-col gap-2.5 sm:flex-row">
                       <Button asChild variant="secondary" shape="pill" className="min-h-11 w-full sm:flex-1 sm:min-h-0 sm:h-7 sm:px-4 sm:text-[0.8rem]">
                         <Link href={`/agents/${agent.slug}`}>Meer info</Link>

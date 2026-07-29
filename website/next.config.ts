@@ -16,6 +16,25 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/agents/upsell-bestel-assistent",
+        destination: "/agents",
+        permanent: true,
+      },
+      {
+        source: "/agents/storing-nazorg-bot",
+        destination: "/agents/support-agent-247",
+        permanent: true,
+      },
+      {
+        source: "/agents/triage-agenda-planner",
+        destination: "/agents/afspraak-doorverwijzer",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

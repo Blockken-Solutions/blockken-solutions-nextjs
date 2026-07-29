@@ -3,7 +3,7 @@ import { contactPlanSection } from "@/lib/paths";
 
 export const scanPage: ScanPageContent = {
   seo: {
-    title: "Gratis Website Scan — Kost uw site u klanten?",
+    title: "Gratis website scan — Kost uw site u klanten?",
     description:
       "Test gratis of uw website bezoekers verliest door trage laadtijd of slechte vindbaarheid. Vul uw URL in en ontvang binnen 30 seconden een duidelijk rapport — geen registratie nodig.",
   },
@@ -62,7 +62,7 @@ export const scanPage: ScanPageContent = {
   ],
   form: {
     inputPlaceholder: "https://uw-website.be",
-    buttonLabel: "Start Scan →",
+    buttonLabel: "Start scan →",
     helperText: "Geen registratie. Resultaat in 10–30 seconden.",
     errorMessage: "Voer een geldige website-URL in (bijv. https://uw-website.be).",
   },

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: AgentDetailPageProps) {
 
   return createMetadata({
     pathname: `/agents/${slug}`,
-    title: `${agent.title} — AI Agent voor KMO's | ${site.name}`,
+    title: `${agent.title} — AI-agent voor KMO's | ${site.name}`,
     description: agent.longDescription,
   });
 }

@@ -44,7 +44,6 @@ export function AgentDetail({ agent }: AgentDetailProps) {
             <PageHeading className="mt-3 text-4xl font-bold sm:text-5xl">
               {agent.title}
             </PageHeading>
-            <p className="mt-2 text-lg font-semibold text-foreground">{agent.price}</p>
             {agent.includedInTier ? (
               <p className="mt-2 text-sm text-muted-foreground">
                 Inbegrepen als keuze-agent in pakket{" "}
@@ -117,12 +116,19 @@ export function AgentDetail({ agent }: AgentDetailProps) {
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Vragen over prijs of implementatie?{" "}
+          Vragen over pakketten of implementatie?{" "}
+          <SectionLink
+            href={homeSection("prijzen")}
+            className="font-medium text-foreground underline-offset-4 hover:underline"
+          >
+            Bekijk onze prijzen
+          </SectionLink>
+          {" "}of{" "}
           <Link
             href="/faq#waarom-slimme-groei-agent"
             className="font-medium text-foreground underline-offset-4 hover:underline"
           >
-            Waarom agents vanaf Slimme Groei?
+            lees waarom agents vanaf Slimme groei
           </Link>
           .
         </p>

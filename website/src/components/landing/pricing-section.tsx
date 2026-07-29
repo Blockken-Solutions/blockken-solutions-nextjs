@@ -119,7 +119,7 @@ export function PricingSection({ content }: PricingSectionProps) {
           href="/faq#waarom-slimme-groei-agent"
           className="font-medium text-foreground underline-offset-4 hover:underline"
         >
-          Waarom agents vanaf Slimme Groei?
+          Waarom agents vanaf Slimme groei?
         </Link>{" "}
         of{" "}
         <Link

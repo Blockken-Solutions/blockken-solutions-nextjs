@@ -80,7 +80,6 @@ export type AgentItem = {
   slug: string;
   title: string;
   description: string;
-  price: string;
   category: string;
   icon: string;
 };

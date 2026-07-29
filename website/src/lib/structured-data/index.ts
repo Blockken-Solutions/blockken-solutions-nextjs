@@ -197,17 +197,7 @@ export function buildBreadcrumbSchema(
   };
 }
 
-function parsePrice(priceLabel: string): { price: string; currency: string } {
-  const match = priceLabel.match(/€(\d+)/);
-  return {
-    price: match?.[1] ?? "49",
-    currency: "EUR",
-  };
-}
-
 export function buildAgentServiceSchema(agent: AgentListing): WithContext<Service> {
-  const { price, currency } = parsePrice(agent.price);
-
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -222,13 +212,6 @@ export function buildAgentServiceSchema(agent: AgentListing): WithContext<Servic
     areaServed: {
       "@type": "Country",
       name: "België",
-    },
-    offers: {
-      "@type": "Offer",
-      price,
-      priceCurrency: currency,
-      availability: "https://schema.org/InStock",
-      url: absoluteUrl(`/agents/${agent.slug}`),
     },
     url: absoluteUrl(`/agents/${agent.slug}`),
   };
@@ -361,7 +344,7 @@ export function buildAgentGraph(agent: AgentListing): Graph {
       ),
       buildBreadcrumbSchema([
         { name: "Home", pathname: "/" },
-        { name: "AI Agents", pathname: "/agents" },
+        { name: "AI-agents", pathname: "/agents" },
         { name: agent.title, pathname: `/agents/${agent.slug}` },
       ]),
       buildAgentServiceSchema(agent),

@@ -18,7 +18,7 @@ export const home: HomeContent = {
     summary:
       "Veilig, op maat en persoonlijk begeleid door een professional uit België.",
     primaryCta: {
-      label: "Gratis Website Scan →",
+      label: "Gratis website scan →",
       href: homeSection("gratis-scan"),
     },
     secondaryCta: {
@@ -26,18 +26,18 @@ export const home: HomeContent = {
       href: homeSection("ai-agents"),
     },
     trustBarItems: [
-      "EUROPESE HOSTING",
-      "GDPR-VEILIG",
-      "OP MAAT GEBOUWD",
-      "RAZENDSNELLE WEBSITES",
+      "Europese hosting",
+      "GDPR-veilig",
+      "Op maat gebouwd",
+      "Razendsnelle websites",
     ],
   },
   services: {
-    sectionLabel: "OPLOSSINGEN",
+    sectionLabel: "Oplossingen",
     heading: "Wat we voor uw bedrijf bouwen.",
     items: [
       {
-        title: "Razendsnelle Websites",
+        title: "Razendsnelle websites",
         description:
           "Een website die meteen laadt en er professioneel uitziet — op maat voor uw bedrijf, geen trage standaardtemplates. Bezoekers nemen vaker contact op en vullen vaker een formulier in. Meer klanten, minder gemiste kansen.",
         icon: "zap",
@@ -47,7 +47,7 @@ export const home: HomeContent = {
       {
         title: "Minder administratie, meer tijd voor klanten",
         description:
-          "Onze digitale assistenten nemen repetitief werk over: offertes opstellen, facturen verwerken, klantvragen beantwoorden. U houdt altijd de controle — zij doen het voorbereidende werk.",
+          "Onze digitale assistenten nemen repetitief werk over: leads kwalificeren, klantvragen beantwoorden, e-mails en offertes opstellen, facturen verwerken. U houdt altijd de controle — zij doen het voorbereidende werk.",
         icon: "bot",
         href: "/agents",
         linkLabel: "Bekijk voorbeelden →",
@@ -64,7 +64,7 @@ export const home: HomeContent = {
   },
   pricing,
   howWeWork: {
-    sectionLabel: "HOE HET WERKT",
+    sectionLabel: "Hoe het werkt",
     heading: "Van eerste contact tot live — in vier duidelijke stappen.",
     subheading:
       "Geen verrassingen, geen jargon. U weet altijd waar u aan toe bent.",
@@ -108,31 +108,31 @@ export const home: HomeContent = {
     },
   },
   agents: {
-    sectionLabel: "AI AGENTS",
+    sectionLabel: "AI-agents",
     heading: "Klare AI-werknemers, direct inzetbaar.",
     subheading:
-      "Beschikbaar vanaf Slimme Groei — één agent inbegrepen, extra agents op aanvraag.",
+      "Beschikbaar vanaf Slimme groei — één agent inbegrepen in uw pakket.",
     marketplaceLink: {
       label: "Alle agents bekijken →",
       href: "/agents",
     },
-    filterCategories: ["Alle", "Klantenservice", "Boekhouding", "Sales"],
+    filterCategories: ["Alle", "Klantenservice", "Administratie", "Verkoop"],
     agents: getAgentPreviewItems(),
     customAgent,
   },
   scan: {
-    sectionLabel: "GRATIS SCAN",
+    sectionLabel: "Gratis scan",
     heading: "Kost uw huidige website u klanten? Test het direct.",
     description:
       "Vul uw URL in en zie live hoe Google Lighthouse uw pagina scant op laadtijd, SEO en performance.",
     inputPlaceholder: "https://uw-website.be",
-    buttonLabel: "Start Scan →",
+    buttonLabel: "Start scan →",
     helperText: "Geen registratie. Resultaat in 10–30 seconden.",
     errorMessage:
       "Voer een geldige website-URL in (bijv. https://uw-website.be).",
   },
   about: {
-    sectionLabel: "OVER MIJ",
+    sectionLabel: "Over mij",
     heading: "5 jaar ervaring, één aanspreekpunt — geen marketingbureau.",
     body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik als fullstack developer performante webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites en logge systemen — terwijl ik bij grotere projecten juist moderne JAMstack-architecturen, cloud-optimalisatie en UX-verbeteringen implementeerde. Met blockken.solutions zet ik die expertise in voor Belgische KMO's: razendsnelle websites, slimme AI-automatisering en persoonlijk contact — van intake tot oplevering.",
     portrait: "/images/wouter-portrait.jpg",

@@ -48,9 +48,9 @@ ${pricing.extraContentNote}
 
 ${buildHowWeWorkSummary()}
 
-## AI Agents
+## AI-agents
 
-${agentsPage.agents.map((agent) => `- **${agent.title}** (${agent.price}): ${agent.description} Meer info: ${absoluteUrl(`/agents/${agent.slug}`)}`).join("\n")}
+${agentsPage.agents.map((agent) => `- **${agent.title}**: ${agent.description} Meer info: ${absoluteUrl(`/agents/${agent.slug}`)}`).join("\n")}
 
 ## Veelgestelde vragen
 
@@ -65,9 +65,9 @@ ${getAllFaqItems().map((item) => `- **${item.question}** ${stripFaqAnswerMarkdow
 ## Pagina's
 
 - [Homepage](${absoluteUrl("/")})
-- [Gratis Website Scan](${absoluteUrl("/gratis-scan")})
+- [Gratis website scan](${absoluteUrl("/gratis-scan")})
 - [FAQ](${absoluteUrl("/faq")})
-- [AI Agents](${absoluteUrl("/agents")})
+- [AI-agents](${absoluteUrl("/agents")})
 ${agentsPage.agents.map((agent) => `- [${agent.title}](${absoluteUrl(`/agents/${agent.slug}`)})`).join("\n")}
 - [Privacybeleid](${absoluteUrl("/privacy")})
 - [Algemene voorwaarden](${absoluteUrl("/terms")})
