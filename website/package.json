@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:logo": "node scripts/generate-logo-png.mjs"
+    "generate:logo": "node scripts/generate-logo-png.mjs",
+    "generate:block-svgs": "node scripts/generate-block-walkthrough-svgs.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

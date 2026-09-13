@@ -7,9 +7,9 @@ export const site = {
   language: "nl-BE",
   lastModified: "2026-07-20",
   seo: {
-    title: "blockken.solutions — Web, AI & Automatisering voor KMO's",
+    title: "blockken.solutions — Web, Blocks & Automatisering voor KMO's",
     description:
-      "Razendsnelle webapplicaties en slimme AI-agents voor Belgische KMO's. Plan een gratis strategiegesprek en ontdek wat automatisering u oplevert.",
+      "Razendsnelle webapplicaties met hapklare Blocks voor Belgische KMO's. Plan een gratis strategiegesprek en ontdek wat past bij uw zaak.",
   },
   legal: {
     tradeName: "blockken.solutions",
@@ -40,7 +40,7 @@ export const site = {
     ],
     credentials: [
       "AI Technology Architect (Hogeschool PXL, 2026)",
-      "AWS Solutions Architect Associate (2025)",
+      "AWS Certified AI Practitioner (AIF-C01) (2026)",
       "Toegepaste Informatica (Hogeschool PXL, 2021)",
     ],
   },
@@ -55,7 +55,8 @@ export const indexableRoutes = [
   { pathname: "/gratis-scan", lastModified: site.lastModified },
   { pathname: "/plan-gesprek", lastModified: site.lastModified },
   { pathname: "/faq", lastModified: site.lastModified },
-  { pathname: "/agents", lastModified: site.lastModified },
+  { pathname: "/blocks", lastModified: site.lastModified },
+  { pathname: "/sectoren", lastModified: site.lastModified },
   { pathname: "/privacy", lastModified: site.lastModified },
   { pathname: "/terms", lastModified: site.lastModified },
 ] as const;

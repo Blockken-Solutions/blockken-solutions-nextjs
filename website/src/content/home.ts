@@ -1,20 +1,20 @@
 import type { HomeContent } from "@/content/types";
 import { contactPlanSection, homeSection } from "@/lib/paths";
 
-import { getAgentPreviewItems } from "./agents";
-import { customAgent } from "./custom-agent";
+import { blocksPage, getBlockPreviewItems } from "./blocks";
+import { customBlock } from "./custom-block";
 import { faqTeaserItemIds, getFaqItemsByIds } from "./faq";
 import { pricing } from "./pricing";
 
 export const home: HomeContent = {
   hero: {
-    badge: "Web · AI · Automatisering voor KMO's",
+    badge: "Web · Blocks · Automatisering voor KMO's",
     headlineLines: [
       "Is uw website traag? Kost administratie u te veel tijd?",
     ],
     headlineHighlight: "Wij lossen dit op!",
     subheadline:
-      "Wij bouwen razendsnelle websites en slimme AI-agents die repetitief werk overnemen — zodat u zich kunt focussen op uw klanten.",
+      "Wij bouwen razendsnelle websites met hapklare Blocks die repetitief werk overnemen — zodat u zich kunt focussen op uw klanten.",
     summary:
       "Veilig, op maat en persoonlijk begeleid door een professional uit België.",
     primaryCta: {
@@ -22,8 +22,8 @@ export const home: HomeContent = {
       href: homeSection("gratis-scan"),
     },
     secondaryCta: {
-      label: "Bekijk onze agents",
-      href: homeSection("ai-agents"),
+      label: "Bekijk onze Blocks",
+      href: homeSection("blocks"),
     },
     trustBarItems: [
       "Europese hosting",
@@ -45,12 +45,12 @@ export const home: HomeContent = {
         linkLabel: "Meer over websites →",
       },
       {
-        title: "Minder administratie, meer tijd voor klanten",
+        title: "Blocks op uw website",
         description:
-          "Onze digitale assistenten nemen repetitief werk over: leads kwalificeren, klantvragen beantwoorden, e-mails en offertes opstellen, facturen verwerken. U houdt altijd de controle — zij doen het voorbereidende werk.",
+          "Hapklare extra's die meewerken: online bestellen, cadeaubonnen verkopen, klantvragen beantwoorden, reviews beantwoorden. Kies wat past bij uw zaak — bakker, garage, kapper of dienstverlener.",
         icon: "bot",
-        href: "/agents",
-        linkLabel: "Bekijk voorbeelden →",
+        href: "/blocks",
+        linkLabel: "Bekijk Blocks →",
       },
       {
         title: "Gevonden worden — online én in AI-zoekmachines",
@@ -87,7 +87,7 @@ export const home: HomeContent = {
         step: 3,
         title: "Bouw & integratie",
         description:
-          "Wij bouwen uw website of AI-agent, koppelen systemen en houden u op de hoogte.",
+          "Wij bouwen uw website en Blocks, koppelen systemen en houden u op de hoogte.",
         icon: "hammer",
       },
       {
@@ -107,24 +107,24 @@ export const home: HomeContent = {
       href: contactPlanSection(),
     },
   },
-  agents: {
-    sectionLabel: "AI-agents",
-    heading: "Klare AI-werknemers, direct inzetbaar.",
+  blocks: {
+    sectionLabel: "Blocks",
+    heading: "Extra's op uw website, klaar voor gebruik.",
     subheading:
-      "Beschikbaar vanaf Slimme groei — één agent inbegrepen in uw pakket.",
-    marketplaceLink: {
-      label: "Alle agents bekijken →",
-      href: "/agents",
+      "Vanaf Slimme groei zit één Block inbegrepen — kies wat past bij uw zaak.",
+    catalogLink: {
+      label: "Alle Blocks bekijken →",
+      href: "/blocks",
     },
-    filterCategories: ["Alle", "Klantenservice", "Administratie", "Verkoop"],
-    agents: getAgentPreviewItems(),
-    customAgent,
+    filterCategories: blocksPage.filterCategories,
+    blocks: getBlockPreviewItems(),
+    customBlock,
   },
   scan: {
     sectionLabel: "Gratis scan",
     heading: "Kost uw huidige website u klanten? Test het direct.",
     description:
-      "Vul uw URL in en zie live hoe Google Lighthouse uw pagina scant op laadtijd, SEO en performance.",
+      "Vul uw URL in en ontdek binnen 30 seconden of uw website bezoekers kost — op snelheid, vindbaarheid en gebruiksgemak.",
     inputPlaceholder: "https://uw-website.be",
     buttonLabel: "Start scan →",
     helperText: "Geen registratie. Resultaat in 10–30 seconden.",
@@ -134,9 +134,9 @@ export const home: HomeContent = {
   about: {
     sectionLabel: "Over mij",
     heading: "5 jaar ervaring, één aanspreekpunt — geen marketingbureau.",
-    body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik als fullstack developer performante webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites en logge systemen — terwijl ik bij grotere projecten juist moderne JAMstack-architecturen, cloud-optimalisatie en UX-verbeteringen implementeerde. Met blockken.solutions zet ik die expertise in voor Belgische KMO's: razendsnelle websites, slimme AI-automatisering en persoonlijk contact — van intake tot oplevering.",
+    body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik websites en webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites, dure bureaus en systemen die niet meegroeien. Met blockken.solutions zet ik die ervaring in voor Belgische KMO's: snelle websites, slimme Blocks die meewerken, en één aanspreekpunt van intake tot oplevering.",
     portrait: "/images/wouter-portrait.jpg",
-    portraitAlt: "Wouter Blockken, fullstack developer en oprichter van blockken.solutions",
+    portraitAlt: "Wouter Blockken, oprichter van blockken.solutions",
     credentials: [
       {
         type: "Diploma",
@@ -147,9 +147,9 @@ export const home: HomeContent = {
       },
       {
         type: "Gecertificeerd",
-        label: "AWS Solutions Architect Associate",
+        label: "AWS Certified AI Practitioner (AIF-C01)",
         issuer: "Amazon Web Services",
-        year: "2025",
+        year: "2026",
         icon: "scroll-text",
       },
       {
@@ -161,13 +161,39 @@ export const home: HomeContent = {
       },
     ],
     skills: [
-      "Performante websites met moderne architectuur — van ontwerp tot live",
-      "Cloud & AWS — veilige hosting binnen Europa (GDPR-conform)",
-      "AI-automatisering en direct contact — één developer, geen tussenpersonen",
+      "Websites die in seconden laden — geen trage templates",
+      "Veilige hosting in Europa, GDPR-conform",
+      "Blocks en automatisering — één developer, geen tussenpersonen",
+    ],
+    portfolioHighlights: [
+      {
+        title: "De Watergroep Portal",
+        client: "De Watergroep",
+        outcome: "Klant- en medewerkersportaal voor duizenden gebruikers",
+        href: "https://wouterblockken.me/projecten/de-watergroep-portal",
+      },
+      {
+        title: "Mynexuzhealth Patient Portal",
+        client: "Nexuzhealth",
+        outcome: "Patiëntenportaal — eenvoudig digitaal toegang tot medische gegevens",
+        href: "https://wouterblockken.me/projecten/mynexuzhealth-patient-portal",
+      },
+      {
+        title: "Starttoets & Columbus Platform",
+        client: "Vlaamse Overheid (Onderwijs & Vorming)",
+        outcome: "Schaalbare toets- en registratieplatforms voor het Vlaamse onderwijs",
+        href: "https://wouterblockken.me/projecten/starttoets-columbus-platform",
+      },
+      {
+        title: "ZBO Zorgbudget",
+        client: "Smals",
+        outcome: "Digitaal platform waar burgers zelf aanvragen indienen",
+        href: "https://wouterblockken.me/projecten/zbo-elderly-care-budget-platform",
+      },
     ],
     portfolioLink: {
-      label: "Bekijk mijn volledige portfolio →",
-      href: "https://wouterblockken.me/",
+      label: "Bekijk alle projecten →",
+      href: "https://wouterblockken.me/projecten",
     },
     sameAs: [
       {
