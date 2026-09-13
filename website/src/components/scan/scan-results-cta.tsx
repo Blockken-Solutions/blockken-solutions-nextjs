@@ -39,7 +39,7 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
               bestPractices: result.scores.bestPractices,
             })}
           >
-            <ButtonLabel>Plan optimalisatiegesprek →</ButtonLabel>
+            <ButtonLabel>Plan kennismakingsgesprek →</ButtonLabel>
           </SectionLink>
         </Button>
         {faqHref ? (

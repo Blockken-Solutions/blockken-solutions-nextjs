@@ -80,6 +80,48 @@ export function AboutSection({ content }: AboutSectionProps) {
             ))}
           </ul>
 
+          {content.portfolioHighlights.length > 0 ? (
+            <div className="mt-10">
+              <p className="text-xs font-bold tracking-[0.18em] text-brand-highlight-text uppercase">
+                Eerdere projecten
+              </p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {content.portfolioHighlights.map((project) => (
+                  <li key={project.title}>
+                    {project.href ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex h-full flex-col rounded-2xl border border-border/80 bg-card p-4 shadow-sm transition-all hover:border-brand-highlight/25 hover:shadow-md"
+                      >
+                        <p className="text-xs font-medium text-muted-foreground">
+                          {project.client}
+                        </p>
+                        <p className="mt-1 font-semibold text-foreground transition-colors group-hover:text-brand-accent">
+                          {project.title}
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {project.outcome}
+                        </p>
+                      </a>
+                    ) : (
+                      <div className="flex h-full flex-col rounded-2xl border border-border/80 bg-card p-4 shadow-sm">
+                        <p className="text-xs font-medium text-muted-foreground">
+                          {project.client}
+                        </p>
+                        <p className="mt-1 font-semibold text-foreground">{project.title}</p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                          {project.outcome}
+                        </p>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
           {content.portfolioLink ? (
             <p className="mt-8">
               <a

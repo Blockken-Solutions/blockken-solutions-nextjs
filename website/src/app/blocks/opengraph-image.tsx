@@ -1,13 +1,13 @@
-import { agentsPage } from "@/content/agents";
+import { blocksPage } from "@/content/blocks";
 import { createOgImage, ogImageContentType, ogImageSize } from "@/lib/og/create-og-image";
 
-export const alt = agentsPage.seo.title;
+export const alt = blocksPage.seo.title;
 export const size = ogImageSize;
 export const contentType = ogImageContentType;
 
 export default async function OpenGraphImage() {
   return createOgImage({
-    title: agentsPage.heading,
-    description: agentsPage.subheading,
+    title: blocksPage.heading,
+    description: blocksPage.subheading,
   });
 }

@@ -28,7 +28,7 @@ const CATEGORY_IMPACT: Record<ScanCategoryKey, string> = {
   performance: "Trage pagina's laten bezoekers afhaken.",
   seo: "U mist waarschijnlijk bezoekers via Google.",
   accessibility: "Niet iedereen kan uw site gemakkelijk gebruiken.",
-  bestPractices: "Technische fouten kunnen vertrouwen en conversie kosten.",
+  bestPractices: "Technische fouten kunnen vertrouwen en contactaanvragen kosten.",
 };
 
 function averageScore(scores: ScanResult["scores"]): number {
@@ -130,7 +130,7 @@ function buildCtaHeading(
     return "Maak uw site bereikbaar voor iedereen";
   }
 
-  return "Technische problemen kosten u vertrouwen en conversie";
+  return "Technische problemen kosten u vertrouwen en contactaanvragen";
 }
 
 function buildCtaSubheading(average: number, grade: ScanGrade): string {
@@ -139,7 +139,7 @@ function buildCtaSubheading(average: number, grade: ScanGrade): string {
   }
 
   if (grade === "poor") {
-    return "Plan een gratis optimalisatiegesprek — we bespreken concrete stappen om snel resultaat te boeken.";
+    return "Plan een gratis kennismakingsgesprek — we bespreken concrete stappen om snel resultaat te boeken.";
   }
 
   return "Plan een gratis gesprek en ontdek welke verbeteringen het meeste opleveren voor uw bedrijf.";

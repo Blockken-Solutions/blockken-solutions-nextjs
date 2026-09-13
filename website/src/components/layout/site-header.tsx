@@ -12,12 +12,14 @@ export function SiteHeader() {
   return (
     <HeaderOffsetTracker>
       <header>
-        <div className="mx-auto flex max-w-[56rem] items-center justify-between gap-4 rounded-full px-4 py-2.5 sm:px-6 header-pill">
-          <Logo />
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-5 rounded-full px-5 py-3 sm:gap-6 sm:px-7 lg:gap-8 lg:px-8 header-pill">
+          <Logo className="shrink-0" />
 
           <NavActiveProvider sectionIds={navSectionIds}>
-            <DesktopNav />
-            <HeaderActions mobileNav={<MobileNav />} />
+            <div className="flex min-w-0 flex-1 items-center justify-end gap-4 lg:gap-6">
+              <DesktopNav />
+              <HeaderActions mobileNav={<MobileNav />} />
+            </div>
           </NavActiveProvider>
         </div>
       </header>

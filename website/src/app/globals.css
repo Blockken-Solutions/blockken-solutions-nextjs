@@ -267,11 +267,21 @@
   }
 
   .header-pill {
-    background: oklch(1 0 0 / 95%);
+    border-radius: 9999px;
+    background: oklch(1 0 0 / 80%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     box-shadow:
       0 1px 3px oklch(0 0 0 / 4%),
       0 4px 12px oklch(0 0 0 / 6%);
+    transition: box-shadow 0.2s ease;
+  }
+
+  [data-site-header][data-scrolled="true"] .header-pill {
+    box-shadow:
+      0 2px 8px oklch(0 0 0 / 6%),
+      0 8px 24px oklch(0 0 0 / 10%);
   }
 
   .credential-pill {

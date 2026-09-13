@@ -76,38 +76,108 @@ export type ServicesContent = {
   items: ServiceItem[];
 };
 
-export type AgentItem = {
+export type BlockItem = {
   slug: string;
   title: string;
   description: string;
   category: string;
   icon: string;
+  sectorTags: string[];
 };
 
-export type AgentListing = AgentItem & {
-  longDescription: string;
-  useCases: string[];
+export type BlockWalkthroughStep = {
+  step: number;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+  animated?: boolean;
+};
+
+export type BlockWalkthrough = {
+  heading?: string;
+  intro?: string;
+  steps: BlockWalkthroughStep[];
+};
+
+export type BlockFaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+export type BlockListing = BlockItem & {
+  tagline: string;
+  summary: string;
+  includes: string[];
+  outcome: string;
+  minTier: string;
   includedInTier?: string;
   relatedSlugs?: string[];
+  demoWalkthrough: BlockWalkthrough;
+  idealFor?: string[];
+  notIdealFor?: string;
+  blockFaq?: BlockFaqItem[];
 };
 
-export type AgentsPreviewContent = {
+export type SectorBlockUseCase = {
+  blockSlug: string;
+  detail: string;
+  outcome?: string;
+};
+
+export type BlocksPreviewContent = {
   sectionLabel: string;
   heading: string;
   subheading: string;
-  marketplaceLink: CtaLink;
+  catalogLink: CtaLink;
   filterCategories: string[];
-  agents: AgentItem[];
-  customAgent: CustomAgentCta;
+  blocks: BlockItem[];
+  customBlock: CustomBlockCta;
 };
 
-export type AgentsPageContent = {
+export type BlocksPageContent = {
   heading: string;
   subheading: string;
   tierRequirementNote: string;
   filterCategories: string[];
-  agents: AgentListing[];
-  customAgent: CustomAgentCta;
+  blocks: BlockListing[];
+  customBlock: CustomBlockCta;
+  seo: SeoConfig;
+};
+
+export type SectorPainPoint = {
+  pain: string;
+  blockSlug: string;
+};
+
+export type SectorTypicalPackage = {
+  tierName: string;
+  setupPrice: string;
+  monthlyPrice: string;
+  includedBlocksNote: string;
+  extraBlockNote: string;
+  pilotSetupPrice: string;
+  roiScenario: string;
+};
+
+export type SectorListing = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  intro: string;
+  painPoints: SectorPainPoint[];
+  recommendedBlockSlugs: string[];
+  blockUseCases: SectorBlockUseCase[];
+  bundleStory: string;
+  pilotNote: string;
+  typicalPackage: SectorTypicalPackage;
+  seo: SeoConfig;
+};
+
+export type SectorsPageContent = {
+  heading: string;
+  subheading: string;
   seo: SeoConfig;
 };
 
@@ -153,6 +223,13 @@ export type CredentialItem = {
   icon: string;
 };
 
+export type PortfolioHighlight = {
+  title: string;
+  client: string;
+  outcome: string;
+  href?: string;
+};
+
 export type AboutContent = {
   sectionLabel: string;
   heading: string;
@@ -161,6 +238,7 @@ export type AboutContent = {
   portraitAlt: string;
   credentials: CredentialItem[];
   skills: string[];
+  portfolioHighlights: PortfolioHighlight[];
   portfolioLink?: CtaLink;
   sameAs: { label: string; href: string; icon?: string }[];
 };
@@ -259,9 +337,30 @@ export type PricingContent = {
   sectionLabel: string;
   heading: string;
   subheading: string;
-  extraAgentNote: string;
+  extraBlockNote: string;
   extraContentNote: string;
+  blocksCatalogLink: CtaLink;
   tiers: PricingTier[];
+};
+
+export type CaseStudy = {
+  slug: string;
+  sector: string;
+  title: string;
+  problem: string;
+  solution: string;
+  result: string;
+  testimonial?: {
+    quote: string;
+    name: string;
+    role: string;
+  };
+};
+
+export type CasesContent = {
+  heading: string;
+  subheading: string;
+  items: CaseStudy[];
 };
 
 export type HowWeWorkStep = {
@@ -285,7 +384,7 @@ export type HomeContent = {
   services: ServicesContent;
   pricing: PricingContent;
   howWeWork: HowWeWorkContent;
-  agents: AgentsPreviewContent;
+  blocks: BlocksPreviewContent;
   scan: ScanTeaserContent;
   about: AboutContent;
   faqTeaser: FaqTeaserContent;
@@ -299,7 +398,7 @@ export type NavLink = {
   sectionId?: string;
 };
 
-export type CustomAgentCta = {
+export type CustomBlockCta = {
   title: string;
   description: string;
   longDescription?: string;

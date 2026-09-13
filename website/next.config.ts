@@ -9,6 +9,21 @@ const securityHeaders = [
   },
 ];
 
+const agentToBlockRedirects = [
+  { source: "/agents", destination: "/blocks", permanent: true },
+  { source: "/agents/lead-pre-kwalificator", destination: "/blocks/aanvraagfilter", permanent: true },
+  { source: "/blocks/slim-eerste-contact", destination: "/blocks/aanvraagfilter", permanent: true },
+  { source: "/agents/support-agent-247", destination: "/blocks/digitale-receptie", permanent: true },
+  { source: "/agents/email-review-assistent", destination: "/blocks/review-hulp", permanent: true },
+  { source: "/agents/afspraak-doorverwijzer", destination: "/blocks/digitale-receptie", permanent: true },
+  { source: "/agents/offerte-generator", destination: "/blocks", permanent: true },
+  { source: "/agents/factuur-extractor", destination: "/blocks", permanent: true },
+  { source: "/agents/:slug", destination: "/blocks/:slug", permanent: true },
+  { source: "/agents/upsell-bestel-assistent", destination: "/blocks", permanent: true },
+  { source: "/agents/storing-nazorg-bot", destination: "/blocks/digitale-receptie", permanent: true },
+  { source: "/agents/triage-agenda-planner", destination: "/blocks/digitale-receptie", permanent: true },
+];
+
 const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
@@ -17,23 +32,7 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   async redirects() {
-    return [
-      {
-        source: "/agents/upsell-bestel-assistent",
-        destination: "/agents",
-        permanent: true,
-      },
-      {
-        source: "/agents/storing-nazorg-bot",
-        destination: "/agents/support-agent-247",
-        permanent: true,
-      },
-      {
-        source: "/agents/triage-agenda-planner",
-        destination: "/agents/afspraak-doorverwijzer",
-        permanent: true,
-      },
-    ];
+    return agentToBlockRedirects;
   },
   async headers() {
     return [

@@ -7,9 +7,9 @@ export const contentType = ogImageContentType;
 
 export default async function OpenGraphImage() {
   return createOgImage({
-    title: "Web, AI & Automatisering voor KMO's",
+    title: "Web, Blocks & online tools voor KMO's",
     description:
-      "Razendsnelle webapplicaties en slimme AI-agents — veilig, op maat, gebouwd in België.",
+      "Razendsnelle websites met hapklare Blocks — veilig, op maat, gebouwd in België.",
     footer: site.footerTagline,
   });
 }

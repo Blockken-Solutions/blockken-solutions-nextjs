@@ -3,24 +3,28 @@ import { contactPlanSection } from "@/lib/paths";
 
 export const pricing: PricingContent = {
   sectionLabel: "Prijzen & pakketten",
-  heading: "Transparante pakketten voor elke fase van uw groei.",
+  heading: "Transparante pakketten — kies wat past bij uw situatie.",
   subheading:
-    "Kies het pakket dat past bij uw ambities — van een solide online basis tot volledig digitaal maatwerk.",
-  extraAgentNote:
-    "AI-agents zijn beschikbaar vanaf Slimme groei. Eén kant-en-klare agent zit inbegrepen; elke extra agent kost € 499 setup plus € 49/mnd bovenop uw Slimme groei-abonnement.",
+    "Van een snelle website tot een volledig digitaal maatwerk met koppelingen aan uw bestaande tools.",
+  extraBlockNote:
+    "Blocks zijn beschikbaar vanaf het pakket Website + Blocks. Eén Block zit inbegrepen; extra Blocks kosten vanaf € 399 eenmalig plus € 15/mnd.",
   extraContentNote:
-    "Liever dat wij het doen? Content support vanaf € 49/mnd — wij passen teksten en afbeeldingen voor u aan (tot 2 wijzigingsrondes per maand, doorgaans binnen 5 werkdagen).",
+    "Liever dat wij het doen? Wij passen teksten en afbeeldingen voor u aan vanaf € 49/mnd (tot 2 wijzigingsrondes per maand, doorgaans binnen 5 werkdagen).",
+  blocksCatalogLink: {
+    label: "Bekijk de catalogus →",
+    href: "/blocks",
+  },
   tiers: [
     {
       id: "digitale-fundering",
       name: "Digitale fundering",
       audience:
-        "Voor bedrijven die een snelle, professionele website willen — zonder AI-automatisering.",
+        "Voor bedrijven die een snelle, professionele website willen — zonder Blocks.",
       setup: {
         label: "Setup (eenmalig)",
         price: "Vanaf € 999",
         features: [
-          "Volledig op maat gemaakt (Next.js)",
+          "Volledig op maat — geen standaardtemplate",
           "Zelf teksten & afbeeldingen aanpassen",
           "Basis vindbaarheid (SEO)",
           "Lokale SEO-setup",
@@ -42,18 +46,18 @@ export const pricing: PricingContent = {
       },
     },
     {
-      id: "slimme-groei",
-      name: "Slimme groei",
+      id: "website-plus-blocks",
+      name: "Website + Blocks",
       audience:
-        "Voor bedrijven die handwerk willen elimineren met slimme automatisering.",
+        "Voor bedrijven die online bestellen, klantvragen beantwoorden of reviews willen aanpakken — met één Block inbegrepen.",
       setup: {
         label: "Setup (eenmalig)",
         price: "Vanaf € 1.899",
         features: [
           "Alles uit Digitale fundering",
-          "Vindbaar in Google én AI-chatbots (ChatGPT, Gemini, e.a.)",
-          "Professionele linkpreviews per pagina (LinkedIn, WhatsApp)",
-          "1 AI-assistent inbegrepen (keuze uit bibliotheek)",
+          "Gevonden worden in Google én ChatGPT (en vergelijkbare tools)",
+          "Mooie voorvertoning als u uw link deelt via WhatsApp of LinkedIn",
+          "1 Block naar keuze inbegrepen",
         ],
       },
       subscription: {
@@ -61,7 +65,7 @@ export const pricing: PricingContent = {
         price: "Vanaf € 149",
         features: [
           "Alles uit het basisabonnement",
-          "AI-infrastructuur inbegrepen (fair-use systeemkosten & monitoring)",
+          "Wij onderhouden uw Blocks — updates en hosting inbegrepen",
         ],
       },
       isPopular: true,
@@ -79,17 +83,17 @@ export const pricing: PricingContent = {
         label: "Setup (eenmalig)",
         price: "Vanaf € 3.500",
         features: [
-          "Alles uit Slimme groei",
+          "Alles uit Website + Blocks",
           "Koppelingen met uw bestaande software (boekhouding, CRM, agenda, webshop, …)",
-          "AI & functionaliteiten op maat",
+          "Blocks & functionaliteiten op maat",
         ],
       },
       subscription: {
         label: "Abonnement (maandelijks)",
         price: "Vanaf € 299",
         features: [
-          "Alles uit het Slimme groei-abonnement",
-          "API- & connectiebeheer",
+          "Alles uit het Website + Blocks-abonnement",
+          "Koppelingen met uw bestaande software beheren wij voor u",
           "Prioritaire support (vaste contactpersoon)",
         ],
       },

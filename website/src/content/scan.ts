@@ -9,11 +9,11 @@ export const scanPage: ScanPageContent = {
   },
   heading: "Kost uw huidige website u klanten? Test het in 30 seconden.",
   subheading:
-    "Ontdek of trage laadtijd, slechte vindbaarheid of technische fouten bezoekers en leads kosten. Vul uw URL in en ontvang direct een helder rapport.",
+    "Ontdek of trage laadtijd, slechte vindbaarheid of technische fouten bezoekers en contactaanvragen kosten. Vul uw URL in en ontvang direct een helder rapport.",
   painPoints: [
     "Trage laadtijd laat bezoekers afhaken vóór ze contact opnemen",
     "Slechte vindbaarheid betekent minder aanvragen via Google",
-    "Technische fouten ondermijnen vertrouwen en conversie",
+    "Technische fouten ondermijnen vertrouwen en contactaanvragen",
   ],
   intro: {
     heading: "Wat kost u dit?",
@@ -29,12 +29,12 @@ export const scanPage: ScanPageContent = {
           "Sites die slecht scoren op snelheid en structuur worden minder goed gevonden — en missen daardoor aanvragen en omzet.",
       },
       {
-        title: "Gemiste leads",
+        title: "Gemiste contactaanvragen",
         description:
-          "Onzichtbare technische problemen (broken links, ontbrekende meta-data) kosten u aanvragen zonder dat u het merkt.",
+          "Onzichtbare technische problemen (broken links, ontbrekende paginabeschrijvingen voor Google) kosten u aanvragen zonder dat u het merkt.",
       },
       {
-        title: "Smaller bereik",
+        title: "Kleinere doelgroep bereikt",
         description:
           "Toegankelijkheidsproblemen sluiten een deel van uw doelgroep uit — en schaden uw imago als professioneel bedrijf.",
       },
@@ -69,9 +69,9 @@ export const scanPage: ScanPageContent = {
   cta: {
     heading: "Wilt u uw website laten optimaliseren?",
     subheading:
-      "Plan een gratis strategiegesprek en ontdek wat wij concreet voor uw bedrijf kunnen verbeteren.",
+      "Plan een gratis kennismakingsgesprek en ontdek wat wij concreet voor uw bedrijf kunnen verbeteren.",
     primary: {
-      label: "Plan een gratis gesprek →",
+      label: "Plan een gratis kennismakingsgesprek →",
       href: contactPlanSection(),
     },
     secondary: {

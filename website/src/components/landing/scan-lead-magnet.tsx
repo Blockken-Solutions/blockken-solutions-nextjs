@@ -5,6 +5,7 @@ import { useCallback } from "react";
 
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { SectionLabel } from "@/components/landing/section-label";
+import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import { SectionDescription } from "@/components/ui/section-description";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { ScanTeaserContent } from "@/content/types";
@@ -27,6 +28,9 @@ export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
   return (
     <Section id="gratis-scan" variant="muted">
       <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-brand-highlight/20">
+          <DynamicIcon name="scan-search" className="size-6 text-brand-highlight" />
+        </div>
         <SectionLabel>{content.sectionLabel}</SectionLabel>
         <SectionHeading className="text-3xl font-bold sm:text-4xl">
           {content.heading}

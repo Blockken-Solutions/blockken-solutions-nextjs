@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 
-import { agentsPage } from "@/content/agents";
+import { blocksPage } from "@/content/blocks";
+import { getSectorBySlug } from "@/content/sectors";
 import { validateContactField } from "@/lib/validation/contact";
 
 type ContactRequestBody = {
@@ -9,13 +10,15 @@ type ContactRequestBody = {
   phone?: string;
   company?: string;
   message?: string;
+  block?: string;
+  sector?: string;
   agent?: string;
 };
 
 const DEFAULT_FROM_EMAIL = "blockken.solutions <onboarding@resend.dev>";
 
-function getAgentTitle(slug: string): string | null {
-  return agentsPage.agents.find((agent) => agent.slug === slug)?.title ?? null;
+function getBlockTitle(slug: string): string | null {
+  return blocksPage.blocks.find((block) => block.slug === slug)?.title ?? null;
 }
 
 function resolveFromEmail(): string {
@@ -62,7 +65,8 @@ export async function POST(request: Request) {
   const phone = body.phone?.trim();
   const company = body.company?.trim();
   const message = body.message?.trim();
-  const agentSlug = body.agent?.trim();
+  const blockSlug = (body.block ?? body.agent)?.trim();
+  const sectorSlug = body.sector?.trim();
 
   if (!name || !email || !message) {
     return Response.json(
@@ -80,15 +84,25 @@ export async function POST(request: Request) {
     return Response.json({ error: "Ongeldig telefoonnummer." }, { status: 400 });
   }
 
-  const agentTitle = agentSlug ? getAgentTitle(agentSlug) : null;
-  const subject = agentTitle
-    ? `Demo-aanvraag: ${agentTitle} — ${name}`
-    : `Contactaanvraag — ${name}`;
+  const blockTitle = blockSlug ? getBlockTitle(blockSlug) : null;
+  const sectorTitle = sectorSlug ? getSectorBySlug(sectorSlug)?.title ?? null : null;
 
-  const agentLine = agentTitle
-    ? `Gewenste agent: ${agentTitle}`
-    : agentSlug
-      ? `Gewenste agent: ${agentSlug}`
+  const subject = blockTitle
+    ? `Demo-aanvraag: ${blockTitle} — ${name}`
+    : sectorTitle
+      ? `Sector-aanvraag: ${sectorTitle} — ${name}`
+      : `Contactaanvraag — ${name}`;
+
+  const blockLine = blockTitle
+    ? `Gewenste Block: ${blockTitle}`
+    : blockSlug
+      ? `Gewenste Block: ${blockSlug}`
+      : null;
+
+  const sectorLine = sectorTitle
+    ? `Sector: ${sectorTitle}`
+    : sectorSlug
+      ? `Sector: ${sectorSlug}`
       : null;
 
   const textLines = [
@@ -96,7 +110,8 @@ export async function POST(request: Request) {
     `E-mail: ${email}`,
     phone ? `Telefoon: ${phone}` : null,
     company ? `Bedrijf: ${company}` : null,
-    agentLine,
+    blockLine,
+    sectorLine,
     "",
     "Bericht:",
     message,

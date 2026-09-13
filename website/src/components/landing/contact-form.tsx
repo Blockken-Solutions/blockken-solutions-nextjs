@@ -6,7 +6,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Input } from "@/components/ui/input";
-import { agentsPage } from "@/content/agents";
+import { blocksPage } from "@/content/blocks";
+import { getSectorBySlug } from "@/content/sectors";
 import {
   hasContactFieldErrors,
   validateContactField,
@@ -24,18 +25,37 @@ const initialFormData: ContactFormValues = {
   phone: "",
   company: "",
   message: "",
-  agent: "",
+  block: "",
+  sector: "",
 };
+
+const LEGACY_AGENT_SLUG_MAP: Record<string, string> = {
+  "lead-pre-kwalificator": "aanvraagfilter",
+  "support-agent-247": "digitale-receptie",
+  "email-review-assistent": "review-hulp",
+  "afspraak-doorverwijzer": "digitale-receptie",
+};
+
+function resolveBlockSlug(raw: string | null): string | null {
+  if (!raw) return null;
+  return LEGACY_AGENT_SLUG_MAP[raw] ?? raw;
+}
 
 type ValidatedField = keyof Pick<
   ContactFormValues,
   "name" | "email" | "phone" | "message"
 >;
 
-function buildAgentDemoMessage(slug: string, title: string | null): string {
+function buildBlockDemoMessage(slug: string, title: string | null): string {
   return title
-    ? `Ik ben geïnteresseerd in een demo van de ${title}.`
-    : `Ik ben geïnteresseerd in een demo van de agent "${slug}".`;
+    ? `Ik ben geïnteresseerd in een demo van ${title}.`
+    : `Ik ben geïnteresseerd in een demo van de Block "${slug}".`;
+}
+
+function buildSectorMessage(slug: string, title: string | null): string {
+  return title
+    ? `Ik ben geïnteresseerd in Blocks voor ${title}.`
+    : `Ik ben geïnteresseerd in Blocks voor sector "${slug}".`;
 }
 
 function buildScanContactMessage(
@@ -48,25 +68,33 @@ function buildScanContactMessage(
   },
 ): string {
   const scoreLines = [
-    scores.performance ? `Performance: ${scores.performance}/100` : null,
-    scores.seo ? `SEO: ${scores.seo}/100` : null,
+    scores.performance ? `Snelheid: ${scores.performance}/100` : null,
+    scores.seo ? `Vindbaarheid: ${scores.seo}/100` : null,
     scores.accessibility ? `Toegankelijkheid: ${scores.accessibility}/100` : null,
-    scores.bestPractices ? `Best practices: ${scores.bestPractices}/100` : null,
+    scores.bestPractices ? `Technische kwaliteit: ${scores.bestPractices}/100` : null,
   ]
     .filter(Boolean)
     .join("\n");
 
-  return `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe jullie mijn website kunnen verbeteren.`;
+  return `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe u mijn website kunt verbeteren.`;
 }
 
 export function ContactForm() {
   const searchParams = useSearchParams();
-  const agentSlug = searchParams.get("agent");
+  const blockSlug = resolveBlockSlug(
+    searchParams.get("block") ?? searchParams.get("agent"),
+  );
+  const sectorSlug = searchParams.get("sector");
 
-  const agentTitle = useMemo(() => {
-    if (!agentSlug) return null;
-    return agentsPage.agents.find((agent) => agent.slug === agentSlug)?.title ?? null;
-  }, [agentSlug]);
+  const blockTitle = useMemo(() => {
+    if (!blockSlug) return null;
+    return blocksPage.blocks.find((block) => block.slug === blockSlug)?.title ?? null;
+  }, [blockSlug]);
+
+  const sectorTitle = useMemo(() => {
+    if (!sectorSlug) return null;
+    return getSectorBySlug(sectorSlug)?.title ?? null;
+  }, [sectorSlug]);
 
   const [formData, setFormData] = useState<ContactFormValues>(initialFormData);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
@@ -77,14 +105,24 @@ export function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (!agentSlug) return;
+    if (!blockSlug) return;
 
     setFormData((current) => ({
       ...current,
-      agent: agentSlug,
-      message: buildAgentDemoMessage(agentSlug, agentTitle),
+      block: blockSlug,
+      message: buildBlockDemoMessage(blockSlug, blockTitle),
     }));
-  }, [agentSlug, agentTitle]);
+  }, [blockSlug, blockTitle]);
+
+  useEffect(() => {
+    if (!sectorSlug) return;
+
+    setFormData((current) => ({
+      ...current,
+      sector: sectorSlug,
+      message: buildSectorMessage(sectorSlug, sectorTitle),
+    }));
+  }, [sectorSlug, sectorTitle]);
 
   useEffect(() => {
     const scanUrl = searchParams.get("scan");
@@ -193,9 +231,15 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left">
-      {agentTitle ? (
+      {blockTitle ? (
         <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
-          Demo-aanvraag voor: <span className="font-semibold">{agentTitle}</span>
+          Demo-aanvraag voor: <span className="font-semibold">{blockTitle}</span>
+        </p>
+      ) : null}
+
+      {!blockTitle && sectorTitle ? (
+        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
+          Interesse in sector: <span className="font-semibold">{sectorTitle}</span>
         </p>
       ) : null}
 
@@ -325,7 +369,8 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <input type="hidden" name="agent" value={formData.agent} />
+      <input type="hidden" name="block" value={formData.block} />
+      <input type="hidden" name="sector" value={formData.sector} />
 
       {formState === "error" ? (
         <p className="text-sm text-destructive" role="alert">

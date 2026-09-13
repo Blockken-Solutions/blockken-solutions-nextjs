@@ -14,6 +14,7 @@ import { ScanResultsCta } from "@/components/scan/scan-results-cta";
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { ScanVerdictCard } from "@/components/scan/scan-verdict";
 import { SectionLabel } from "@/components/landing/section-label";
+import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Section, PageHeading } from "@/components/ui/section";
@@ -49,6 +50,9 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
     <Section fade={false}>
       <div className="mx-auto max-w-4xl">
         <BackToHomeLink className="mb-6" />
+        <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-brand-highlight/20">
+          <DynamicIcon name="scan-search" className="size-6 text-brand-highlight" />
+        </div>
         <SectionLabel>Gratis scan</SectionLabel>
         <PageHeading className="text-4xl font-bold sm:text-5xl">
           {content.heading}

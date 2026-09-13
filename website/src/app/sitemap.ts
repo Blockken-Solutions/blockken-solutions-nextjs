@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-import { getAllAgentSlugs } from "@/content/agents";
+import { getAllBlockSlugs } from "@/content/blocks";
+import { getAllSectorSlugs } from "@/content/sectors";
 import { getMetadataBase } from "@/lib/metadata";
 import { indexableRoutes, site } from "@/content/site";
 
@@ -12,10 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(lastModified),
   }));
 
-  const agentRoutes = getAllAgentSlugs().map((slug) => ({
-    url: new URL(`/agents/${slug}`, metadataBase).toString(),
+  const blockRoutes = getAllBlockSlugs().map((slug) => ({
+    url: new URL(`/blocks/${slug}`, metadataBase).toString(),
     lastModified: new Date(site.lastModified),
   }));
 
-  return [...staticRoutes, ...agentRoutes];
+  const sectorRoutes = getAllSectorSlugs().map((slug) => ({
+    url: new URL(`/sectoren/${slug}`, metadataBase).toString(),
+    lastModified: new Date(site.lastModified),
+  }));
+
+  return [...staticRoutes, ...blockRoutes, ...sectorRoutes];
 }

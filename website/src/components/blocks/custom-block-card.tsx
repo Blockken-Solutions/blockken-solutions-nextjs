@@ -4,20 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Card, CardContent } from "@/components/ui/card";
-import type { CustomAgentCta } from "@/content/types";
-import { getIcon } from "@/lib/icons";
+import type { CustomBlockCta } from "@/content/types";
+import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import { cn } from "@/lib/utils";
 
-type CustomAgentCardProps = {
-  content: CustomAgentCta;
+type CustomBlockCardProps = {
+  content: CustomBlockCta;
   variant?: "preview" | "listing";
 };
 
-export function CustomAgentCard({
+export function CustomBlockCard({
   content,
   variant = "preview",
-}: CustomAgentCardProps) {
-  const Icon = getIcon(content.icon);
+}: CustomBlockCardProps) {
   const description =
     variant === "listing" && content.longDescription
       ? content.longDescription
@@ -26,13 +25,13 @@ export function CustomAgentCard({
   return (
     <Card
       className={cn(
-        "flex h-full flex-col rounded-3xl border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] py-0 shadow-sm",
+        "group flex h-full flex-col rounded-3xl border-dashed border-brand-highlight/30 bg-linear-to-br from-brand-highlight/[0.06] to-background py-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-highlight/45 hover:shadow-md",
       )}
     >
       <CardContent className="flex flex-1 flex-col p-6">
         <div className="flex items-start justify-between gap-3">
-          <div className="flex size-12 items-center justify-center rounded-full bg-brand-highlight/15">
-            <Icon className="size-5 text-brand-accent" />
+          <div className="flex size-12 items-center justify-center rounded-2xl bg-brand-highlight/15 ring-1 ring-brand-highlight/20">
+            <DynamicIcon name={content.icon} className="size-5 text-brand-accent" />
           </div>
           <Badge
             variant="secondary"
@@ -42,7 +41,7 @@ export function CustomAgentCard({
           </Badge>
         </div>
 
-        <h3 className="mt-4 text-lg font-bold text-foreground">{content.title}</h3>
+        <h3 className="mt-5 text-lg font-bold text-foreground">{content.title}</h3>
         <p className="mt-2 flex-1 text-base leading-relaxed text-muted-foreground">
           {description}
         </p>

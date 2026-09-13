@@ -114,21 +114,17 @@ export function PricingSection({ content }: PricingSectionProps) {
       </ul>
 
       <p className="mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
-        {content.extraAgentNote}{" "}
+        {content.extraBlockNote}
+      </p>
+
+      <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+        Nog niet zeker welke Blocks u nodig heeft?{" "}
         <Link
-          href="/faq#waarom-slimme-groei-agent"
+          href={content.blocksCatalogLink.href}
           className="font-medium text-foreground underline-offset-4 hover:underline"
         >
-          Waarom agents vanaf Slimme groei?
-        </Link>{" "}
-        of{" "}
-        <Link
-          href="/faq"
-          className="font-medium text-foreground underline-offset-4 hover:underline"
-        >
-          bekijk alle FAQ
+          {content.blocksCatalogLink.label}
         </Link>
-        .
       </p>
 
       <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">

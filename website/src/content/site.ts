@@ -7,9 +7,9 @@ export const site = {
   language: "nl-BE",
   lastModified: "2026-07-20",
   seo: {
-    title: "blockken.solutions — Web, Blocks & Automatisering voor KMO's",
+    title: "blockken.solutions — Web, Blocks & online tools voor KMO's",
     description:
-      "Razendsnelle webapplicaties met hapklare Blocks voor Belgische KMO's. Plan een gratis strategiegesprek en ontdek wat past bij uw zaak.",
+      "Razendsnelle websites met hapklare Blocks voor Belgische KMO's. Plan een gratis kennismakingsgesprek en ontdek wat past bij uw zaak.",
   },
   legal: {
     tradeName: "blockken.solutions",

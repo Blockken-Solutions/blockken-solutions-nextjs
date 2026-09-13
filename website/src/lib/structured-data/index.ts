@@ -15,13 +15,14 @@ import type {
   WithContext,
 } from "schema-dts";
 
-import { agentsPage } from "@/content/agents";
+import { blocksPage } from "@/content/blocks";
+import { sectors } from "@/content/sectors";
 import { faqPage, getAllFaqItems, stripFaqAnswerMarkdown } from "@/content/faq";
 import { home } from "@/content/home";
 import { pricing } from "@/content/pricing";
 import { scanPage } from "@/content/scan";
 import { site } from "@/content/site";
-import type { AgentListing, FaqItem, HowWeWorkStep, PricingTier } from "@/content/types";
+import type { BlockListing, FaqItem, HowWeWorkStep, PricingTier, SectorListing } from "@/content/types";
 
 function absoluteUrl(pathname: string): string {
   return new URL(pathname, site.url).toString();
@@ -197,13 +198,13 @@ export function buildBreadcrumbSchema(
   };
 }
 
-export function buildAgentServiceSchema(agent: AgentListing): WithContext<Service> {
+export function buildBlockServiceSchema(block: BlockListing): WithContext<Service> {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: agent.title,
-    description: agent.longDescription,
-    serviceType: agent.category,
+    name: block.title,
+    description: block.summary,
+    serviceType: block.category,
     provider: {
       "@type": "Organization",
       name: site.organization.name,
@@ -213,21 +214,101 @@ export function buildAgentServiceSchema(agent: AgentListing): WithContext<Servic
       "@type": "Country",
       name: "België",
     },
-    url: absoluteUrl(`/agents/${agent.slug}`),
+    url: absoluteUrl(`/blocks/${block.slug}`),
   };
 }
 
-export function buildAgentsItemListSchema(): WithContext<ItemList> {
+export function buildBlocksItemListSchema(): WithContext<ItemList> {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: agentsPage.heading,
-    itemListElement: agentsPage.agents.map((agent, index) => ({
+    name: blocksPage.heading,
+    itemListElement: blocksPage.blocks.map((block, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: agent.title,
-      url: absoluteUrl(`/agents/${agent.slug}`),
+      name: block.title,
+      url: absoluteUrl(`/blocks/${block.slug}`),
     })),
+  };
+}
+
+export function buildBlocksGraph(): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        "/blocks",
+        blocksPage.seo.title,
+        blocksPage.seo.description,
+      ),
+      buildBlocksItemListSchema(),
+      ...blocksPage.blocks.map((block) => buildBlockServiceSchema(block)),
+    ],
+  };
+}
+
+export function buildBlockGraph(block: BlockListing): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        `/blocks/${block.slug}`,
+        `${block.title} — ${site.name}`,
+        block.summary,
+      ),
+      buildBreadcrumbSchema([
+        { name: "Home", pathname: "/" },
+        { name: "Blocks", pathname: "/blocks" },
+        { name: block.title, pathname: `/blocks/${block.slug}` },
+      ]),
+      buildBlockServiceSchema(block),
+    ],
+  };
+}
+
+export function buildSectorGraph(sector: SectorListing): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        `/sectoren/${sector.slug}`,
+        sector.seo.title,
+        sector.seo.description,
+      ),
+      buildBreadcrumbSchema([
+        { name: "Home", pathname: "/" },
+        { name: "Sectoren", pathname: "/sectoren" },
+        { name: sector.title, pathname: `/sectoren/${sector.slug}` },
+      ]),
+    ],
+  };
+}
+
+export function buildSectorsItemListSchema(): WithContext<ItemList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Sectoren",
+    itemListElement: sectors.map((sector, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: sector.title,
+      url: absoluteUrl(`/sectoren/${sector.slug}`),
+    })),
+  };
+}
+
+export function buildSectorsGraph(): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        "/sectoren",
+        "Blocks per sector — blockken.solutions",
+        "Blocks voor voedingsretail, garages, kappers, horeca en dienstverleners.",
+      ),
+      buildSectorsItemListSchema(),
+    ],
   };
 }
 
@@ -318,39 +399,6 @@ export function buildFaqGraph(): Graph {
   };
 }
 
-export function buildAgentsGraph(): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        "/agents",
-        agentsPage.seo.title,
-        agentsPage.seo.description,
-      ),
-      buildAgentsItemListSchema(),
-      ...agentsPage.agents.map((agent) => buildAgentServiceSchema(agent)),
-    ],
-  };
-}
-
-export function buildAgentGraph(agent: AgentListing): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        `/agents/${agent.slug}`,
-        `${agent.title} — ${site.name}`,
-        agent.longDescription,
-      ),
-      buildBreadcrumbSchema([
-        { name: "Home", pathname: "/" },
-        { name: "AI-agents", pathname: "/agents" },
-        { name: agent.title, pathname: `/agents/${agent.slug}` },
-      ]),
-      buildAgentServiceSchema(agent),
-    ],
-  };
-}
 
 export function buildScanGraph(): Graph {
   return {

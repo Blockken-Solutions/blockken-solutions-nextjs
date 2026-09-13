@@ -8,7 +8,7 @@ import { pricing } from "./pricing";
 
 export const home: HomeContent = {
   hero: {
-    badge: "Web · Blocks · Automatisering voor KMO's",
+    badge: "Web · Blocks · online tools voor KMO's",
     headlineLines: [
       "Is uw website traag? Kost administratie u te veel tijd?",
     ],
@@ -47,15 +47,15 @@ export const home: HomeContent = {
       {
         title: "Blocks op uw website",
         description:
-          "Hapklare extra's die meewerken: online bestellen, cadeaubonnen verkopen, klantvragen beantwoorden, reviews beantwoorden. Kies wat past bij uw zaak — bakker, garage, kapper of dienstverlener.",
+          "Hapklare extra's op uw website — online bestellen, cadeaubonnen, klantvragen, review-antwoorden. Kies wat past bij uw zaak.",
         icon: "bot",
         href: "/blocks",
         linkLabel: "Bekijk Blocks →",
       },
       {
-        title: "Gevonden worden — online én in AI-zoekmachines",
+        title: "Gevonden worden — op Google én in ChatGPT",
         description:
-          "Wij zorgen dat klanten u vinden via Google én via AI-tools zoals ChatGPT. Inclusief basis SEO, cookiebanner en GDPR-setup — zodat u zichtbaar én in orde bent.",
+          "Wij zorgen dat klanten u vinden via Google én via tools zoals ChatGPT. Inclusief basis SEO, cookiebanner en GDPR-basis — zodat u zichtbaar én in orde bent.",
         icon: "search",
         href: "/gratis-scan",
         linkLabel: "Start gratis scan →",
@@ -73,7 +73,7 @@ export const home: HomeContent = {
         step: 1,
         title: "Gratis scan of gesprek",
         description:
-          "Start met een website scan of plan een kort strategiegesprek — geheel vrijblijvend.",
+          "Start met een website scan of plan een kort kennismakingsgesprek — geheel vrijblijvend.",
         icon: "scan-search",
       },
       {
@@ -87,12 +87,12 @@ export const home: HomeContent = {
         step: 3,
         title: "Bouw & integratie",
         description:
-          "Wij bouwen uw website en Blocks, koppelen systemen en houden u op de hoogte.",
+          "Wij bouwen uw website en Blocks, koppelen met uw tools (agenda, betaling, …) en houden u op de hoogte.",
         icon: "hammer",
       },
       {
         step: 4,
-        title: "Live & ondersteund",
+        title: "Online met nazorg",
         description:
           "U gaat live met persoonlijke onboarding. Daarna zorgen wij voor hosting, updates en support — of u past zelf teksten en afbeeldingen aan via uw beheersysteem.",
         icon: "rocket",
@@ -111,7 +111,7 @@ export const home: HomeContent = {
     sectionLabel: "Blocks",
     heading: "Extra's op uw website, klaar voor gebruik.",
     subheading:
-      "Vanaf Slimme groei zit één Block inbegrepen — kies wat past bij uw zaak.",
+      "Vanaf Website + Blocks zit één Block inbegrepen — kies wat past bij uw zaak.",
     catalogLink: {
       label: "Alle Blocks bekijken →",
       href: "/blocks",
@@ -163,7 +163,7 @@ export const home: HomeContent = {
     skills: [
       "Websites die in seconden laden — geen trage templates",
       "Veilige hosting in Europa, GDPR-conform",
-      "Blocks en automatisering — één developer, geen tussenpersonen",
+      "Online bestellen, vragen beantwoorden, reviews — één developer, geen tussenpersonen",
     ],
     portfolioHighlights: [
       {
@@ -214,7 +214,7 @@ export const home: HomeContent = {
     },
   },
   footerCta: {
-    heading: "Klaar om uren per week te besparen?",
+    heading: "Klaar om tijd te winnen voor uw klanten?",
     subheading:
       "Kies hoe u contact opneemt — direct, via een kennismakingsgesprek of met een bericht.",
     directContact: {
@@ -225,14 +225,14 @@ export const home: HomeContent = {
     calendly: {
       heading: "Kennismakingsgesprek inplannen",
       description:
-        "Kies direct een vrij moment voor een gratis strategiegesprek van 30 minuten — langer indien nodig.",
+        "Kies direct een vrij moment voor een gratis kennismakingsgesprek van 30 minuten — langer indien nodig.",
       ctaLabel: "Kies een moment →",
     },
     form: {
       heading: "Stuur een bericht",
       description: "Vul het formulier in en ik neem contact met u op.",
     },
-    buttonLabel: "Plan een gratis strategiegesprek →",
+    buttonLabel: "Plan een gratis kennismakingsgesprek →",
     buttonHref: contactPlanSection(),
   },
 };

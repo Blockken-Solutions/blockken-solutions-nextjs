@@ -10,9 +10,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { home } from "@/content/home";
 import { buildHomeGraph } from "@/lib/structured-data";
 
-const AgentPreview = dynamic(
+const BlockPreview = dynamic(
   () =>
-    import("@/components/landing/agent-preview").then((mod) => mod.AgentPreview),
+    import("@/components/landing/block-preview").then((mod) => mod.BlockPreview),
 );
 
 const ScanLeadMagnet = dynamic(
@@ -32,9 +32,9 @@ export default function Home() {
       <JsonLd data={buildHomeGraph()} />
       <Hero content={home.hero} />
       <ServicesBento content={home.services} />
-      <PricingSection content={home.pricing} />
+      <BlockPreview content={home.blocks} />
       <HowWeWorkSection content={home.howWeWork} />
-      <AgentPreview content={home.agents} />
+      <PricingSection content={home.pricing} />
       <ScanLeadMagnet content={home.scan} />
       <AboutSection content={home.about} />
       <FaqTeaser content={home.faqTeaser} />

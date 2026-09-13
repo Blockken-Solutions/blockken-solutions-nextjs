@@ -1,23 +1,23 @@
 import { cn } from "@/lib/utils";
 
-type AgentCategoryFiltersProps = {
+type BlockCategoryFiltersProps = {
   categories: string[];
   activeCategory: string;
   onCategoryChange: (category: string) => void;
   className?: string;
 };
 
-export function AgentCategoryFilters({
+export function BlockCategoryFilters({
   categories,
   activeCategory,
   onCategoryChange,
   className,
-}: AgentCategoryFiltersProps) {
+}: BlockCategoryFiltersProps) {
   return (
     <div className={cn("relative mt-8", className)}>
       <nav
         className="-mx-[var(--container-px)] overflow-x-auto px-[var(--container-px)] sm:mx-0 sm:overflow-visible sm:px-0"
-        aria-label="Agent-categorieën"
+        aria-label="Block-categorieën"
       >
         <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
           {categories.map((category) => (

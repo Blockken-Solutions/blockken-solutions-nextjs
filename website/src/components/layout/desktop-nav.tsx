@@ -14,7 +14,7 @@ type HeaderActionsProps = {
 
 export function DesktopNav() {
   return (
-    <nav className="hidden items-center gap-6 md:flex">
+    <nav className="hidden min-w-0 flex-1 items-center justify-center gap-4 lg:flex xl:gap-7">
       {navLinks.map((link) => (
         <NavLink key={link.href} link={link} variant="desktop" />
       ))}
@@ -24,7 +24,7 @@ export function DesktopNav() {
 
 export function HeaderActions({ mobileNav }: HeaderActionsProps) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex shrink-0 items-center gap-3 pl-1 lg:pl-0">
       <Button
         asChild
         variant="primary"
@@ -32,7 +32,7 @@ export function HeaderActions({ mobileNav }: HeaderActionsProps) {
         size="sm"
         className="hidden sm:inline-flex"
       >
-        <SectionLink href={contactPlanSection()}>Gratis gesprek</SectionLink>
+        <SectionLink href={contactPlanSection()}>Gratis kennismaking</SectionLink>
       </Button>
       {mobileNav}
     </div>

@@ -15,7 +15,32 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navLinks } from "@/content/navigation";
+import type { NavLink as NavLinkType } from "@/content/types";
 import { contactPlanSection } from "@/lib/paths";
+
+const sectionLinks = navLinks.filter((link) => link.type === "section");
+const pageLinks = navLinks.filter((link) => link.type !== "section");
+
+function MobileNavGroup({
+  links,
+  onNavigate,
+}: {
+  links: NavLinkType[];
+  onNavigate: () => void;
+}) {
+  return (
+    <div className="flex flex-col divide-y divide-border/60">
+      {links.map((link) => (
+        <NavLink
+          key={link.href}
+          link={link}
+          variant="mobile"
+          onNavigate={onNavigate}
+        />
+      ))}
+    </div>
+  );
+}
 
 export function MobileNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,7 +51,7 @@ export function MobileNav() {
         <Button
           variant="ghost"
           size="icon"
-          className="size-11 md:hidden"
+          className="size-11 lg:hidden"
           aria-label="Menu openen"
         >
           <MenuIcon />
@@ -39,14 +64,15 @@ export function MobileNav() {
           </SheetTitle>
         </SheetHeader>
         <nav className="mt-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.href}
-              link={link}
-              variant="mobile"
-              onNavigate={() => setMobileOpen(false)}
-            />
-          ))}
+          <MobileNavGroup
+            links={sectionLinks}
+            onNavigate={() => setMobileOpen(false)}
+          />
+          <div className="border-t border-border/60" aria-hidden="true" />
+          <MobileNavGroup
+            links={pageLinks}
+            onNavigate={() => setMobileOpen(false)}
+          />
           <Button
             asChild
             variant="primary"
@@ -57,7 +83,7 @@ export function MobileNav() {
               href={contactPlanSection()}
               onNavigate={() => setMobileOpen(false)}
             >
-              Gratis gesprek
+              Gratis kennismaking
             </SectionLink>
           </Button>
         </nav>

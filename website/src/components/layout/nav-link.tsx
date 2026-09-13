@@ -36,9 +36,9 @@ export function NavLink({ link, variant = "desktop", onNavigate }: NavLinkProps)
   }, [link, pathname, activeSection]);
 
   const className = cn(
-    "relative font-medium transition-colors",
+    "relative shrink-0 font-medium whitespace-nowrap transition-colors",
     variant === "desktop"
-      ? "text-[0.9375rem] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-highlight after:transition-opacity"
+      ? "text-sm xl:text-[0.9375rem] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-highlight after:transition-opacity"
       : "flex min-h-11 items-center py-3 text-base after:hidden",
     isActive
       ? variant === "desktop"

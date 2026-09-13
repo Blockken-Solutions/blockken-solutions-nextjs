@@ -5,7 +5,7 @@ export const privacyPage: LegalPageContent = {
   seo: {
     title: "Privacybeleid — blockken.solutions",
     description:
-      "Lees hoe blockken.solutions uw persoonsgegevens verwerkt conform GDPR. Data controller, doeleinden, bewaartermijnen en uw rechten.",
+      "Lees hoe blockken.solutions uw persoonsgegevens verwerkt conform GDPR. Verwerkingsverantwoordelijke, doeleinden, bewaartermijnen en uw rechten.",
   },
   sections: [
     {
@@ -20,7 +20,7 @@ export const privacyPage: LegalPageContent = {
         "We verzamelen alleen gegevens die u vrijwillig verstrekt of die automatisch worden gegenereerd bij het gebruik van onze diensten:",
       ],
       list: [
-        "Contactgegevens (naam, e-mailadres, telefoonnummer) wanneer u ons mailt of een strategiegesprek plant",
+        "Contactgegevens (naam, e-mailadres, telefoonnummer) wanneer u ons mailt of een kennismakingsgesprek plant",
         "Website-URL wanneer u onze gratis website scan gebruikt",
         "Technische loggegevens (IP-adres, browsertype) via onze hostingprovider",
       ],
@@ -31,7 +31,7 @@ export const privacyPage: LegalPageContent = {
         "We verwerken persoonsgegevens uitsluitend voor de volgende doeleinden:",
       ],
       list: [
-        "Beantwoorden van contactaanvragen en strategiegesprekken plannen",
+        "Beantwoorden van contactaanvragen en kennismakingsgesprekken plannen",
         "Uitvoeren van de gratis website scan en resultaten tonen",
         "Verbeteren van onze website en diensten",
         "Naleving van wettelijke verplichtingen",
@@ -53,7 +53,7 @@ export const privacyPage: LegalPageContent = {
         "Resend — e-mailverzending voor contactformulieren",
         "Calendly — online planning van kennismakingsgesprekken",
         "Google PageSpeed Insights — gratis website scan",
-        "OpenAI / Anthropic — AI-verwerking voor agentdiensten (indien van toepassing)",
+        "OpenAI / Anthropic — AI-verwerking voor Blocks (indien van toepassing)",
       ],
     },
     {

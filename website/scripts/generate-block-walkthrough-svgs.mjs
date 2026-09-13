@@ -107,7 +107,7 @@ function stars(x, y, count = 5) {
 }
 
 const blocks = {
-  "slim-eerste-contact": {
+  aanvraagfilter: {
     siteName: "Garage Peeters",
     url: "garage-peeters.be/contact",
     nav: ["Contact", "Diensten", "Afspraak"],

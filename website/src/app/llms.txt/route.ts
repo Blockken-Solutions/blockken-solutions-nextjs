@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
-import { agentsPage } from "@/content/agents";
+import { blocksPage } from "@/content/blocks";
+import { sectors } from "@/content/sectors";
 import { faqPage, getAllFaqItems, stripFaqAnswerMarkdown } from "@/content/faq";
 import { home } from "@/content/home";
 import { pricing } from "@/content/pricing";
@@ -18,7 +19,7 @@ export function GET() {
 
 ## Over ons
 
-blockken.solutions bouwt razendsnelle webapplicaties en slimme AI-agents voor Belgische KMO's.
+blockken.solutions bouwt razendsnelle websites met hapklare Blocks voor Belgische KMO's.
 Opgericht door ${site.author.name}, ${site.author.role}.
 Vestigingsregio: ${site.organization.address.addressRegion}, ${site.organization.address.addressLocality}.
 ${site.footerTagline}
@@ -40,7 +41,7 @@ ${pricing.tiers
   )
   .join("\n")}
 
-${pricing.extraAgentNote}
+${pricing.extraBlockNote}
 
 ${pricing.extraContentNote}
 
@@ -48,9 +49,13 @@ ${pricing.extraContentNote}
 
 ${buildHowWeWorkSummary()}
 
-## AI-agents
+## Blocks
 
-${agentsPage.agents.map((agent) => `- **${agent.title}**: ${agent.description} Meer info: ${absoluteUrl(`/agents/${agent.slug}`)}`).join("\n")}
+${blocksPage.blocks.map((block) => `- **${block.title}**: ${block.description} Meer info: ${absoluteUrl(`/blocks/${block.slug}`)}`).join("\n")}
+
+## Sectoren
+
+${sectors.map((sector) => `- **${sector.title}**: ${sector.intro} Meer info: ${absoluteUrl(`/sectoren/${sector.slug}`)}`).join("\n")}
 
 ## Veelgestelde vragen
 
@@ -67,8 +72,10 @@ ${getAllFaqItems().map((item) => `- **${item.question}** ${stripFaqAnswerMarkdow
 - [Homepage](${absoluteUrl("/")})
 - [Gratis website scan](${absoluteUrl("/gratis-scan")})
 - [FAQ](${absoluteUrl("/faq")})
-- [AI-agents](${absoluteUrl("/agents")})
-${agentsPage.agents.map((agent) => `- [${agent.title}](${absoluteUrl(`/agents/${agent.slug}`)})`).join("\n")}
+- [Blocks](${absoluteUrl("/blocks")})
+- [Sectoren](${absoluteUrl("/sectoren")})
+${blocksPage.blocks.map((block) => `- [${block.title}](${absoluteUrl(`/blocks/${block.slug}`)})`).join("\n")}
+${sectors.map((sector) => `- [${sector.title}](${absoluteUrl(`/sectoren/${sector.slug}`)})`).join("\n")}
 - [Privacybeleid](${absoluteUrl("/privacy")})
 - [Algemene voorwaarden](${absoluteUrl("/terms")})
 - [llms.txt](${absoluteUrl("/llms.txt")})
