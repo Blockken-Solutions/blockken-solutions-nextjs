@@ -37,6 +37,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-foreground-muted: var(--primary-foreground-muted);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
@@ -72,7 +73,7 @@
   --brand-primary: #1c1917;
   --brand-accent: #f97316;
   --brand-highlight: #f97316;
-  --brand-highlight-text: #ea580c;
+  --brand-highlight-text: #9a3412;
   --brand-radius: 16px;
 
   --pastel-peach: color-mix(in srgb, var(--background) 62%, var(--primary-soft) 38%);
@@ -118,7 +119,8 @@
   --popover: #ffffff;
   --popover-foreground: #1c1917;
   --primary: #f97316;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #1c1917;
+  --primary-foreground-muted: #1c1917;
   --primary-hover: #ea580c;
   --primary-soft: #ffedd5;
   --secondary: #ffffff;
@@ -141,7 +143,7 @@
   --sidebar: #f7f4ef;
   --sidebar-foreground: #1c1917;
   --sidebar-primary: #f97316;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary-foreground: #1c1917;
   --sidebar-accent: #ffffff;
   --sidebar-accent-foreground: #1c1917;
   --sidebar-border: #e8e4dc;
@@ -171,7 +173,8 @@
   --popover: #292524;
   --popover-foreground: #faf8f5;
   --primary: #f97316;
-  --primary-foreground: #ffffff;
+  --primary-foreground: #1c1917;
+  --primary-foreground-muted: #1c1917;
   --secondary: #292524;
   --secondary-foreground: #faf8f5;
   --muted: #292524;
@@ -185,7 +188,7 @@
   --sidebar: #1c1917;
   --sidebar-foreground: #faf8f5;
   --sidebar-primary: #f97316;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary-foreground: #1c1917;
   --sidebar-accent: #292524;
   --sidebar-accent-foreground: #faf8f5;
   --sidebar-border: #44403c;

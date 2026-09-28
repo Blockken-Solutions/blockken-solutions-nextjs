@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -26,21 +27,21 @@ export function MobileNav() {
     <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
       <SheetTrigger asChild>
         <Button
-          variant="secondary"
-          size="icon"
-          className="size-11 md:hidden"
+          variant="ghost"
+          size="icon-lg"
+          className="shrink-0 md:hidden"
           aria-label="Menu openen"
         >
           <MenuIcon />
         </Button>
       </SheetTrigger>
-      <SheetContent side="right">
-        <SheetHeader>
-          <SheetTitle>
+      <SheetContent side="right" className="gap-0">
+        <SheetHeader className="space-y-0 pr-12 text-left">
+          <SheetTitle className="text-left">
             <Logo />
           </SheetTitle>
         </SheetHeader>
-        <nav className="mt-6 flex flex-col gap-1">
+        <nav className="mt-6 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
           {navLinks.map((link) => (
             <NavLink
               key={link.href}
@@ -49,17 +50,14 @@ export function MobileNav() {
               onNavigate={close}
             />
           ))}
-          <Button
-            asChild
-            variant="primary"
-            shape="pill"
-            className="mt-4 w-full"
-          >
+        </nav>
+        <SheetFooter className="pt-4">
+          <Button asChild variant="primary" shape="pill" className="w-full">
             <SectionLink href={contactPlanSection()} onNavigate={close}>
               Gratis kennismaking
             </SectionLink>
           </Button>
-        </nav>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

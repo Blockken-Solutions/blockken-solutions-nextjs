@@ -26,7 +26,7 @@ export function NavLink({ link, variant = "desktop", onNavigate }: NavLinkProps)
     "relative shrink-0 whitespace-nowrap transition-colors",
     variant === "desktop"
       ? "rounded-full px-3 py-1.5 text-sm font-semibold xl:text-[0.9375rem]"
-      : "flex min-h-11 items-center py-3 text-base font-semibold",
+      : "-mx-1 flex min-h-11 items-center rounded-xl px-3 py-2.5 text-base font-semibold",
     isActive
       ? "bg-primary/10 text-primary"
       : "text-muted-foreground hover:bg-muted hover:text-foreground",

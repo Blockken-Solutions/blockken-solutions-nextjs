@@ -24,13 +24,13 @@ export function DesktopNav() {
 
 export function HeaderActions({ mobileNav }: HeaderActionsProps) {
   return (
-    <div className="flex shrink-0 items-center gap-3 pl-1 lg:pl-0">
+    <div className="flex shrink-0 items-center gap-2 md:gap-3">
       <Button
         asChild
         variant="primary"
         shape="pill"
         size="sm"
-        className="hidden sm:inline-flex"
+        className="hidden md:inline-flex"
       >
         <SectionLink href={contactPlanSection()}>Gratis kennismaking</SectionLink>
       </Button>

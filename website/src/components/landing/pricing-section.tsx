@@ -26,7 +26,7 @@ function FeatureList({ group, onAccent = false }: FeatureListProps) {
       <p
         className={cn(
           "font-label text-xs",
-          onAccent ? "text-primary-foreground/70" : "text-muted-foreground",
+          onAccent ? "text-primary-foreground-muted" : "text-muted-foreground",
         )}
       >
         {group.label}
