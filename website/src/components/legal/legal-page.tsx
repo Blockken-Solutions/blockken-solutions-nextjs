@@ -31,7 +31,7 @@ export function LegalPage({
       />
       <Section containerClassName="max-w-3xl">
         <BackToHomeLink className="mb-6" />
-        <PageHeading className="text-4xl font-bold">
+        <PageHeading>
           {content.title}
         </PageHeading>
 
@@ -49,7 +49,7 @@ export function LegalPage({
         <article className="mt-10 space-y-8">
           {content.sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="text-xl font-semibold text-foreground">
+              <h2 className="text-xl font-bold tracking-tight text-foreground">
                 {section.heading}
               </h2>
               {section.paragraphs.map((paragraph) => (

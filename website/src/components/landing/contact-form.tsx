@@ -1,13 +1,11 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Input } from "@/components/ui/input";
-import { blocksPage } from "@/content/blocks";
-import { getSectorBySlug } from "@/content/sectors";
 import {
   hasContactFieldErrors,
   validateContactField,
@@ -25,38 +23,12 @@ const initialFormData: ContactFormValues = {
   phone: "",
   company: "",
   message: "",
-  block: "",
-  sector: "",
 };
-
-const LEGACY_AGENT_SLUG_MAP: Record<string, string> = {
-  "lead-pre-kwalificator": "aanvraagfilter",
-  "support-agent-247": "digitale-receptie",
-  "email-review-assistent": "review-hulp",
-  "afspraak-doorverwijzer": "digitale-receptie",
-};
-
-function resolveBlockSlug(raw: string | null): string | null {
-  if (!raw) return null;
-  return LEGACY_AGENT_SLUG_MAP[raw] ?? raw;
-}
 
 type ValidatedField = keyof Pick<
   ContactFormValues,
   "name" | "email" | "phone" | "message"
 >;
-
-function buildBlockDemoMessage(slug: string, title: string | null): string {
-  return title
-    ? `Ik ben geïnteresseerd in een demo van ${title}.`
-    : `Ik ben geïnteresseerd in een demo van de Block "${slug}".`;
-}
-
-function buildSectorMessage(slug: string, title: string | null): string {
-  return title
-    ? `Ik ben geïnteresseerd in Blocks voor ${title}.`
-    : `Ik ben geïnteresseerd in Blocks voor sector "${slug}".`;
-}
 
 function buildScanContactMessage(
   scanUrl: string,
@@ -79,65 +51,63 @@ function buildScanContactMessage(
   return `Ik heb zonet een gratis website scan uitgevoerd voor ${scanUrl}.\n\nScores:\n${scoreLines}\n\nIk zou graag bespreken hoe u mijn website kunt verbeteren.`;
 }
 
+function buildInitialFormData(
+  searchParams: ReadonlyURLSearchParams,
+): ContactFormValues {
+  const scanUrl = searchParams.get("scan");
+  if (!scanUrl) {
+    return initialFormData;
+  }
+
+  return {
+    ...initialFormData,
+    message: buildScanContactMessage(scanUrl, {
+      performance: searchParams.get("perf"),
+      seo: searchParams.get("seo"),
+      accessibility: searchParams.get("a11y"),
+      bestPractices: searchParams.get("bp"),
+    }),
+  };
+}
+
+function scanPrefillKey(searchParams: ReadonlyURLSearchParams): string {
+  return [
+    searchParams.get("scan") ?? "",
+    searchParams.get("perf") ?? "",
+    searchParams.get("seo") ?? "",
+    searchParams.get("a11y") ?? "",
+    searchParams.get("bp") ?? "",
+  ].join("|");
+}
+
 export function ContactForm() {
   const searchParams = useSearchParams();
-  const blockSlug = resolveBlockSlug(
-    searchParams.get("block") ?? searchParams.get("agent"),
+
+  return (
+    <ContactFormFields
+      key={scanPrefillKey(searchParams)}
+      scanUrl={searchParams.get("scan")}
+      initialFormData={buildInitialFormData(searchParams)}
+    />
   );
-  const sectorSlug = searchParams.get("sector");
+}
 
-  const blockTitle = useMemo(() => {
-    if (!blockSlug) return null;
-    return blocksPage.blocks.find((block) => block.slug === blockSlug)?.title ?? null;
-  }, [blockSlug]);
+type ContactFormFieldsProps = {
+  scanUrl: string | null;
+  initialFormData: ContactFormValues;
+};
 
-  const sectorTitle = useMemo(() => {
-    if (!sectorSlug) return null;
-    return getSectorBySlug(sectorSlug)?.title ?? null;
-  }, [sectorSlug]);
-
-  const [formData, setFormData] = useState<ContactFormValues>(initialFormData);
+function ContactFormFields({
+  scanUrl,
+  initialFormData: initialValues,
+}: ContactFormFieldsProps) {
+  const [formData, setFormData] = useState<ContactFormValues>(initialValues);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [touched, setTouched] = useState<Partial<Record<ValidatedField, boolean>>>(
     {},
   );
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    if (!blockSlug) return;
-
-    setFormData((current) => ({
-      ...current,
-      block: blockSlug,
-      message: buildBlockDemoMessage(blockSlug, blockTitle),
-    }));
-  }, [blockSlug, blockTitle]);
-
-  useEffect(() => {
-    if (!sectorSlug) return;
-
-    setFormData((current) => ({
-      ...current,
-      sector: sectorSlug,
-      message: buildSectorMessage(sectorSlug, sectorTitle),
-    }));
-  }, [sectorSlug, sectorTitle]);
-
-  useEffect(() => {
-    const scanUrl = searchParams.get("scan");
-    if (!scanUrl) return;
-
-    setFormData((current) => ({
-      ...current,
-      message: buildScanContactMessage(scanUrl, {
-        performance: searchParams.get("perf"),
-        seo: searchParams.get("seo"),
-        accessibility: searchParams.get("a11y"),
-        bestPractices: searchParams.get("bp"),
-      }),
-    }));
-  }, [searchParams]);
 
   function updateField<K extends keyof ContactFormValues>(
     field: K,
@@ -220,9 +190,9 @@ export function ContactForm() {
 
   if (formState === "success") {
     return (
-      <div className="rounded-2xl border border-border bg-muted/50 px-6 py-8 text-center">
-        <p className="text-lg font-semibold text-foreground">Bedankt voor uw bericht!</p>
-        <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+      <div className="rounded-2xl bg-primary px-6 py-8 text-center shadow-soft">
+        <p className="text-lg font-bold text-primary-foreground">Bedankt voor uw bericht!</p>
+        <p className="mt-2 text-base leading-relaxed text-primary-foreground">
           Ik neem zo snel mogelijk contact met u op.
         </p>
       </div>
@@ -231,22 +201,10 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-4 text-left">
-      {blockTitle ? (
-        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
-          Demo-aanvraag voor: <span className="font-semibold">{blockTitle}</span>
-        </p>
-      ) : null}
-
-      {!blockTitle && sectorTitle ? (
-        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
-          Interesse in sector: <span className="font-semibold">{sectorTitle}</span>
-        </p>
-      ) : null}
-
-      {searchParams.get("scan") ? (
-        <p className="rounded-xl border border-brand-highlight/20 bg-brand-highlight/5 px-4 py-3 text-base text-foreground">
+      {scanUrl ? (
+        <p className="rounded-xl bg-primary-soft px-4 py-3 text-base text-foreground">
           Scan-resultaten voor:{" "}
-          <span className="font-semibold">{searchParams.get("scan")}</span>
+          <span className="font-bold">{scanUrl}</span>
         </p>
       ) : null}
 
@@ -265,7 +223,7 @@ export function ContactForm() {
             onBlur={() => handleBlur("name")}
             aria-invalid={showFieldError("name")}
             aria-describedby={showFieldError("name") ? "contact-name-error" : undefined}
-            className={cn("h-10", showFieldError("name") && "border-destructive ring-3 ring-destructive/20")}
+            className={cn("h-10", showFieldError("name") && "border-destructive")}
           />
           {showFieldError("name") ? (
             <p id="contact-name-error" className="text-sm text-destructive" role="alert">
@@ -289,7 +247,7 @@ export function ContactForm() {
             onBlur={() => handleBlur("email")}
             aria-invalid={showFieldError("email")}
             aria-describedby={showFieldError("email") ? "contact-email-error" : undefined}
-            className={cn("h-10", showFieldError("email") && "border-destructive ring-3 ring-destructive/20")}
+            className={cn("h-10", showFieldError("email") && "border-destructive")}
           />
           {showFieldError("email") ? (
             <p id="contact-email-error" className="text-sm text-destructive" role="alert">
@@ -315,7 +273,7 @@ export function ContactForm() {
             onBlur={() => handleBlur("phone")}
             aria-invalid={showFieldError("phone")}
             aria-describedby={showFieldError("phone") ? "contact-phone-error" : undefined}
-            className={cn("h-10", showFieldError("phone") && "border-destructive ring-3 ring-destructive/20")}
+            className={cn("h-10", showFieldError("phone") && "border-destructive")}
           />
           {showFieldError("phone") ? (
             <p id="contact-phone-error" className="text-sm text-destructive" role="alert">
@@ -356,10 +314,9 @@ export function ContactForm() {
             showFieldError("message") ? "contact-message-error" : undefined
           }
           className={cn(
-            "w-full rounded-lg border border-input bg-transparent px-3 py-2 text-base transition-colors outline-none",
-            "placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
-            showFieldError("message") &&
-              "border-destructive ring-3 ring-destructive/20",
+            "w-full rounded-xl border border-border bg-card px-3 py-2 text-base font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "placeholder:text-muted-foreground",
+            showFieldError("message") && "border-destructive",
           )}
         />
         {showFieldError("message") ? (
@@ -368,9 +325,6 @@ export function ContactForm() {
           </p>
         ) : null}
       </div>
-
-      <input type="hidden" name="block" value={formData.block} />
-      <input type="hidden" name="sector" value={formData.sector} />
 
       {formState === "error" ? (
         <p className="text-sm text-destructive" role="alert">
@@ -381,7 +335,6 @@ export function ContactForm() {
       <Button
         type="submit"
         variant="primary"
-        shape="pill"
         size="cta"
         disabled={formState === "submitting"}
         className="w-full sm:w-auto"

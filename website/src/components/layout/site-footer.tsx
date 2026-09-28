@@ -10,25 +10,28 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border px-[var(--container-px)] py-10">
+    <footer className="site-footer-bar mt-auto px-[var(--container-px)] py-12 text-foreground">
       <div className="mx-auto max-w-[var(--container-max)]">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
-          <Logo />
+          <div className="space-y-3">
+            <Logo />
+            <p className="font-label text-muted-foreground">{site.footerTagline}</p>
+          </div>
           <nav aria-label="Footer navigatie">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
               {footerLinks.map((link) => (
                 <li key={link.href}>
                   {isHomeSectionHref(link.href) ? (
                     <SectionLink
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-base font-semibold text-muted-foreground hover:text-primary"
                     >
                       {link.label}
                     </SectionLink>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-base font-semibold text-muted-foreground hover:text-primary"
                     >
                       {link.label}
                     </Link>
@@ -38,8 +41,8 @@ export function SiteFooter() {
             </ul>
           </nav>
         </div>
-        <p className="mt-8 text-sm text-muted-foreground">
-          © {year} {site.name} — {site.footerTagline}
+        <p className="mt-10 border-t border-border pt-6 font-label text-muted-foreground">
+          © {year} {site.name} — Diest, België · BTW {site.legal.vatNumber}
         </p>
       </div>
     </footer>

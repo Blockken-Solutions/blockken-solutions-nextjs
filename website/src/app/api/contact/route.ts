@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-import { blocksPage } from "@/content/blocks";
-import { getSectorBySlug } from "@/content/sectors";
 import { validateContactField } from "@/lib/validation/contact";
 
 type ContactRequestBody = {
@@ -10,16 +8,9 @@ type ContactRequestBody = {
   phone?: string;
   company?: string;
   message?: string;
-  block?: string;
-  sector?: string;
-  agent?: string;
 };
 
 const DEFAULT_FROM_EMAIL = "blockken.solutions <onboarding@resend.dev>";
-
-function getBlockTitle(slug: string): string | null {
-  return blocksPage.blocks.find((block) => block.slug === slug)?.title ?? null;
-}
 
 function resolveFromEmail(): string {
   const configuredFrom = process.env.CONTACT_EMAIL_FROM?.trim();
@@ -65,8 +56,6 @@ export async function POST(request: Request) {
   const phone = body.phone?.trim();
   const company = body.company?.trim();
   const message = body.message?.trim();
-  const blockSlug = (body.block ?? body.agent)?.trim();
-  const sectorSlug = body.sector?.trim();
 
   if (!name || !email || !message) {
     return Response.json(
@@ -84,34 +73,13 @@ export async function POST(request: Request) {
     return Response.json({ error: "Ongeldig telefoonnummer." }, { status: 400 });
   }
 
-  const blockTitle = blockSlug ? getBlockTitle(blockSlug) : null;
-  const sectorTitle = sectorSlug ? getSectorBySlug(sectorSlug)?.title ?? null : null;
-
-  const subject = blockTitle
-    ? `Demo-aanvraag: ${blockTitle} — ${name}`
-    : sectorTitle
-      ? `Sector-aanvraag: ${sectorTitle} — ${name}`
-      : `Contactaanvraag — ${name}`;
-
-  const blockLine = blockTitle
-    ? `Gewenste Block: ${blockTitle}`
-    : blockSlug
-      ? `Gewenste Block: ${blockSlug}`
-      : null;
-
-  const sectorLine = sectorTitle
-    ? `Sector: ${sectorTitle}`
-    : sectorSlug
-      ? `Sector: ${sectorSlug}`
-      : null;
+  const subject = `Contactaanvraag — ${name}`;
 
   const textLines = [
     `Naam: ${name}`,
     `E-mail: ${email}`,
     phone ? `Telefoon: ${phone}` : null,
     company ? `Bedrijf: ${company}` : null,
-    blockLine,
-    sectorLine,
     "",
     "Bericht:",
     message,

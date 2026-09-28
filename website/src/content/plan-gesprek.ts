@@ -4,7 +4,7 @@ export const planGesprekPage: PlanGesprekPageContent = {
   seo: {
     title: "Plan een kennismakingsgesprek — blockken.solutions",
     description:
-      "Plan gratis een kennismakingsgesprek van 30 minuten. Bespreek uw website, Blocks of online bestellen en klantvragen — vrijblijvend en op maat.",
+      "Plan gratis een kennismakingsgesprek van 30 minuten. Bespreek uw website, pakket of maatwerk — vrijblijvend en op maat.",
   },
   sectionLabel: "Kennismaking",
   heading: "Plan een kennismakingsgesprek",

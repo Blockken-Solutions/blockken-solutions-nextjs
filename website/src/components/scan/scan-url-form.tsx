@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 
 import { Button } from "@/components/ui/button";
+import { ButtonLabel } from "@/components/ui/button-label";
 import { Input } from "@/components/ui/input";
 import { normalizeScanUrl } from "@/lib/scan-url";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,7 @@ type ScanUrlFormProps = {
   errorMessage: string;
   onSubmit: (url: string) => void;
   className?: string;
+  layout?: "inline" | "stacked";
 };
 
 export function ScanUrlForm({
@@ -25,7 +27,9 @@ export function ScanUrlForm({
   errorMessage,
   onSubmit,
   className,
+  layout = "inline",
 }: ScanUrlFormProps) {
+  const isStacked = layout === "stacked";
   const [url, setUrl] = useState(defaultUrl);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,14 +48,25 @@ export function ScanUrlForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn("mx-auto max-w-2xl text-left", className)}>
-      <label
-        htmlFor="scan-url"
-        className="mb-2 block text-sm font-medium text-foreground sm:sr-only"
-      >
+    <form
+      onSubmit={handleSubmit}
+      className={cn(
+        "mx-auto w-full max-w-2xl",
+        isStacked ? "text-center" : "text-left",
+        className,
+      )}
+    >
+      <label htmlFor="scan-url" className="sr-only">
         Website-URL
       </label>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full sm:border sm:border-border sm:bg-background sm:p-1.5 sm:pl-5 sm:shadow-sm">
+      <div
+        className={cn(
+          "flex w-full gap-3",
+          isStacked
+            ? "flex-col items-center"
+            : "flex-col sm:flex-row sm:items-stretch sm:gap-0 sm:rounded-full sm:border sm:border-border sm:bg-background sm:p-1.5 sm:pl-4 sm:shadow-soft",
+        )}
+      >
         <Input
           id="scan-url"
           type="url"
@@ -70,8 +85,10 @@ export function ScanUrlForm({
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? "scan-url-error" : "scan-url-helper"}
           className={cn(
-            "h-11 flex-1 rounded-xl border border-input bg-background px-4 shadow-sm",
-            "sm:h-10 sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:shadow-none sm:focus-visible:ring-0",
+            "h-12 w-full flex-1 rounded-xl border border-border bg-background px-4 shadow-soft",
+            !isStacked &&
+              "sm:rounded-none sm:border-0 sm:bg-transparent sm:px-0 sm:shadow-none sm:focus-visible:ring-0",
+            isStacked && "max-w-xl",
             error && "border-destructive ring-3 ring-destructive/20",
           )}
         />
@@ -80,9 +97,12 @@ export function ScanUrlForm({
           variant="primary"
           shape="pill"
           size="cta"
-          className="w-full shrink-0 sm:w-auto"
+          className={cn(
+            "h-12 w-full shrink-0 justify-center",
+            isStacked ? "max-w-xl" : "sm:w-auto sm:self-center",
+          )}
         >
-          {buttonLabel}
+          <ButtonLabel>{buttonLabel}</ButtonLabel>
         </Button>
       </div>
       {error ? (

@@ -33,9 +33,9 @@ function CwvCard({
   description: string;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-4">
+    <div className="border border-border bg-card rounded-2xl p-4 shadow-soft">
       <p className="text-sm font-medium text-muted-foreground">{label}</p>
-      <p className="mt-1 text-2xl font-bold text-foreground">{metric.value}</p>
+      <p className="mt-1 text-2xl font-bold tracking-tight text-foreground">{metric.value}</p>
       <span
         className={cn(
           "mt-2 inline-flex rounded-full border px-2.5 py-0.5 text-xs font-medium",
@@ -59,7 +59,7 @@ export function ScanCoreWebVitals({
     <section aria-labelledby="scan-cwv-heading">
       <h3
         id="scan-cwv-heading"
-        className="text-lg font-semibold text-foreground"
+        className="text-lg font-bold tracking-tight text-foreground"
       >
         Bezoekerservaring
       </h3>

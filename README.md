@@ -51,7 +51,7 @@ All copy lives in [`website/src/content/`](website/src/content/):
 | File | Purpose |
 |------|---------|
 | `site.ts` | Site name, URL, SEO defaults, footer tagline |
-| `home.ts` | Landing page sections (hero, services, agents, scan, about, CTA) |
+| `home.ts` | Landing page sections (hero, services, pricing, how we work, scan, about, FAQ teaser, CTA) |
 | `navigation.ts` | Header nav links |
 | `types.ts` | TypeScript interfaces for all content |
 
@@ -62,6 +62,14 @@ To update text, edit the relevant content file and restart the dev server.
 Landing sections are in [`website/src/components/landing/`](website/src/components/landing/). Each accepts a typed `content` prop, composed in [`website/src/app/page.tsx`](website/src/app/page.tsx).
 
 ## Branding
+
+Regenerate logo assets from the source PNG (requires dev dependencies):
+
+```bash
+cd website
+npm run generate:logo        # mark SVG + PNG exports
+npm run generate:logo-mark   # mark SVG only
+```
 
 Update brand tokens in [`website/src/app/globals.css`](website/src/app/globals.css):
 

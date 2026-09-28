@@ -24,7 +24,7 @@ export function ScanFindings({ findings }: ScanFindingsProps) {
       <section aria-labelledby="scan-findings-heading">
         <h3
           id="scan-findings-heading"
-          className="text-lg font-semibold text-foreground"
+          className="text-lg font-bold tracking-tight text-foreground"
         >
           Verbeterpunten
         </h3>
@@ -39,7 +39,7 @@ export function ScanFindings({ findings }: ScanFindingsProps) {
     <section aria-labelledby="scan-findings-heading">
       <h3
         id="scan-findings-heading"
-        className="text-lg font-semibold text-foreground"
+        className="text-lg font-bold tracking-tight text-foreground"
       >
         Verbeterpunten
       </h3>
@@ -47,7 +47,7 @@ export function ScanFindings({ findings }: ScanFindingsProps) {
         {findings.map((finding) => (
           <li
             key={finding.id}
-            className="rounded-2xl border border-border bg-card p-4"
+            className="border border-border bg-card rounded-2xl p-4 shadow-soft"
           >
             <div className="flex flex-wrap items-center gap-2">
               <h4 className="font-medium text-foreground">{finding.title}</h4>

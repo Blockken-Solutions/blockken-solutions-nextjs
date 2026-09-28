@@ -1,20 +1,16 @@
 import type { HomeContent } from "@/content/types";
 import { contactPlanSection, homeSection } from "@/lib/paths";
 
-import { blocksPage, getBlockPreviewItems } from "./blocks";
-import { customBlock } from "./custom-block";
+import { authorCredentials } from "./author-credentials";
 import { faqTeaserItemIds, getFaqItemsByIds } from "./faq";
 import { pricing } from "./pricing";
 
 export const home: HomeContent = {
   hero: {
-    badge: "Web · Blocks · online tools voor KMO's",
-    headlineLines: [
-      "Is uw website traag? Kost administratie u te veel tijd?",
-    ],
-    headlineHighlight: "Wij lossen dit op!",
+    badge: "Momenteel beschikbaar",
+    headlineLines: ["Professionele websites", "voor Belgische KMO's."],
     subheadline:
-      "Wij bouwen razendsnelle websites met hapklare Blocks die repetitief werk overnemen — zodat u zich kunt focussen op uw klanten.",
+      "Snelle websites op maat: wij regelen alles voor u, u beheert zelf via een CMS, of we bouwen maatwerk met slimme automatisering.",
     summary:
       "Veilig, op maat en persoonlijk begeleid door een professional uit België.",
     primaryCta: {
@@ -22,14 +18,43 @@ export const home: HomeContent = {
       href: homeSection("gratis-scan"),
     },
     secondaryCta: {
-      label: "Bekijk onze Blocks",
-      href: homeSection("blocks"),
+      label: "Bekijk pakketten →",
+      href: homeSection("prijzen"),
     },
+    stats: ["5+ jaar ervaring", "Één aanspreekpunt", "Gebouwd in België"],
+    serviceChips: [
+      { label: "Volledig beheerd", href: homeSection("oplossingen") },
+      { label: "Met CMS", href: homeSection("prijzen") },
+      { label: "Maatwerk", href: contactPlanSection() },
+    ],
     trustBarItems: [
       "Europese hosting",
       "GDPR-veilig",
       "Op maat gebouwd",
       "Razendsnelle websites",
+    ],
+    clientLogosLabel: "Ervaring bij o.a.",
+    clientLogos: [
+      {
+        src: "/images/clients/dwg.svg",
+        alt: "De Watergroep",
+        client: "De Watergroep",
+      },
+      {
+        src: "/images/clients/nexuzhealth.jpeg",
+        alt: "Nexuzhealth",
+        client: "Nexuzhealth",
+      },
+      {
+        src: "/images/clients/vlaamse-overheid.png",
+        alt: "Vlaamse Overheid",
+        client: "Vlaamse Overheid (Onderwijs & Vorming)",
+      },
+      {
+        src: "/images/clients/smals.jpg",
+        alt: "Smals",
+        client: "Smals",
+      },
     ],
   },
   services: {
@@ -37,28 +62,28 @@ export const home: HomeContent = {
     heading: "Wat we voor uw bedrijf bouwen.",
     items: [
       {
-        title: "Razendsnelle websites",
+        title: "Website, volledig door ons",
         description:
-          "Een website die meteen laadt en er professioneel uitziet — op maat voor uw bedrijf, geen trage standaardtemplates. Bezoekers nemen vaker contact op en vullen vaker een formulier in. Meer klanten, minder gemiste kansen.",
+          "Een snelle, professionele website zonder dat u moet inloggen. Wij passen teksten en foto's voor u aan — inclusief gevonden worden in Google en in AI-tools zoals ChatGPT, plus cookie/GDPR-basis en hosting in Europa.",
         icon: "zap",
-        href: "/#prijzen",
-        linkLabel: "Meer over websites →",
+        href: homeSection("prijzen"),
+        linkLabel: "Bekijk pakketten →",
       },
       {
-        title: "Blocks op uw website",
+        title: "Website met CMS",
         description:
-          "Hapklare extra's op uw website — online bestellen, cadeaubonnen, klantvragen, review-antwoorden. Kies wat past bij uw zaak.",
+          "Dezelfde kwaliteit: gevonden in Google, lokaal online en in AI-zoektools zoals ChatGPT. U past zelf teksten en afbeeldingen aan via een eenvoudig beheersysteem.",
+        icon: "file-text",
+        href: homeSection("prijzen"),
+        linkLabel: "Bekijk pakketten →",
+      },
+      {
+        title: "Maatwerk & automatisering",
+        description:
+          "Koppelingen met uw bestaande tools, eigen flows en praktische hulp waar repetitief werk tijd kost — bespreken we samen in een gesprek.",
         icon: "bot",
-        href: "/blocks",
-        linkLabel: "Bekijk Blocks →",
-      },
-      {
-        title: "Gevonden worden — op Google én in ChatGPT",
-        description:
-          "Wij zorgen dat klanten u vinden via Google én via tools zoals ChatGPT. Inclusief basis SEO, cookiebanner en GDPR-basis — zodat u zichtbaar én in orde bent.",
-        icon: "search",
-        href: "/gratis-scan",
-        linkLabel: "Start gratis scan →",
+        href: homeSection("prijzen"),
+        linkLabel: "Plan een gesprek →",
       },
     ],
   },
@@ -87,7 +112,7 @@ export const home: HomeContent = {
         step: 3,
         title: "Bouw & integratie",
         description:
-          "Wij bouwen uw website en Blocks, koppelen met uw tools (agenda, betaling, …) en houden u op de hoogte.",
+          "Wij bouwen uw website, koppelen waar nodig met uw tools (agenda, betaling, …) en houden u op de hoogte.",
         icon: "hammer",
       },
       {
@@ -107,19 +132,6 @@ export const home: HomeContent = {
       href: contactPlanSection(),
     },
   },
-  blocks: {
-    sectionLabel: "Blocks",
-    heading: "Extra's op uw website, klaar voor gebruik.",
-    subheading:
-      "Vanaf Website + Blocks zit één Block inbegrepen — kies wat past bij uw zaak.",
-    catalogLink: {
-      label: "Alle Blocks bekijken →",
-      href: "/blocks",
-    },
-    filterCategories: blocksPage.filterCategories,
-    blocks: getBlockPreviewItems(),
-    customBlock,
-  },
   scan: {
     sectionLabel: "Gratis scan",
     heading: "Kost uw huidige website u klanten? Test het direct.",
@@ -134,36 +146,14 @@ export const home: HomeContent = {
   about: {
     sectionLabel: "Over mij",
     heading: "5 jaar ervaring, één aanspreekpunt — geen marketingbureau.",
-    body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik websites en webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites, dure bureaus en systemen die niet meegroeien. Met blockken.solutions zet ik die ervaring in voor Belgische KMO's: snelle websites, slimme Blocks die meewerken, en één aanspreekpunt van intake tot oplevering.",
+    body: "Hallo, ik ben Wouter. Al meer dan vijf jaar bouw ik websites en webapplicaties voor organisaties in de publieke sector, de zorg en het bedrijfsleven. Ik zag KMO's worstelen met trage websites, dure bureaus en systemen die niet meegroeien. Met blockken.solutions zet ik die ervaring in voor Belgische KMO's: snelle websites, persoonlijke begeleiding, en één aanspreekpunt van intake tot oplevering.",
     portrait: "/images/wouter-portrait.jpg",
     portraitAlt: "Wouter Blockken, oprichter van blockken.solutions",
-    credentials: [
-      {
-        type: "Diploma",
-        label: "AI Technology Architect",
-        issuer: "Hogeschool PXL",
-        year: "2026",
-        icon: "graduation-cap",
-      },
-      {
-        type: "Gecertificeerd",
-        label: "AWS Certified AI Practitioner (AIF-C01)",
-        issuer: "Amazon Web Services",
-        year: "2026",
-        icon: "scroll-text",
-      },
-      {
-        type: "Diploma",
-        label: "Toegepaste Informatica",
-        issuer: "Hogeschool PXL",
-        year: "2021",
-        icon: "graduation-cap",
-      },
-    ],
+    credentials: authorCredentials,
     skills: [
       "Websites die in seconden laden — geen trage templates",
       "Veilige hosting in Europa, GDPR-conform",
-      "Online bestellen, vragen beantwoorden, reviews — één developer, geen tussenpersonen",
+      "Websites beheren, CMS, koppelingen en automatisering — één developer, geen tussenpersonen",
     ],
     portfolioHighlights: [
       {
@@ -171,24 +161,32 @@ export const home: HomeContent = {
         client: "De Watergroep",
         outcome: "Klant- en medewerkersportaal voor duizenden gebruikers",
         href: "https://wouterblockken.me/projecten/de-watergroep-portal",
+        logo: "/images/clients/dwg.svg",
+        logoAlt: "De Watergroep",
       },
       {
         title: "Mynexuzhealth Patient Portal",
         client: "Nexuzhealth",
         outcome: "Patiëntenportaal — eenvoudig digitaal toegang tot medische gegevens",
         href: "https://wouterblockken.me/projecten/mynexuzhealth-patient-portal",
+        logo: "/images/clients/nexuzhealth.jpeg",
+        logoAlt: "Nexuzhealth",
       },
       {
         title: "Starttoets & Columbus Platform",
         client: "Vlaamse Overheid (Onderwijs & Vorming)",
         outcome: "Schaalbare toets- en registratieplatforms voor het Vlaamse onderwijs",
         href: "https://wouterblockken.me/projecten/starttoets-columbus-platform",
+        logo: "/images/clients/vlaamse-overheid.png",
+        logoAlt: "Vlaamse Overheid",
       },
       {
         title: "ZBO Zorgbudget",
         client: "Smals",
         outcome: "Digitaal platform waar burgers zelf aanvragen indienen",
         href: "https://wouterblockken.me/projecten/zbo-elderly-care-budget-platform",
+        logo: "/images/clients/smals.jpg",
+        logoAlt: "Smals",
       },
     ],
     portfolioLink: {

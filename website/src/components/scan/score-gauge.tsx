@@ -26,7 +26,7 @@ export function ScoreGauge({ label, value }: ScoreGaugeProps) {
   const offset = circumference - (numericValue / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-6">
+    <div className="flex flex-col items-center gap-3 border border-border bg-card rounded-2xl p-6 shadow-soft">
       <div className="relative size-24">
         <svg
           className="size-full -rotate-90"
@@ -57,7 +57,7 @@ export function ScoreGauge({ label, value }: ScoreGaugeProps) {
         </svg>
         <span
           className={cn(
-            "absolute inset-0 flex items-center justify-center text-xl font-bold",
+            "absolute inset-0 flex items-center justify-center text-xl font-bold tracking-tight",
             colorMap[color],
           )}
         >

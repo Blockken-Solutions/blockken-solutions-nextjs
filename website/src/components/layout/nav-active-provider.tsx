@@ -11,7 +11,6 @@ import { usePathname } from "next/navigation";
 
 import {
   getHashSectionId,
-  getHeaderOffset,
   resolveActiveSection,
   SECTION_NAV_EVENT,
 } from "@/lib/scroll-to-section";
@@ -29,45 +28,40 @@ type NavActiveProviderProps = {
   sectionIds: string[];
 };
 
+const SECTION_NAV_LOCK_MS = 900;
+
 export function NavActiveProvider({
   children,
   sectionIds,
 }: NavActiveProviderProps) {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [homeActiveSection, setHomeActiveSection] = useState<string | null>(
+    null,
+  );
+  const activeSection = pathname === "/" ? homeActiveSection : null;
 
   useEffect(() => {
     if (pathname !== "/") {
-      setActiveSection(null);
       return;
     }
 
-    let lockedSection: string | null = null;
+    let scrollLockUntil = 0;
     let scrollTicking = false;
 
     const syncActiveSection = (preferHash = false) => {
-      if (lockedSection) {
-        const element = document.getElementById(lockedSection);
-        if (element) {
-          const distance = Math.abs(
-            element.getBoundingClientRect().top - getHeaderOffset(),
-          );
-          if (distance > 2) {
-            return;
-          }
-        }
-        lockedSection = null;
+      if (Date.now() < scrollLockUntil) {
+        return;
       }
 
       if (preferHash) {
         const hash = getHashSectionId();
         if (hash && sectionIds.includes(hash)) {
-          setActiveSection(hash);
+          setHomeActiveSection(hash);
           return;
         }
       }
 
-      setActiveSection(resolveActiveSection(sectionIds));
+      setHomeActiveSection(resolveActiveSection(sectionIds));
     };
 
     const handleScroll = () => {
@@ -83,7 +77,7 @@ export function NavActiveProvider({
     };
 
     const handleHashChange = () => {
-      lockedSection = null;
+      scrollLockUntil = 0;
       syncActiveSection(true);
     };
 
@@ -93,11 +87,13 @@ export function NavActiveProvider({
         return;
       }
 
-      lockedSection = id;
-      setActiveSection(id);
+      scrollLockUntil = Date.now() + SECTION_NAV_LOCK_MS;
+      setHomeActiveSection(id);
     };
 
-    syncActiveSection(true);
+    requestAnimationFrame(() => {
+      syncActiveSection(true);
+    });
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);

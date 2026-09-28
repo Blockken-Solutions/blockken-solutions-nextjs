@@ -1,3 +1,7 @@
+import {
+  authorCredentials,
+  formatAuthorCredentialSummary,
+} from "@/content/author-credentials";
 import type { ContactInfo, SiteConfig } from "@/content/types";
 
 export const site = {
@@ -5,16 +9,17 @@ export const site = {
   url: "https://blockken.solutions",
   footerTagline: "Gebouwd in België.",
   language: "nl-BE",
-  lastModified: "2026-07-20",
+  lastModified: "2026-09-28",
   seo: {
-    title: "blockken.solutions — Web, Blocks & online tools voor KMO's",
+    title: "blockken.solutions — Websites voor Belgische KMO's",
     description:
-      "Razendsnelle websites met hapklare Blocks voor Belgische KMO's. Plan een gratis kennismakingsgesprek en ontdek wat past bij uw zaak.",
+      "Razendsnelle websites — volledig beheerd, met CMS of maatwerk. Plan een gratis kennismakingsgesprek.",
   },
   legal: {
     tradeName: "blockken.solutions",
     responsiblePerson: "Wouter Blockken",
     jurisdiction: "Oost-Vlaanderen",
+    vatNumber: "BE1005.189.818",
   },
   organization: {
     name: "blockken.solutions",
@@ -38,11 +43,7 @@ export const site = {
       "https://www.linkedin.com/in/wouter-blockken",
       "https://wouterblockken.me/",
     ],
-    credentials: [
-      "AI Technology Architect (Hogeschool PXL, 2026)",
-      "AWS Certified AI Practitioner (AIF-C01) (2026)",
-      "Toegepaste Informatica (Hogeschool PXL, 2021)",
-    ],
+    credentials: authorCredentials.map(formatAuthorCredentialSummary),
   },
   contact: {
     email: "wouter@blockken.solutions",
@@ -55,8 +56,6 @@ export const indexableRoutes = [
   { pathname: "/gratis-scan", lastModified: site.lastModified },
   { pathname: "/plan-gesprek", lastModified: site.lastModified },
   { pathname: "/faq", lastModified: site.lastModified },
-  { pathname: "/blocks", lastModified: site.lastModified },
-  { pathname: "/sectoren", lastModified: site.lastModified },
   { pathname: "/privacy", lastModified: site.lastModified },
   { pathname: "/terms", lastModified: site.lastModified },
 ] as const;

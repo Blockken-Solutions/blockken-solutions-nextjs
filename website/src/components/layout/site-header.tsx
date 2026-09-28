@@ -11,17 +11,14 @@ import { navSectionIds } from "@/content/navigation";
 export function SiteHeader() {
   return (
     <HeaderOffsetTracker>
-      <header>
-        <div className="mx-auto flex w-full max-w-7xl items-center gap-5 rounded-full px-5 py-3 sm:gap-6 sm:px-7 lg:gap-8 lg:px-8 header-pill">
-          <Logo className="shrink-0" />
-
-          <NavActiveProvider sectionIds={navSectionIds}>
-            <div className="flex min-w-0 flex-1 items-center justify-end gap-4 lg:gap-6">
-              <DesktopNav />
-              <HeaderActions mobileNav={<MobileNav />} />
-            </div>
-          </NavActiveProvider>
-        </div>
+      <header className="site-header-bar">
+        <NavActiveProvider sectionIds={navSectionIds}>
+          <div className="mx-auto grid w-full max-w-[var(--container-max)] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-[var(--container-px)] py-3.5 sm:gap-4 sm:py-4 lg:py-[1.125rem]">
+            <Logo size="header" className="min-w-0 shrink-0" />
+            <DesktopNav />
+            <HeaderActions mobileNav={<MobileNav />} />
+          </div>
+        </NavActiveProvider>
       </header>
     </HeaderOffsetTracker>
   );

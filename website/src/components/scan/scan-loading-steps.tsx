@@ -33,7 +33,7 @@ export function ScanLoadingSteps() {
       role="status"
       aria-live="polite"
     >
-      <Loader2 className="size-10 animate-spin text-brand-accent" />
+      <Loader2 className="size-10 animate-spin text-primary" />
       <div className="w-full max-w-sm space-y-3">
         {LOADING_STEPS.map((step, index) => {
           const isComplete = index < activeStep;
@@ -43,17 +43,17 @@ export function ScanLoadingSteps() {
             <div
               key={step}
               className={cn(
-                "flex items-center gap-3 rounded-xl border px-4 py-3 text-sm transition-colors",
-                isComplete && "border-green-500/30 bg-green-500/5",
-                isActive && "border-brand-accent/30 bg-brand-highlight/5",
-                !isComplete && !isActive && "border-border bg-muted/30 text-muted-foreground",
+                "flex items-center gap-3 border border-border px-4 py-3 text-sm transition-colors",
+                isComplete && "bg-green-500/5",
+                isActive && "bg-primary/10",
+                !isComplete && !isActive && "bg-muted text-muted-foreground",
               )}
             >
               <span
                 className={cn(
-                  "flex size-6 shrink-0 items-center justify-center rounded-full",
-                  isComplete && "bg-green-500/15 text-green-600 dark:text-green-400",
-                  isActive && "bg-brand-highlight/15 text-brand-accent",
+                  "flex size-6 shrink-0 items-center justify-center border border-border",
+                  isComplete && "bg-green-500 text-white",
+                  isActive && "bg-primary text-primary-foreground",
                   !isComplete && !isActive && "bg-muted text-muted-foreground",
                 )}
               >
@@ -62,7 +62,7 @@ export function ScanLoadingSteps() {
                 ) : isActive ? (
                   <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
                 ) : (
-                  <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
+                  <span className="size-1.5 bg-current" aria-hidden="true" />
                 )}
               </span>
               <span

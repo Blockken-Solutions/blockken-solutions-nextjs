@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
-
 import { useNavActive } from "@/components/layout/nav-active-provider";
 import { SectionLink } from "@/components/layout/section-link";
 import type { NavLink as NavLinkType } from "@/content/types";
@@ -19,34 +17,19 @@ export function NavLink({ link, variant = "desktop", onNavigate }: NavLinkProps)
   const pathname = usePathname();
   const { activeSection } = useNavActive();
 
-  const isActive = useMemo(() => {
-    if (link.type === "page") {
-      return pathname === link.href;
-    }
-
-    if (link.type === "section" && link.sectionId) {
-      if (pathname !== "/") {
-        return false;
-      }
-
-      return activeSection === link.sectionId;
-    }
-
-    return pathname === link.href;
-  }, [link, pathname, activeSection]);
+  const isActive =
+    link.type === "section" && link.sectionId
+      ? pathname === "/" && activeSection === link.sectionId
+      : pathname === link.href;
 
   const className = cn(
-    "relative shrink-0 font-medium whitespace-nowrap transition-colors",
+    "relative shrink-0 whitespace-nowrap transition-colors",
     variant === "desktop"
-      ? "text-sm xl:text-[0.9375rem] after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-highlight after:transition-opacity"
-      : "flex min-h-11 items-center py-3 text-base after:hidden",
+      ? "rounded-full px-3 py-1.5 text-sm font-semibold xl:text-[0.9375rem]"
+      : "flex min-h-11 items-center py-3 text-base font-semibold",
     isActive
-      ? variant === "desktop"
-        ? "font-semibold text-foreground after:opacity-100"
-        : "font-semibold text-brand-accent"
-      : variant === "desktop"
-        ? "text-muted-foreground after:opacity-0 hover:text-foreground hover:after:opacity-40"
-        : "text-foreground hover:text-brand-accent",
+      ? "bg-primary/10 text-primary"
+      : "text-muted-foreground hover:bg-muted hover:text-foreground",
   );
 
   if (link.type === "section" && link.sectionId) {

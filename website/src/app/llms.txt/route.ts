@@ -1,6 +1,5 @@
+import { aeoTypicalQuestions } from "@/content/aeo-prompts";
 import { site } from "@/content/site";
-import { blocksPage } from "@/content/blocks";
-import { sectors } from "@/content/sectors";
 import { faqPage, getAllFaqItems, stripFaqAnswerMarkdown } from "@/content/faq";
 import { home } from "@/content/home";
 import { pricing } from "@/content/pricing";
@@ -11,7 +10,8 @@ function absoluteUrl(pathname: string): string {
 }
 
 export function GET() {
-  const definitionItems = faqPage.categories.find((category) => category.id === "begrippen")?.items ?? [];
+  const definitionItems =
+    faqPage.categories.find((category) => category.id === "begrippen")?.items ?? [];
 
   const body = `# ${site.name}
 
@@ -19,7 +19,7 @@ export function GET() {
 
 ## Over ons
 
-blockken.solutions bouwt razendsnelle websites met hapklare Blocks voor Belgische KMO's.
+blockken.solutions bouwt razendsnelle websites voor Belgische KMO's — volledig beheerd, met CMS, of met maatwerk en automatisering.
 Opgericht door ${site.author.name}, ${site.author.role}.
 Vestigingsregio: ${site.organization.address.addressRegion}, ${site.organization.address.addressLocality}.
 ${site.footerTagline}
@@ -41,21 +41,15 @@ ${pricing.tiers
   )
   .join("\n")}
 
-${pricing.extraBlockNote}
-
-${pricing.extraContentNote}
+${pricing.pricingNote}
 
 ## Werkwijze
 
 ${buildHowWeWorkSummary()}
 
-## Blocks
+## Typische vragen
 
-${blocksPage.blocks.map((block) => `- **${block.title}**: ${block.description} Meer info: ${absoluteUrl(`/blocks/${block.slug}`)}`).join("\n")}
-
-## Sectoren
-
-${sectors.map((sector) => `- **${sector.title}**: ${sector.intro} Meer info: ${absoluteUrl(`/sectoren/${sector.slug}`)}`).join("\n")}
+${aeoTypicalQuestions.map((item) => `- **${item.question}** ${item.answer}`).join("\n")}
 
 ## Veelgestelde vragen
 
@@ -71,11 +65,8 @@ ${getAllFaqItems().map((item) => `- **${item.question}** ${stripFaqAnswerMarkdow
 
 - [Homepage](${absoluteUrl("/")})
 - [Gratis website scan](${absoluteUrl("/gratis-scan")})
+- [Plan een kennismakingsgesprek](${absoluteUrl("/plan-gesprek")})
 - [FAQ](${absoluteUrl("/faq")})
-- [Blocks](${absoluteUrl("/blocks")})
-- [Sectoren](${absoluteUrl("/sectoren")})
-${blocksPage.blocks.map((block) => `- [${block.title}](${absoluteUrl(`/blocks/${block.slug}`)})`).join("\n")}
-${sectors.map((sector) => `- [${sector.title}](${absoluteUrl(`/sectoren/${sector.slug}`)})`).join("\n")}
 - [Privacybeleid](${absoluteUrl("/privacy")})
 - [Algemene voorwaarden](${absoluteUrl("/terms")})
 - [llms.txt](${absoluteUrl("/llms.txt")})

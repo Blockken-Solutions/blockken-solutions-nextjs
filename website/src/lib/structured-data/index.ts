@@ -1,13 +1,11 @@
 import type {
-  BreadcrumbList,
   FAQPage,
   Graph,
   HowTo,
-  ItemList,
-  LocalBusiness,
   Offer,
   Organization,
   Person,
+  ProfessionalService,
   Service,
   SoftwareApplication,
   WebPage,
@@ -15,14 +13,17 @@ import type {
   WithContext,
 } from "schema-dts";
 
-import { blocksPage } from "@/content/blocks";
-import { sectors } from "@/content/sectors";
+import {
+  authorCredentials,
+  formatAuthorCredentialSummary,
+} from "@/content/author-credentials";
 import { faqPage, getAllFaqItems, stripFaqAnswerMarkdown } from "@/content/faq";
 import { home } from "@/content/home";
+import { planGesprekPage } from "@/content/plan-gesprek";
 import { pricing } from "@/content/pricing";
 import { scanPage } from "@/content/scan";
 import { site } from "@/content/site";
-import type { BlockListing, FaqItem, HowWeWorkStep, PricingTier, SectorListing } from "@/content/types";
+import type { FaqItem, HowWeWorkStep, PricingTier } from "@/content/types";
 
 function absoluteUrl(pathname: string): string {
   return new URL(pathname, site.url).toString();
@@ -47,10 +48,10 @@ export function buildOrganizationSchema(): WithContext<Organization> {
   };
 }
 
-export function buildLocalBusinessSchema(): WithContext<LocalBusiness> {
+export function buildProfessionalServiceSchema(): WithContext<ProfessionalService> {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "ProfessionalService",
     name: site.organization.name,
     url: site.organization.url,
     logo: site.organization.logo,
@@ -64,10 +65,16 @@ export function buildLocalBusinessSchema(): WithContext<LocalBusiness> {
       addressLocality: site.organization.address.addressLocality,
       addressRegion: site.organization.address.addressRegion,
     },
-    areaServed: {
-      "@type": "Country",
-      name: "België",
-    },
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: site.organization.address.addressRegion ?? "Vlaanderen",
+      },
+      {
+        "@type": "Country",
+        name: "België",
+      },
+    ],
     sameAs: [...site.organization.sameAs],
   };
 }
@@ -99,6 +106,11 @@ export function buildPersonSchema(): WithContext<Person> {
     },
     sameAs: [...site.author.sameAs],
     knowsAbout: [...home.about.skills],
+    hasCredential: authorCredentials.map((credential) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: formatAuthorCredentialSummary(credential),
+      credentialCategory: credential.type,
+    })),
   };
 }
 
@@ -156,18 +168,22 @@ export function buildFaqPageSchema(items: FaqItem[]): WithContext<FAQPage> {
   };
 }
 
-function parseSetupPrice(priceLabel: string): string {
+function parseSetupPrice(priceLabel: string): string | null {
+  if (/aanvraag/i.test(priceLabel)) return null;
   const match = priceLabel.match(/€\s*([\d.]+)/);
-  return match?.[1]?.replace(".", "") ?? "999";
+  return match?.[1]?.replace(".", "") ?? null;
 }
 
-function buildPricingOfferSchema(tier: PricingTier): WithContext<Offer> {
+function buildPricingOfferSchema(tier: PricingTier): WithContext<Offer> | null {
+  const price = parseSetupPrice(tier.setup.price);
+  if (!price) return null;
+
   return {
     "@context": "https://schema.org",
     "@type": "Offer",
-    name: tier.name,
-    description: tier.audience,
-    price: parseSetupPrice(tier.setup.price),
+    name: `${tier.name} — eenmalige setup`,
+    description: `${tier.audience} (eenmalige setup; maandelijks abonnement apart).`,
+    price,
     priceCurrency: "EUR",
     url: absoluteUrl("/#prijzen"),
     availability: "https://schema.org/InStock",
@@ -180,136 +196,9 @@ function buildPricingOfferSchema(tier: PricingTier): WithContext<Offer> {
 }
 
 export function buildPricingOffersSchema(): WithContext<Offer>[] {
-  return pricing.tiers.map((tier) => buildPricingOfferSchema(tier));
-}
-
-export function buildBreadcrumbSchema(
-  items: { name: string; pathname: string }[],
-): WithContext<BreadcrumbList> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: absoluteUrl(item.pathname),
-    })),
-  };
-}
-
-export function buildBlockServiceSchema(block: BlockListing): WithContext<Service> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: block.title,
-    description: block.summary,
-    serviceType: block.category,
-    provider: {
-      "@type": "Organization",
-      name: site.organization.name,
-      url: site.organization.url,
-    },
-    areaServed: {
-      "@type": "Country",
-      name: "België",
-    },
-    url: absoluteUrl(`/blocks/${block.slug}`),
-  };
-}
-
-export function buildBlocksItemListSchema(): WithContext<ItemList> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: blocksPage.heading,
-    itemListElement: blocksPage.blocks.map((block, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: block.title,
-      url: absoluteUrl(`/blocks/${block.slug}`),
-    })),
-  };
-}
-
-export function buildBlocksGraph(): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        "/blocks",
-        blocksPage.seo.title,
-        blocksPage.seo.description,
-      ),
-      buildBlocksItemListSchema(),
-      ...blocksPage.blocks.map((block) => buildBlockServiceSchema(block)),
-    ],
-  };
-}
-
-export function buildBlockGraph(block: BlockListing): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        `/blocks/${block.slug}`,
-        `${block.title} — ${site.name}`,
-        block.summary,
-      ),
-      buildBreadcrumbSchema([
-        { name: "Home", pathname: "/" },
-        { name: "Blocks", pathname: "/blocks" },
-        { name: block.title, pathname: `/blocks/${block.slug}` },
-      ]),
-      buildBlockServiceSchema(block),
-    ],
-  };
-}
-
-export function buildSectorGraph(sector: SectorListing): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        `/sectoren/${sector.slug}`,
-        sector.seo.title,
-        sector.seo.description,
-      ),
-      buildBreadcrumbSchema([
-        { name: "Home", pathname: "/" },
-        { name: "Sectoren", pathname: "/sectoren" },
-        { name: sector.title, pathname: `/sectoren/${sector.slug}` },
-      ]),
-    ],
-  };
-}
-
-export function buildSectorsItemListSchema(): WithContext<ItemList> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Sectoren",
-    itemListElement: sectors.map((sector, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: sector.title,
-      url: absoluteUrl(`/sectoren/${sector.slug}`),
-    })),
-  };
-}
-
-export function buildSectorsGraph(): Graph {
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      buildWebPageSchema(
-        "/sectoren",
-        "Blocks per sector — blockken.solutions",
-        "Blocks voor voedingsretail, garages, kappers, horeca en dienstverleners.",
-      ),
-      buildSectorsItemListSchema(),
-    ],
-  };
+  return pricing.tiers
+    .map((tier) => buildPricingOfferSchema(tier))
+    .filter((offer): offer is WithContext<Offer> => offer !== null);
 }
 
 function buildHowWeWorkSchema(steps: HowWeWorkStep[]): WithContext<HowTo> {
@@ -369,7 +258,7 @@ export function buildSiteGraph(): Graph {
     "@context": "https://schema.org",
     "@graph": [
       buildOrganizationSchema(),
-      buildLocalBusinessSchema(),
+      buildProfessionalServiceSchema(),
       buildWebSiteSchema(),
       buildPersonSchema(),
       ...buildServiceSchemas(),
@@ -382,9 +271,21 @@ export function buildHomeGraph(): Graph {
     "@context": "https://schema.org",
     "@graph": [
       buildWebPageSchema("/", site.seo.title, site.seo.description),
-      buildFaqPageSchema(home.faqTeaser.items),
       buildHowWeWorkSchema(home.howWeWork.steps),
       ...buildPricingOffersSchema(),
+    ],
+  };
+}
+
+export function buildPlanGesprekGraph(): Graph {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildWebPageSchema(
+        "/plan-gesprek",
+        planGesprekPage.seo.title,
+        planGesprekPage.seo.description,
+      ),
     ],
   };
 }

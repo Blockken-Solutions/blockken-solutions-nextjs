@@ -5,13 +5,13 @@ export const termsPage: LegalPageContent = {
   seo: {
     title: "Algemene voorwaarden — blockken.solutions",
     description:
-      "Algemene voorwaarden voor diensten van blockken.solutions: websites en Blocks voor Belgische KMO's.",
+      "Algemene voorwaarden voor diensten van blockken.solutions: websites en online diensten voor Belgische KMO's.",
   },
   sections: [
     {
       heading: "1. Toepassingsgebied",
       paragraphs: [
-        "Deze algemene voorwaarden zijn van toepassing op alle diensten geleverd door blockken.solutions, waaronder website-ontwikkeling, Blocks en advies over online tools voor zakelijke klanten (KMO's).",
+        "Deze algemene voorwaarden zijn van toepassing op alle diensten geleverd door blockken.solutions, waaronder website-ontwikkeling, hosting, onderhoud en advies over online tools voor zakelijke klanten (KMO's).",
       ],
     },
     {
@@ -23,7 +23,7 @@ export const termsPage: LegalPageContent = {
     {
       heading: "3. Prijzen en betaling",
       paragraphs: [
-        "Prijzen zijn exclusief BTW tenzij anders vermeld. Maandelijkse Block-abonnementen worden vooraf gefactureerd. Projecten worden gefactureerd volgens de betalingsschema's in de offerte. Bij laattijdige betaling kan de wettelijke interest worden aangerekend.",
+        "Prijzen zijn exclusief BTW tenzij anders vermeld. Maandelijkse abonnementen worden vooraf gefactureerd. Projecten worden gefactureerd volgens de betalingsschema's in de offerte. Bij laattijdige betaling kan de wettelijke interest worden aangerekend.",
       ],
     },
     {
@@ -47,7 +47,7 @@ export const termsPage: LegalPageContent = {
     {
       heading: "7. Opzegging",
       paragraphs: [
-        "Maandelijkse abonnementen (Blocks) zijn maandelijks opzegbaar met een opzegtermijn van 30 dagen. Projecten kunnen door de klant worden stopgezet; reeds geleverd werk en gemaakte kosten worden gefactureerd.",
+        "Maandelijkse abonnementen zijn maandelijks opzegbaar met een opzegtermijn van 30 dagen, tenzij anders overeengekomen in de offerte. Projecten kunnen door de klant worden stopgezet; reeds geleverd werk en gemaakte kosten worden gefactureerd.",
       ],
     },
     {

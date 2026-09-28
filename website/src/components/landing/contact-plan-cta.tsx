@@ -17,7 +17,7 @@ export function ContactPlanCta({ content, variant = "banner" }: ContactPlanCtaPr
     <div
       id={CONTACT_PLAN_SECTION_ID}
       className={cn(
-        "rounded-3xl border border-dashed border-brand-highlight/30 bg-brand-highlight/[0.03] shadow-sm",
+        "rounded-2xl border border-border bg-card text-foreground shadow-soft",
         variant === "banner" ? "p-5 sm:p-8" : "p-6",
       )}
     >
@@ -35,13 +35,13 @@ export function ContactPlanCta({ content, variant = "banner" }: ContactPlanCtaPr
             variant === "card" && "gap-4",
           )}
         >
-          <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15">
-            <Calendar className="size-5 text-brand-accent" aria-hidden="true" />
+          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-soft">
+            <Calendar className="size-5 text-primary-foreground" aria-hidden="true" />
           </div>
           <div className="min-w-0">
             <h3
               className={cn(
-                "font-bold text-foreground",
+                "font-bold tracking-tight text-foreground",
                 variant === "banner" ? "text-base sm:text-lg" : "text-lg",
               )}
             >

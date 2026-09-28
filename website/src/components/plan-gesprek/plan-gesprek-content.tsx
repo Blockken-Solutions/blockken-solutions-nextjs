@@ -15,7 +15,7 @@ export function PlanGesprekContent({ content, calendlyUrl }: PlanGesprekContentP
       <div className="mx-auto max-w-4xl">
         <BackToHomeLink className="mb-6" />
         <SectionLabel>{content.sectionLabel}</SectionLabel>
-        <PageHeading className="text-4xl font-bold sm:text-5xl">
+        <PageHeading>
           {content.heading}
         </PageHeading>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -26,14 +26,14 @@ export function PlanGesprekContent({ content, calendlyUrl }: PlanGesprekContentP
           {content.highlights.map((item) => (
             <li
               key={item}
-              className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground shadow-sm"
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium text-foreground shadow-soft"
             >
               {item}
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 rounded-3xl border border-border bg-card shadow-sm">
+        <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-card shadow-soft-lg">
           <CalendlyEmbed url={calendlyUrl} layout="page" />
         </div>
       </div>

@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import type { ComponentProps, MouseEvent, ReactNode } from "react";
 
 import {
+  markPendingSectionScroll,
   parseHomeSectionId,
   scrollToSection,
   waitForLayout,
@@ -37,17 +38,20 @@ export function SectionLink({
 
   const handleClick = async (event: MouseEvent<HTMLAnchorElement>) => {
     onNavigate?.();
-
-    if (pathname !== "/") {
-      return;
-    }
-
     event.preventDefault();
 
     const url = new URL(href, window.location.origin);
     const targetUrl = `${url.pathname}${url.search}#${sectionId}`;
 
-    if (url.search.length > 0) {
+    if (pathname !== "/") {
+      markPendingSectionScroll(sectionId);
+      router.push(targetUrl, { scroll: false });
+      return;
+    }
+
+    const searchChanged = window.location.search !== url.search;
+
+    if (searchChanged) {
       router.push(targetUrl, { scroll: false });
       await waitForLayout();
       scrollToSection(sectionId, { updateHash: false });
@@ -58,7 +62,13 @@ export function SectionLink({
   };
 
   return (
-    <Link href={href} className={className} onClick={handleClick} {...props}>
+    <Link
+      href={href}
+      scroll={false}
+      className={className}
+      onClick={handleClick}
+      {...props}
+    >
       {children}
     </Link>
   );

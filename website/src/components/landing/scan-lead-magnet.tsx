@@ -27,15 +27,15 @@ export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
 
   return (
     <Section id="gratis-scan" variant="muted">
-      <div className="mx-auto max-w-4xl text-center">
-        <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-brand-highlight/20">
-          <DynamicIcon name="scan-search" className="size-6 text-brand-highlight" />
+      <div className="mx-auto max-w-4xl rounded-3xl border border-border/60 bg-card p-6 shadow-soft-lg sm:p-10">
+        <div className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-primary shadow-soft">
+          <DynamicIcon name="scan-search" className="size-6 text-primary-foreground" />
         </div>
         <SectionLabel>{content.sectionLabel}</SectionLabel>
-        <SectionHeading className="text-3xl font-bold sm:text-4xl">
+        <SectionHeading>
           {content.heading}
         </SectionHeading>
-        <SectionDescription className="mx-auto mt-4 max-w-2xl">
+        <SectionDescription className="mt-4 max-w-2xl">
           {content.description}
         </SectionDescription>
 
@@ -45,6 +45,7 @@ export function ScanLeadMagnet({ content }: ScanLeadMagnetProps) {
           helperText={content.helperText}
           errorMessage={content.errorMessage}
           onSubmit={handleSubmit}
+          layout="stacked"
           className="mt-8"
         />
       </div>

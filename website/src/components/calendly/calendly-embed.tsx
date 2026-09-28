@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { useCalendlyReady } from "@/components/calendly/calendly-scripts";
 import { site } from "@/content/site";
@@ -28,6 +28,18 @@ function isCalendlyLoaded(): boolean {
   return typeof window !== "undefined" && Boolean(window.Calendly);
 }
 
+function subscribeToClientMount() {
+  return () => {};
+}
+
+function getClientMountSnapshot() {
+  return true;
+}
+
+function getServerMountSnapshot() {
+  return false;
+}
+
 function CalendlyEmbedPlaceholder({ layout }: { layout: CalendlyEmbedLayout }) {
   return (
     <div
@@ -47,13 +59,13 @@ export function CalendlyEmbed({
 }: CalendlyEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contextReady = useCalendlyReady();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribeToClientMount,
+    getClientMountSnapshot,
+    getServerMountSnapshot,
+  );
   const [widgetHeight, setWidgetHeight] = useState(PAGE_WIDGET_HEIGHT);
   const ready = contextReady || isCalendlyLoaded();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (layout !== "page") {

@@ -9,19 +9,13 @@ const securityHeaders = [
   },
 ];
 
-const agentToBlockRedirects = [
-  { source: "/agents", destination: "/blocks", permanent: true },
-  { source: "/agents/lead-pre-kwalificator", destination: "/blocks/aanvraagfilter", permanent: true },
-  { source: "/blocks/slim-eerste-contact", destination: "/blocks/aanvraagfilter", permanent: true },
-  { source: "/agents/support-agent-247", destination: "/blocks/digitale-receptie", permanent: true },
-  { source: "/agents/email-review-assistent", destination: "/blocks/review-hulp", permanent: true },
-  { source: "/agents/afspraak-doorverwijzer", destination: "/blocks/digitale-receptie", permanent: true },
-  { source: "/agents/offerte-generator", destination: "/blocks", permanent: true },
-  { source: "/agents/factuur-extractor", destination: "/blocks", permanent: true },
-  { source: "/agents/:slug", destination: "/blocks/:slug", permanent: true },
-  { source: "/agents/upsell-bestel-assistent", destination: "/blocks", permanent: true },
-  { source: "/agents/storing-nazorg-bot", destination: "/blocks/digitale-receptie", permanent: true },
-  { source: "/agents/triage-agenda-planner", destination: "/blocks/digitale-receptie", permanent: true },
+const legacyRedirects = [
+  { source: "/agents", destination: "/#prijzen", permanent: true },
+  { source: "/agents/:slug", destination: "/#prijzen", permanent: true },
+  { source: "/blocks", destination: "/#prijzen", permanent: true },
+  { source: "/blocks/:slug", destination: "/#prijzen", permanent: true },
+  { source: "/sectoren", destination: "/#prijzen", permanent: true },
+  { source: "/sectoren/:slug", destination: "/#prijzen", permanent: true },
 ];
 
 const nextConfig: NextConfig = {
@@ -30,9 +24,12 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
-    return agentToBlockRedirects;
+    return legacyRedirects;
   },
   async headers() {
     return [

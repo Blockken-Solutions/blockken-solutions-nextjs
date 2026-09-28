@@ -1,20 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
+import { ScanSearch } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 import { BackToHomeLink } from "@/components/layout/back-to-home-link";
 import { SectionLink } from "@/components/layout/section-link";
-import { ScanCoreWebVitals } from "@/components/scan/scan-core-web-vitals";
-import { ScanFindings } from "@/components/scan/scan-findings";
-import { ScanLoadingSteps } from "@/components/scan/scan-loading-steps";
-import { ScanResults } from "@/components/scan/scan-results";
-import { ScanResultsCta } from "@/components/scan/scan-results-cta";
 import { ScanUrlForm } from "@/components/scan/scan-url-form";
 import { ScanVerdictCard } from "@/components/scan/scan-verdict";
 import { SectionLabel } from "@/components/landing/section-label";
-import { DynamicIcon } from "@/components/ui/dynamic-icon";
 import { Button } from "@/components/ui/button";
 import { ButtonLabel } from "@/components/ui/button-label";
 import { Section, PageHeading } from "@/components/ui/section";
@@ -23,6 +19,26 @@ import { scanWithUrl } from "@/lib/paths";
 import { buildScanVerdict } from "@/lib/scan/scan-verdict";
 import { useScan } from "@/lib/scan/use-scan";
 import { parseScanUrlParam } from "@/lib/scan-url";
+
+const ScanLoadingSteps = dynamic(() =>
+  import("@/components/scan/scan-loading-steps").then((mod) => mod.ScanLoadingSteps),
+);
+
+const ScanResults = dynamic(() =>
+  import("@/components/scan/scan-results").then((mod) => mod.ScanResults),
+);
+
+const ScanCoreWebVitals = dynamic(() =>
+  import("@/components/scan/scan-core-web-vitals").then((mod) => mod.ScanCoreWebVitals),
+);
+
+const ScanFindings = dynamic(() =>
+  import("@/components/scan/scan-findings").then((mod) => mod.ScanFindings),
+);
+
+const ScanResultsCta = dynamic(() =>
+  import("@/components/scan/scan-results-cta").then((mod) => mod.ScanResultsCta),
+);
 
 type ScanPageContentProps = {
   content: ScanPageContent;
@@ -50,11 +66,11 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
     <Section fade={false}>
       <div className="mx-auto max-w-4xl">
         <BackToHomeLink className="mb-6" />
-        <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-brand-highlight/20">
-          <DynamicIcon name="scan-search" className="size-6 text-brand-highlight" />
+        <div className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-primary shadow-soft">
+          <ScanSearch className="size-6 text-primary-foreground" aria-hidden />
         </div>
         <SectionLabel>Gratis scan</SectionLabel>
-        <PageHeading className="text-4xl font-bold sm:text-5xl">
+        <PageHeading>
           {content.heading}
         </PageHeading>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
@@ -66,7 +82,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
             <section className="mt-12" aria-labelledby="scan-intro-heading">
               <h2
                 id="scan-intro-heading"
-                className="text-2xl font-bold text-foreground sm:text-3xl"
+                className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
               >
                 {content.intro.heading}
               </h2>
@@ -74,9 +90,9 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                 {content.intro.items.map((item) => (
                   <li
                     key={item.title}
-                    className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+                    className="border border-border bg-card rounded-2xl p-5 shadow-soft"
                   >
-                    <h3 className="font-semibold text-foreground">{item.title}</h3>
+                    <h3 className="font-bold tracking-tight text-foreground">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
@@ -88,7 +104,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
             <section className="mt-12" aria-labelledby="scan-steps-heading">
               <h2
                 id="scan-steps-heading"
-                className="text-2xl font-bold text-foreground sm:text-3xl"
+                className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
               >
                 Hoe werkt het?
               </h2>
@@ -96,13 +112,13 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
                 {content.howItWorks.map((step) => (
                   <li
                     key={step.step}
-                    className="flex gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm"
+                    className="flex gap-4 border border-border bg-card rounded-2xl p-5 shadow-soft"
                   >
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10 text-sm font-bold text-brand-accent">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                       {step.step}
                     </span>
                     <div>
-                      <h3 className="font-semibold text-foreground">{step.title}</h3>
+                      <h3 className="font-bold tracking-tight text-foreground">{step.title}</h3>
                       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                         {step.description}
                       </p>
@@ -115,10 +131,10 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
         ) : null}
 
         <section
-          className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-sm sm:p-12"
+          className="mt-12 border border-border bg-card rounded-2xl p-8 shadow-soft-lg sm:p-12"
           aria-labelledby="scan-form-heading"
         >
-          <h2 id="scan-form-heading" className="text-center text-2xl font-bold text-foreground">
+          <h2 id="scan-form-heading" className="text-center text-2xl font-bold tracking-tight text-foreground">
             Start uw scan
           </h2>
 
@@ -126,7 +142,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
             <ul className="mx-auto mt-6 max-w-xl space-y-2 text-sm text-muted-foreground">
               {content.painPoints.map((point) => (
                 <li key={point} className="flex gap-2">
-                  <span className="text-brand-accent" aria-hidden="true">
+                  <span className="text-primary" aria-hidden="true">
                     •
                   </span>
                   <span>{point}</span>
@@ -151,7 +167,7 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
 
               {scanState.status === "error" ? (
                 <div
-                  className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-center text-sm text-red-700 dark:text-red-400"
+                  className="border border-border bg-red-500/10 px-4 py-3 text-center text-sm text-red-700 dark:text-red-400"
                   role="alert"
                 >
                   {scanState.message}
@@ -185,21 +201,21 @@ export function ScanPageContent({ content }: ScanPageContentProps) {
         </section>
 
         {showBottomCta ? (
-          <div className="mt-16 rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-sm sm:px-12">
-            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+          <div className="mt-16 border border-border bg-card rounded-2xl px-8 py-12 text-center shadow-soft-lg sm:px-12">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {content.cta.heading}
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-muted-foreground">
               {content.cta.subheading}
             </p>
             <div className="mx-auto mt-8 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-              <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
+              <Button asChild variant="primary" size="cta" className="w-full sm:w-auto">
                 <SectionLink href={content.cta.primary.href}>
                   <ButtonLabel>{content.cta.primary.label}</ButtonLabel>
                 </SectionLink>
               </Button>
               {content.cta.secondary ? (
-                <Button asChild variant="secondary" shape="pill" size="cta" className="w-full sm:w-auto">
+                <Button asChild variant="secondary" size="cta" className="w-full sm:w-auto">
                   <Link href={content.cta.secondary.href}>{content.cta.secondary.label}</Link>
                 </Button>
               ) : null}

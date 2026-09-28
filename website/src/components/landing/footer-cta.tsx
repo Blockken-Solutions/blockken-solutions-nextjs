@@ -27,7 +27,9 @@ function ContactColumn({
   return (
     <div className={className}>
       <div className="mb-6">
-        <p className="text-base font-semibold text-foreground">{heading}</p>
+        <p className="text-base font-bold tracking-tight text-foreground">
+          {heading}
+        </p>
         <SectionDescription className="mt-2">{description}</SectionDescription>
       </div>
       {children}
@@ -37,20 +39,22 @@ function ContactColumn({
 
 export function FooterCta({ content }: FooterCtaProps) {
   return (
-    <Section id="contact" overlap className="pb-16">
-      <div className="mx-auto max-w-5xl rounded-3xl border border-border bg-card px-5 py-10 shadow-sm sm:px-8 sm:py-14 lg:px-14 lg:py-16">
+    <Section id="contact" className="pb-16" variant="muted">
+      <div className="mx-auto max-w-5xl rounded-3xl bg-primary px-5 py-10 text-primary-foreground shadow-soft-lg sm:px-8 sm:py-14 lg:px-14 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
-          <SectionHeading className="text-3xl font-bold sm:text-4xl">
+          <SectionHeading className="text-primary-foreground">
             {content.heading}
           </SectionHeading>
-          <SectionDescription className="mt-4">{content.subheading}</SectionDescription>
+          <SectionDescription className="mt-4 text-primary-foreground">
+            {content.subheading}
+          </SectionDescription>
         </div>
 
-        <div className="mt-10 border-b border-border pb-8 mb-8 sm:mt-12 sm:pb-12 sm:mb-12">
+        <div className="mt-10 mb-8 border-b border-white/20 pb-8 sm:mt-12 sm:mb-12 sm:pb-12">
           <ContactPlanCta content={content.calendly} variant="banner" />
         </div>
 
-        <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-0">
+        <div className="grid items-start gap-12 rounded-2xl bg-card p-6 text-foreground shadow-soft-lg sm:p-8 lg:grid-cols-2 lg:gap-0">
           <div className="lg:pr-10">
             <ContactDetails
               heading={content.directContact.heading}

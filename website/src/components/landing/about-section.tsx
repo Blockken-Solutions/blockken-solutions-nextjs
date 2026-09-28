@@ -11,18 +11,83 @@ type AboutSectionProps = {
   content: AboutContent;
 };
 
+function ProjectLogo({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border border-border bg-white shadow-soft">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-contain p-1.5"
+        sizes="48px"
+      />
+    </div>
+  );
+}
+
+function ProjectHighlightCard({
+  project,
+  asLink,
+}: {
+  project: AboutContent["portfolioHighlights"][number];
+  asLink: boolean;
+}) {
+  const logoAlt = project.logoAlt ?? project.client;
+  const inner = (
+    <>
+      <div className="flex items-start gap-3">
+        {project.logo ? (
+          <ProjectLogo src={project.logo} alt={logoAlt} />
+        ) : null}
+        <div className="min-w-0 flex-1">
+          <p className="font-label text-xs text-muted-foreground">{project.client}</p>
+          <p
+            className={
+              asLink
+                ? "mt-1 font-bold text-foreground transition-colors group-hover:text-primary"
+                : "mt-1 font-bold text-foreground"
+            }
+          >
+            {project.title}
+          </p>
+        </div>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.outcome}</p>
+    </>
+  );
+
+  if (asLink && project.href) {
+    return (
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 shadow-soft transition-shadow hover:shadow-soft-hover"
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-4 shadow-soft">
+      {inner}
+    </div>
+  );
+}
+
 export function AboutSection({ content }: AboutSectionProps) {
   return (
-    <Section id="over-mij" overlap overhang>
-      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+    <Section id="over-mij">
+      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="mx-auto w-full max-w-sm lg:mx-0">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-muted">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-border bg-muted shadow-soft-lg">
             {content.portrait ? (
               <Image
                 src={content.portrait}
                 alt={content.portraitAlt}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-400 hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 80vw, 24rem"
               />
             ) : (
@@ -40,14 +105,14 @@ export function AboutSection({ content }: AboutSectionProps) {
                   key={credential.label}
                   className="credential-pill flex items-center gap-3 rounded-2xl px-4 py-3"
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-accent text-white">
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                     <Icon className="size-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                    <p className="font-label text-xs text-muted-foreground">
                       {credential.type}
                     </p>
-                    <p className="text-sm font-semibold leading-snug text-foreground">
+                    <p className="text-sm font-bold leading-snug text-foreground">
                       {credential.label}
                     </p>
                     {credential.issuer ? (
@@ -64,7 +129,7 @@ export function AboutSection({ content }: AboutSectionProps) {
 
         <div className="lg:pl-4">
           <SectionLabel>{content.sectionLabel}</SectionLabel>
-          <SectionHeading className="text-3xl font-bold sm:text-4xl">
+          <SectionHeading>
             {content.heading}
           </SectionHeading>
           <SectionDescription className="mt-6">{content.body}</SectionDescription>
@@ -72,50 +137,23 @@ export function AboutSection({ content }: AboutSectionProps) {
           <ul className="mt-8 space-y-4">
             {content.skills.map((skill) => (
               <li key={skill} className="flex items-start gap-3">
-                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/10">
-                  <Check className="size-3.5 text-brand-accent" />
+                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary-soft">
+                  <Check className="size-3.5 text-brand-highlight-text" />
                 </span>
-                <span className="text-foreground">{skill}</span>
+                <span className="font-medium text-foreground">{skill}</span>
               </li>
             ))}
           </ul>
 
           {content.portfolioHighlights.length > 0 ? (
             <div className="mt-10">
-              <p className="text-xs font-bold tracking-[0.18em] text-brand-highlight-text uppercase">
+              <p className="font-label text-xs text-brand-highlight-text">
                 Eerdere projecten
               </p>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {content.portfolioHighlights.map((project) => (
                   <li key={project.title}>
-                    {project.href ? (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex h-full flex-col rounded-2xl border border-border/80 bg-card p-4 shadow-sm transition-all hover:border-brand-highlight/25 hover:shadow-md"
-                      >
-                        <p className="text-xs font-medium text-muted-foreground">
-                          {project.client}
-                        </p>
-                        <p className="mt-1 font-semibold text-foreground transition-colors group-hover:text-brand-accent">
-                          {project.title}
-                        </p>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                          {project.outcome}
-                        </p>
-                      </a>
-                    ) : (
-                      <div className="flex h-full flex-col rounded-2xl border border-border/80 bg-card p-4 shadow-sm">
-                        <p className="text-xs font-medium text-muted-foreground">
-                          {project.client}
-                        </p>
-                        <p className="mt-1 font-semibold text-foreground">{project.title}</p>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                          {project.outcome}
-                        </p>
-                      </div>
-                    )}
+                    <ProjectHighlightCard project={project} asLink={Boolean(project.href)} />
                   </li>
                 ))}
               </ul>
@@ -128,7 +166,7 @@ export function AboutSection({ content }: AboutSectionProps) {
                 href={content.portfolioLink.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-foreground underline-offset-4 hover:underline"
+                className="text-sm font-bold text-foreground underline-offset-4 hover:underline"
               >
                 {content.portfolioLink.label}
               </a>
@@ -146,7 +184,7 @@ export function AboutSection({ content }: AboutSectionProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.label}
-                      className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:border-brand-highlight/40 hover:bg-brand-highlight/5 hover:text-brand-accent"
+                      className="inline-flex size-11 items-center justify-center border border-border bg-card text-foreground shadow-soft transition-[transform,box-shadow] hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-primary hover:shadow-[var(--shadow-soft-lg-active)]"
                     >
                       <Icon className="size-5" />
                     </a>

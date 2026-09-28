@@ -51,7 +51,7 @@ export function FaqContent({ content }: FaqContentProps) {
       <div className="mx-auto max-w-3xl">
         <BackToHomeLink className="mb-6" />
         <SectionLabel>FAQ</SectionLabel>
-        <PageHeading className="text-4xl font-bold sm:text-5xl">
+        <PageHeading>
           {content.heading}
         </PageHeading>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
@@ -71,10 +71,10 @@ export function FaqContent({ content }: FaqContentProps) {
                   aria-pressed={activeCategory === category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={cn(
-                    "min-h-11 shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                    "min-h-11 shrink-0 rounded-full border border-border px-4 py-2 text-sm font-medium transition-colors",
                     activeCategory === category.id
-                      ? "border-brand-accent bg-brand-accent font-semibold text-white shadow-sm"
-                      : "border-border bg-card text-muted-foreground hover:border-brand-highlight/30 hover:text-foreground",
+                      ? "bg-primary font-bold text-primary-foreground shadow-soft"
+                      : "bg-card text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {category.label}
@@ -82,10 +82,6 @@ export function FaqContent({ content }: FaqContentProps) {
               ))}
             </div>
           </nav>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-linear-to-l from-background to-transparent sm:hidden"
-          />
         </div>
 
         <div className="mt-10 space-y-10">
@@ -94,13 +90,13 @@ export function FaqContent({ content }: FaqContentProps) {
               {activeCategory === "alle" ? (
                 <h2
                   id={`faq-${category.id}`}
-                  className="mb-4 text-sm font-semibold tracking-wide text-brand-accent uppercase"
+                  className="mb-4 text-sm font-semibold tracking-wide text-brand-highlight-text"
                 >
                   {category.label}
                 </h2>
               ) : null}
 
-              <div className="rounded-2xl border border-border bg-card px-6 shadow-sm">
+              <div className="rounded-2xl border border-border bg-card px-6 shadow-soft">
                 <Accordion type="single" collapsible>
                   {category.items.map((item) => (
                     <AccordionItem key={item.id} value={item.id} id={item.id}>
@@ -116,8 +112,8 @@ export function FaqContent({ content }: FaqContentProps) {
           ))}
         </div>
 
-        <div className="mt-16 rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-sm sm:px-12">
-          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+        <div className="mt-16 rounded-3xl border border-border bg-card px-8 py-12 text-center shadow-soft-lg sm:px-12">
+          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             {content.cta.heading}
           </h2>
           <SectionDescription className="mx-auto mt-3 max-w-lg">

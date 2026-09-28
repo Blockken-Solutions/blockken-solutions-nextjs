@@ -1,7 +1,6 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
-
 import { ImageResponse } from "next/og";
+
+import { LogoMarkGraphic } from "@/components/layout/logo-mark-graphic";
 
 export const ogImageSize = { width: 1200, height: 630 };
 export const ogImageContentType = "image/png";
@@ -12,24 +11,11 @@ type CreateOgImageOptions = {
   footer?: string;
 };
 
-let logoDataUrl: string | undefined;
-
-async function getLogoDataUrl(): Promise<string> {
-  if (!logoDataUrl) {
-    const logoBuffer = await readFile(join(process.cwd(), "public/logo.svg"));
-    logoDataUrl = `data:image/svg+xml;base64,${logoBuffer.toString("base64")}`;
-  }
-
-  return logoDataUrl;
-}
-
 export async function createOgImage({
   title,
   description,
   footer = "Gebouwd in België.",
 }: CreateOgImageOptions) {
-  const logoSrc = await getLogoDataUrl();
-
   return new ImageResponse(
     (
       <div
@@ -40,8 +26,8 @@ export async function createOgImage({
           width: "100%",
           height: "100%",
           padding: "64px",
-          background: "#ffffff",
-          color: "#0a0a0a",
+          background: "#F7F4EF",
+          color: "#1C1917",
           fontFamily: "sans-serif",
         }}
       >
@@ -52,18 +38,18 @@ export async function createOgImage({
             gap: "20px",
           }}
         >
-          <img src={logoSrc} width={56} height={56} alt="" />
+          <LogoMarkGraphic width={56} height={56} ink="#171717" accent="#F97316" />
           <div
             style={{
               display: "flex",
               alignItems: "center",
               fontSize: 32,
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
             }}
           >
             blockken
-            <span style={{ color: "#f97316" }}>.</span>
+            <span style={{ color: "#F97316" }}>.</span>
             solutions
           </div>
         </div>
@@ -71,8 +57,9 @@ export async function createOgImage({
           <div
             style={{
               fontSize: 56,
-              fontWeight: 700,
-              lineHeight: 1.1,
+              fontWeight: 800,
+              lineHeight: 0.95,
+              letterSpacing: "-0.04em",
               maxWidth: "900px",
             }}
           >
@@ -82,7 +69,7 @@ export async function createOgImage({
             style={{
               fontSize: 28,
               lineHeight: 1.4,
-              color: "#525252",
+              color: "#57534E",
               maxWidth: "800px",
             }}
           >
@@ -95,14 +82,15 @@ export async function createOgImage({
             alignItems: "center",
             gap: "16px",
             fontSize: 22,
-            color: "#737373",
+            fontWeight: 700,
+            color: "#1C1917",
           }}
         >
           <div
             style={{
               width: "48px",
-              height: "4px",
-              background: "#f97316",
+              height: "6px",
+              background: "#F97316",
               borderRadius: "999px",
             }}
           />

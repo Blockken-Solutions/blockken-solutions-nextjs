@@ -14,7 +14,7 @@ type HeaderActionsProps = {
 
 export function DesktopNav() {
   return (
-    <nav className="hidden min-w-0 flex-1 items-center justify-center gap-4 lg:flex xl:gap-7">
+    <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 md:flex lg:gap-2">
       {navLinks.map((link) => (
         <NavLink key={link.href} link={link} variant="desktop" />
       ))}

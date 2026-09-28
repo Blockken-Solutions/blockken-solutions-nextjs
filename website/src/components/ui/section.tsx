@@ -3,11 +3,12 @@ import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
 type SectionProps = ComponentPropsWithoutRef<"section"> & {
-  variant?: "default" | "muted" | "card" | "elevated";
+  variant?: "default" | "muted" | "card" | "elevated" | "peach" | "mint" | "sky" | "lavender";
   containerClassName?: string;
   overlap?: boolean;
   overhang?: boolean;
   fade?: boolean;
+  grid?: boolean;
 };
 
 export function Section({
@@ -17,32 +18,37 @@ export function Section({
   overlap = false,
   overhang = false,
   fade = false,
+  grid = false,
   children,
   ...props
 }: SectionProps) {
-  const hasTopLayer = overlap || variant === "elevated";
-  const hasBottomLayer = overhang;
-  const isLayered = hasTopLayer || hasBottomLayer;
+  void fade;
+  void grid;
 
   return (
     <section
       className={cn(
         "px-[var(--container-px)] py-[var(--section-py)]",
-        variant === "default" && "bg-background",
-        variant === "muted" && "bg-muted section-recessed",
-        variant === "card" && "border-b border-border bg-card",
-        isLayered && "relative z-10",
-        hasTopLayer && "section-shadow-top",
-        hasBottomLayer && "section-shadow-bottom",
-        overlap && "section-overlap",
-        fade && variant === "muted" && "section-fade-muted",
-        fade && variant !== "muted" && "section-fade-default",
+        variant === "default" && "section-surface section-surface--default",
+        variant === "muted" && "section-surface section-surface--muted",
+        variant === "card" &&
+          "section-surface section-surface--card border-b border-border",
+        variant === "elevated" &&
+          "section-surface section-surface--card border-y border-border",
+        variant === "peach" && "section-surface section-surface--peach",
+        variant === "mint" && "section-surface section-surface--mint",
+        variant === "sky" && "section-surface section-surface--sky",
+        variant === "lavender" && "section-surface section-surface--lavender",
+        (overlap || overhang) && "relative z-10",
         className,
       )}
       {...props}
     >
       <div
-        className={cn("mx-auto w-full max-w-[var(--container-max)]", containerClassName)}
+        className={cn(
+          "mx-auto w-full max-w-[var(--container-max)]",
+          containerClassName,
+        )}
       >
         {children}
       </div>
@@ -56,7 +62,7 @@ export function SectionHeading({ className, ...props }: SectionHeadingProps) {
   return (
     <h2
       className={cn(
-        "text-3xl font-semibold tracking-tight text-foreground",
+        "font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl",
         className,
       )}
       {...props}
@@ -70,7 +76,7 @@ export function PageHeading({ className, ...props }: PageHeadingProps) {
   return (
     <h1
       className={cn(
-        "text-3xl font-semibold tracking-tight text-foreground",
+        "font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl",
         className,
       )}
       {...props}

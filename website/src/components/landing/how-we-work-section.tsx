@@ -14,13 +14,11 @@ type HowWeWorkSectionProps = {
 
 export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
   return (
-    <Section id="hoe-het-werkt" variant="muted">
-      <div className="text-center">
+    <Section id="hoe-het-werkt" variant="default">
+      <div className="max-w-3xl">
         <SectionLabel className="mb-4">{content.sectionLabel}</SectionLabel>
-        <SectionHeading className="mx-auto max-w-3xl text-4xl font-bold sm:text-5xl">
-          {content.heading}
-        </SectionHeading>
-        <SectionDescription className="mx-auto mt-4 max-w-2xl">
+        <SectionHeading>{content.heading}</SectionHeading>
+        <SectionDescription className="mt-4 max-w-2xl">
           {content.subheading}
         </SectionDescription>
       </div>
@@ -28,21 +26,23 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
       <ol className="relative mt-14 hidden gap-6 lg:grid lg:grid-cols-4">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-10 right-[12.5%] left-[12.5%] h-px bg-linear-to-r from-transparent via-brand-highlight/40 to-transparent"
+          className="pointer-events-none absolute top-10 right-[12.5%] left-[12.5%] h-1 bg-border"
         />
         {content.steps.map((step) => {
           const Icon = getIcon(step.icon);
           return (
             <li key={step.step} className="relative text-center">
               <div className="mx-auto flex size-20 flex-col items-center justify-center gap-1">
-                <span className="flex size-14 items-center justify-center rounded-full border-2 border-brand-highlight/20 bg-background shadow-sm">
-                  <Icon className="size-6 text-brand-accent" aria-hidden="true" />
+                <span className="flex size-14 items-center justify-center rounded-2xl bg-primary shadow-soft">
+                  <Icon className="size-6 text-primary-foreground" aria-hidden="true" />
                 </span>
-                <span className="text-xs font-bold tracking-wider text-brand-accent uppercase">
+                <span className="font-label mt-2 text-xs text-brand-highlight-text">
                   Stap {step.step}
                 </span>
               </div>
-              <h3 className="mt-5 text-lg font-bold text-foreground">{step.title}</h3>
+              <h3 className="mt-5 text-lg font-bold tracking-tight text-foreground">
+                {step.title}
+              </h3>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                 {step.description}
               </p>
@@ -60,23 +60,25 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
               <div className="flex flex-col items-center">
                 <span
                   className={cn(
-                    "flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-brand-highlight/20 bg-background shadow-sm",
+                    "flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary shadow-soft",
                   )}
                 >
-                  <Icon className="size-5 text-brand-accent" aria-hidden="true" />
+                  <Icon className="size-5 text-primary-foreground" aria-hidden="true" />
                 </span>
                 {!isLast ? (
                   <span
                     aria-hidden="true"
-                    className="mt-2 w-px flex-1 border-l border-dashed border-brand-highlight/30"
+                    className="mt-2 w-1 flex-1 bg-border"
                   />
                 ) : null}
               </div>
               <div className="min-w-0 pt-1 pb-2">
-                <p className="text-xs font-bold tracking-wider text-brand-accent uppercase">
+                <p className="font-label text-xs text-brand-highlight-text">
                   Stap {step.step}
                 </p>
-                <h3 className="mt-1 text-lg font-bold text-foreground">{step.title}</h3>
+                <h3 className="mt-1 text-lg font-bold tracking-tight text-foreground">
+                  {step.title}
+                </h3>
                 <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                   {step.description}
                 </p>
@@ -86,7 +88,7 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
         })}
       </ol>
 
-      <div className="mx-auto mt-12 flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+      <div className="mt-12 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
         <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
           <SectionLink href={content.primaryCta.href}>
             <ButtonLabel>{content.primaryCta.label}</ButtonLabel>

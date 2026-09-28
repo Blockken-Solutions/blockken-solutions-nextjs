@@ -21,7 +21,11 @@
 /build
 
 # misc
+.venv-img
 .DS_Store
+lighthouse-*.json
+/lighthouse-reports/
+*.report.html
 *.pem
 
 # debug

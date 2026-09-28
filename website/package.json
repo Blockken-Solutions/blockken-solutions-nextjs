@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:logo": "node scripts/generate-logo-png.mjs",
-    "generate:block-svgs": "node scripts/generate-block-walkthrough-svgs.mjs"
+    "generate:logo": "node scripts/generate-logo-mark.mjs && node scripts/generate-logo-png.mjs",
+    "generate:logo-mark": "node scripts/generate-logo-mark.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -32,6 +32,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "playwright": "^1.61.1",
+    "potrace": "^2.1.8",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -17,19 +17,6 @@ export function scanWithUrl(url: string): string {
   return `${SCAN_PATH}?url=${encodeURIComponent(url)}`;
 }
 
-export function contactWithBlock(blockSlug: string): string {
-  return `/?block=${encodeURIComponent(blockSlug)}#${CONTACT_SECTION_ID}`;
-}
-
-export function contactWithSector(sectorSlug: string): string {
-  return `/?sector=${encodeURIComponent(sectorSlug)}#${CONTACT_SECTION_ID}`;
-}
-
-/** @deprecated Use contactWithBlock */
-export function contactWithAgent(agentSlug: string): string {
-  return contactWithBlock(agentSlug);
-}
-
 export function contactWithScan(result: {
   url: string;
   performance: number;

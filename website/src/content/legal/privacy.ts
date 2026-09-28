@@ -53,7 +53,6 @@ export const privacyPage: LegalPageContent = {
         "Resend — e-mailverzending voor contactformulieren",
         "Calendly — online planning van kennismakingsgesprekken",
         "Google PageSpeed Insights — gratis website scan",
-        "OpenAI / Anthropic — AI-verwerking voor Blocks (indien van toepassing)",
       ],
     },
     {

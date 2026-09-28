@@ -1,5 +1,6 @@
 export const SECTION_NAV_EVENT = "sectionnav:scroll";
 const CLEAN_HOME_NAV_KEY = "sectionnav:clean-home";
+const PENDING_SECTION_KEY = "sectionnav:pending";
 
 export function markCleanHomeNavigation(): void {
   sessionStorage.setItem(CLEAN_HOME_NAV_KEY, "1");
@@ -11,7 +12,27 @@ export function consumeCleanHomeNavigation(): boolean {
   }
 
   sessionStorage.removeItem(CLEAN_HOME_NAV_KEY);
+  sessionStorage.removeItem(PENDING_SECTION_KEY);
   return true;
+}
+
+export function markPendingSectionScroll(id: string): void {
+  sessionStorage.setItem(PENDING_SECTION_KEY, id);
+}
+
+export function peekPendingSectionScroll(): string | null {
+  const id = sessionStorage.getItem(PENDING_SECTION_KEY);
+  return id || null;
+}
+
+export function consumePendingSectionScroll(): string | null {
+  const id = peekPendingSectionScroll();
+  if (!id) {
+    return null;
+  }
+
+  sessionStorage.removeItem(PENDING_SECTION_KEY);
+  return id;
 }
 
 export function resetToCleanHome(): void {
@@ -98,15 +119,42 @@ export function getHashSectionId(): string | null {
   return hash || null;
 }
 
+function sectionIdsInDocumentOrder(sectionIds: string[]): string[] {
+  return [...sectionIds].sort((a, b) => {
+    const elementA = document.getElementById(a);
+    const elementB = document.getElementById(b);
+
+    if (!elementA && !elementB) {
+      return 0;
+    }
+
+    if (!elementA) {
+      return 1;
+    }
+
+    if (!elementB) {
+      return -1;
+    }
+
+    return (
+      elementA.getBoundingClientRect().top +
+      window.scrollY -
+      (elementB.getBoundingClientRect().top + window.scrollY)
+    );
+  });
+}
+
 export function resolveActiveSection(sectionIds: string[]): string | null {
   const activationLine = getHeaderOffset();
   let current: string | null = null;
 
-  for (const id of sectionIds) {
+  for (const id of sectionIdsInDocumentOrder(sectionIds)) {
     const element = document.getElementById(id);
-    if (!element) continue;
+    if (!element) {
+      continue;
+    }
 
-    if (element.getBoundingClientRect().top <= activationLine) {
+    if (element.getBoundingClientRect().top <= activationLine + 1) {
       current = id;
     }
   }
@@ -122,4 +170,32 @@ export function waitForLayout(): Promise<void> {
       });
     });
   });
+}
+
+type ScrollToSectionWhenReadyOptions = ScrollToSectionOptions & {
+  maxAttempts?: number;
+  attemptDelayMs?: number;
+};
+
+export async function scrollToSectionWhenReady(
+  id: string,
+  {
+    maxAttempts = 40,
+    attemptDelayMs = 32,
+    ...scrollOptions
+  }: ScrollToSectionWhenReadyOptions = {},
+): Promise<boolean> {
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    await waitForLayout();
+
+    if (scrollToSection(id, scrollOptions)) {
+      return true;
+    }
+
+    await new Promise((resolve) => {
+      window.setTimeout(resolve, attemptDelayMs);
+    });
+  }
+
+  return false;
 }

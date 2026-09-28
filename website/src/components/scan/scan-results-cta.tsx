@@ -15,8 +15,8 @@ type ScanResultsCtaProps = {
 
 export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps) {
   return (
-    <div className="rounded-2xl border border-border bg-muted/30 px-6 py-8 text-center sm:px-10">
-      <h3 className="text-xl font-bold text-foreground sm:text-2xl">
+    <div className="border border-border bg-muted px-6 py-8 text-center shadow-soft sm:px-10">
+      <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
         {verdict.ctaHeading}
       </h3>
       <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -26,7 +26,6 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
         <Button
           asChild
           variant="primary"
-          shape="pill"
           size="cta"
           className="h-auto min-h-11 w-full whitespace-normal py-2.5 leading-snug sm:h-11 sm:w-auto sm:whitespace-nowrap sm:py-0"
         >
@@ -46,7 +45,6 @@ export function ScanResultsCta({ result, verdict, faqHref }: ScanResultsCtaProps
           <Button
             asChild
             variant="secondary"
-            shape="pill"
             size="cta"
             className="h-auto min-h-11 w-full whitespace-normal py-2.5 leading-snug sm:h-11 sm:w-auto sm:whitespace-nowrap sm:py-0"
           >

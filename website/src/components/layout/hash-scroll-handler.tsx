@@ -5,10 +5,11 @@ import { Suspense, useEffect, useRef } from "react";
 
 import {
   consumeCleanHomeNavigation,
+  consumePendingSectionScroll,
   getHashSectionId,
+  peekPendingSectionScroll,
   resetToCleanHome,
-  scrollToSection,
-  waitForLayout,
+  scrollToSectionWhenReady,
 } from "@/lib/scroll-to-section";
 
 function HashScrollHandlerInner() {
@@ -32,10 +33,19 @@ function HashScrollHandlerInner() {
         return;
       }
 
-      const sectionId = getHashSectionId();
+      const pendingSection = peekPendingSectionScroll();
+      const sectionId = pendingSection ?? getHashSectionId();
+
       if (sectionId) {
-        await waitForLayout();
-        scrollToSection(sectionId, { updateHash: false });
+        const scrolled = await scrollToSectionWhenReady(sectionId, {
+          behavior: pendingSection || cameFromOtherPage ? "instant" : "smooth",
+          updateHash: true,
+        });
+
+        if (scrolled && pendingSection) {
+          consumePendingSectionScroll();
+        }
+
         return;
       }
 

@@ -40,6 +40,7 @@ export type SiteConfig = {
     tradeName: string;
     responsiblePerson: string;
     jurisdiction: string;
+    vatNumber: string;
   };
   organization: OrganizationConfig;
   author: AuthorConfig;
@@ -51,15 +52,29 @@ export type ContactInfo = {
   phone?: string;
 };
 
+export type HeroClientLogo = {
+  src: string;
+  alt: string;
+  client: string;
+};
+
+export type HeroServiceChip = {
+  label: string;
+  href: string;
+};
+
 export type HeroContent = {
   badge: string;
   headlineLines: string[];
-  headlineHighlight: string;
   subheadline: string;
   summary?: string;
   primaryCta: CtaLink;
   secondaryCta: CtaLink;
+  stats: string[];
+  serviceChips: HeroServiceChip[];
   trustBarItems: string[];
+  clientLogosLabel: string;
+  clientLogos: HeroClientLogo[];
 };
 
 export type ServiceItem = {
@@ -74,111 +89,6 @@ export type ServicesContent = {
   sectionLabel: string;
   heading: string;
   items: ServiceItem[];
-};
-
-export type BlockItem = {
-  slug: string;
-  title: string;
-  description: string;
-  category: string;
-  icon: string;
-  sectorTags: string[];
-};
-
-export type BlockWalkthroughStep = {
-  step: number;
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-  animated?: boolean;
-};
-
-export type BlockWalkthrough = {
-  heading?: string;
-  intro?: string;
-  steps: BlockWalkthroughStep[];
-};
-
-export type BlockFaqItem = {
-  id: string;
-  question: string;
-  answer: string;
-};
-
-export type BlockListing = BlockItem & {
-  tagline: string;
-  summary: string;
-  includes: string[];
-  outcome: string;
-  minTier: string;
-  includedInTier?: string;
-  relatedSlugs?: string[];
-  demoWalkthrough: BlockWalkthrough;
-  idealFor?: string[];
-  notIdealFor?: string;
-  blockFaq?: BlockFaqItem[];
-};
-
-export type SectorBlockUseCase = {
-  blockSlug: string;
-  detail: string;
-  outcome?: string;
-};
-
-export type BlocksPreviewContent = {
-  sectionLabel: string;
-  heading: string;
-  subheading: string;
-  catalogLink: CtaLink;
-  filterCategories: string[];
-  blocks: BlockItem[];
-  customBlock: CustomBlockCta;
-};
-
-export type BlocksPageContent = {
-  heading: string;
-  subheading: string;
-  tierRequirementNote: string;
-  filterCategories: string[];
-  blocks: BlockListing[];
-  customBlock: CustomBlockCta;
-  seo: SeoConfig;
-};
-
-export type SectorPainPoint = {
-  pain: string;
-  blockSlug: string;
-};
-
-export type SectorTypicalPackage = {
-  tierName: string;
-  setupPrice: string;
-  monthlyPrice: string;
-  includedBlocksNote: string;
-  extraBlockNote: string;
-  pilotSetupPrice: string;
-  roiScenario: string;
-};
-
-export type SectorListing = {
-  slug: string;
-  title: string;
-  subtitle: string;
-  intro: string;
-  painPoints: SectorPainPoint[];
-  recommendedBlockSlugs: string[];
-  blockUseCases: SectorBlockUseCase[];
-  bundleStory: string;
-  pilotNote: string;
-  typicalPackage: SectorTypicalPackage;
-  seo: SeoConfig;
-};
-
-export type SectorsPageContent = {
-  heading: string;
-  subheading: string;
-  seo: SeoConfig;
 };
 
 export type ScanTeaserContent = {
@@ -228,6 +138,8 @@ export type PortfolioHighlight = {
   client: string;
   outcome: string;
   href?: string;
+  logo?: string;
+  logoAlt?: string;
 };
 
 export type AboutContent = {
@@ -337,30 +249,8 @@ export type PricingContent = {
   sectionLabel: string;
   heading: string;
   subheading: string;
-  extraBlockNote: string;
-  extraContentNote: string;
-  blocksCatalogLink: CtaLink;
+  pricingNote: string;
   tiers: PricingTier[];
-};
-
-export type CaseStudy = {
-  slug: string;
-  sector: string;
-  title: string;
-  problem: string;
-  solution: string;
-  result: string;
-  testimonial?: {
-    quote: string;
-    name: string;
-    role: string;
-  };
-};
-
-export type CasesContent = {
-  heading: string;
-  subheading: string;
-  items: CaseStudy[];
 };
 
 export type HowWeWorkStep = {
@@ -384,7 +274,6 @@ export type HomeContent = {
   services: ServicesContent;
   pricing: PricingContent;
   howWeWork: HowWeWorkContent;
-  blocks: BlocksPreviewContent;
   scan: ScanTeaserContent;
   about: AboutContent;
   faqTeaser: FaqTeaserContent;
@@ -396,15 +285,6 @@ export type NavLink = {
   href: string;
   type?: "section" | "page";
   sectionId?: string;
-};
-
-export type CustomBlockCta = {
-  title: string;
-  description: string;
-  longDescription?: string;
-  price: string;
-  icon: string;
-  cta: CtaLink;
 };
 
 export type FooterLinkGroup = {

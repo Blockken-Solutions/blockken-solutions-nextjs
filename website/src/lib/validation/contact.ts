@@ -4,8 +4,6 @@ export type ContactFormValues = {
   phone: string;
   company: string;
   message: string;
-  block: string;
-  sector: string;
 };
 
 export type ContactFieldErrors = Partial<
@@ -50,8 +48,6 @@ export function validateContactField(
       }
       return undefined;
     case "company":
-    case "block":
-    case "sector":
       return undefined;
     default:
       return undefined;

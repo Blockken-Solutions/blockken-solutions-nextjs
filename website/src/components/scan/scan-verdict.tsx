@@ -16,16 +16,16 @@ const gradeStyles = {
 
 export function ScanVerdictCard({ verdict }: ScanVerdictCardProps) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm sm:p-8">
+    <div className="border border-border bg-card rounded-2xl p-6 text-center shadow-soft sm:p-8">
       <span
         className={cn(
-          "inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide",
+          "inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wide",
           gradeStyles[verdict.grade],
         )}
       >
         {getGradeLabel(verdict.grade)}
       </span>
-      <h3 className="mt-4 text-xl font-bold text-foreground sm:text-2xl">
+      <h3 className="mt-4 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
         {verdict.headline}
       </h3>
       <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">

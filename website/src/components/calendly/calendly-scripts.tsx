@@ -4,7 +4,6 @@ import Script from "next/script";
 import {
   createContext,
   useContext,
-  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -32,13 +31,7 @@ type CalendlyScriptsProps = {
 };
 
 export function CalendlyScripts({ children }: CalendlyScriptsProps) {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (isCalendlyLoaded()) {
-      setReady(true);
-    }
-  }, []);
+  const [ready, setReady] = useState(() => isCalendlyLoaded());
 
   const value = useMemo(() => ({ ready }), [ready]);
 

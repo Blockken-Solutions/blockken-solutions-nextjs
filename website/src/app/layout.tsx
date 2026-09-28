@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
-import { CalendlyScripts } from "@/components/calendly/calendly-scripts";
 import { HashScrollHandler } from "@/components/layout/hash-scroll-handler";
-import { CALENDLY_CSS } from "@/lib/calendly/constants";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -12,9 +10,16 @@ import { buildSiteGraph } from "@/lib/structured-data";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["700"],
 });
 
 export const metadata: Metadata = createMetadata();
@@ -27,27 +32,22 @@ export default function RootLayout({
   return (
     <html
       lang="nl-BE"
-      className={`${geistSans.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <head>
-        <link href={CALENDLY_CSS} rel="stylesheet" />
-      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-md"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:font-semibold focus:text-primary-foreground focus:shadow-soft"
         >
           Ga naar inhoud
         </a>
         <JsonLd data={buildSiteGraph()} />
-        <CalendlyScripts>
-          <HashScrollHandler />
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </CalendlyScripts>
+        <HashScrollHandler />
+        <SiteHeader />
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );
