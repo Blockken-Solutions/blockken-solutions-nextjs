@@ -20,9 +20,9 @@ export function Hero({ content }: HeroProps) {
   return (
     <Section
       id="hero"
-      className="hero-section relative isolate -mt-[var(--header-offset)] overflow-x-clip px-0 py-0"
+      className="hero-section relative isolate -mt-[var(--header-offset)] px-0 py-0"
       background={<HeroDecoration />}
-      containerClassName="px-[var(--container-px)] pb-10 pt-[calc(var(--header-offset)+2.5rem)] sm:pb-12 sm:pt-[calc(var(--header-offset)+3rem)] lg:pb-14 lg:pt-[calc(var(--header-offset)+3.5rem)]"
+      containerClassName="px-[var(--container-px)] pb-12 pt-[calc(var(--header-offset)+2.5rem)] sm:pb-12 sm:pt-[calc(var(--header-offset)+3rem)] lg:pb-14 lg:pt-[calc(var(--header-offset)+3.5rem)]"
     >
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
         <div className="animate-fade-up mb-5 inline-flex">

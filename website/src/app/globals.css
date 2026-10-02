@@ -106,6 +106,7 @@
   --container-px: 1rem;
   --header-offset: 5.5rem;
   --hero-oplossingen-overlap: clamp(1.25rem, 3.5vw, 2.75rem);
+  --hero-art-min-height: clamp(19rem, 95vw, 30rem);
   --section-gradient-size: clamp(5rem, 18vw, 10rem);
   --section-blend: var(--background);
   --status-available: #22c55e;
@@ -151,10 +152,18 @@
   --sidebar-ring: #f97316;
 }
 
+@media (max-width: 639px) {
+  :root {
+    --hero-oplossingen-overlap: clamp(2rem, 8vw, 3rem);
+    --hero-art-min-height: clamp(17rem, 88vw, 26rem);
+  }
+}
+
 @media (min-width: 640px) {
   :root {
     --section-py: clamp(3.25rem, 7vw, 4.75rem);
     --container-px: 1.5rem;
+    --hero-art-min-height: 0px;
   }
 }
 

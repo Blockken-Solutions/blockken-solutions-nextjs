@@ -2,14 +2,18 @@ import { cn } from "@/lib/utils";
 
 type HeroBackgroundArtProps = {
   className?: string;
+  preserveAspectRatio?: string;
 };
 
-export function HeroBackgroundArt({ className }: HeroBackgroundArtProps) {
+export function HeroBackgroundArt({
+  className,
+  preserveAspectRatio = "xMidYMin slice",
+}: HeroBackgroundArtProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1440 720"
-      preserveAspectRatio="xMidYMin meet"
+      preserveAspectRatio={preserveAspectRatio}
       className={cn("block h-full w-full", className)}
       aria-hidden
     >
