@@ -24,7 +24,7 @@ export function DesktopNav() {
 
 export function HeaderActions({ mobileNav }: HeaderActionsProps) {
   return (
-    <div className="flex shrink-0 items-center gap-2 md:gap-3">
+    <div className="ml-auto flex shrink-0 items-center gap-2 md:gap-3">
       <Button
         asChild
         variant="primary"

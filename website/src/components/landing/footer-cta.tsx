@@ -39,7 +39,7 @@ function ContactColumn({
 
 export function FooterCta({ content }: FooterCtaProps) {
   return (
-    <Section id="contact" className="pb-16" variant="muted">
+    <Section id="contact" className="pt-8 pb-12 sm:pt-10" variant="muted">
       <div className="mx-auto max-w-5xl rounded-3xl bg-primary px-5 py-10 text-primary-foreground shadow-soft-lg sm:px-8 sm:py-14 lg:px-14 lg:py-16">
         <div className="mx-auto max-w-2xl text-center">
           <SectionHeading className="text-primary-foreground">

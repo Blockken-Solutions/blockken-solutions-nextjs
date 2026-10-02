@@ -23,7 +23,7 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
         </SectionDescription>
       </div>
 
-      <ol className="relative mt-14 hidden gap-6 lg:grid lg:grid-cols-4">
+      <ol className="relative mt-10 hidden gap-6 lg:mt-12 lg:grid lg:grid-cols-4">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute top-10 right-[12.5%] left-[12.5%] h-1 bg-border"
@@ -51,7 +51,7 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
         })}
       </ol>
 
-      <ol className="relative mt-14 space-y-0 lg:hidden">
+      <ol className="relative mt-10 space-y-0 lg:mt-12 lg:hidden">
         {content.steps.map((step, index) => {
           const Icon = getIcon(step.icon);
           const isLast = index === content.steps.length - 1;
@@ -88,7 +88,7 @@ export function HowWeWorkSection({ content }: HowWeWorkSectionProps) {
         })}
       </ol>
 
-      <div className="mt-12 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
+      <div className="mt-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row">
         <Button asChild variant="primary" shape="pill" size="cta" className="w-full sm:w-auto">
           <SectionLink href={content.primaryCta.href}>
             <ButtonLabel>{content.primaryCta.label}</ButtonLabel>

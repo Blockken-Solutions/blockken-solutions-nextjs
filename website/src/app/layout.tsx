@@ -44,7 +44,7 @@ export default function RootLayout({
         <JsonLd data={buildSiteGraph()} />
         <HashScrollHandler />
         <SiteHeader />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="flex-1 overflow-x-clip">
           {children}
         </main>
         <SiteFooter />

@@ -1,10 +1,11 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
 type SectionProps = ComponentPropsWithoutRef<"section"> & {
   variant?: "default" | "muted" | "card" | "elevated" | "peach" | "mint" | "sky" | "lavender";
   containerClassName?: string;
+  background?: ReactNode;
   overlap?: boolean;
   overhang?: boolean;
   fade?: boolean;
@@ -14,6 +15,7 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
 export function Section({
   className,
   containerClassName,
+  background,
   variant = "default",
   overlap = false,
   overhang = false,
@@ -44,9 +46,10 @@ export function Section({
       )}
       {...props}
     >
+      {background}
       <div
         className={cn(
-          "mx-auto w-full max-w-[var(--container-max)]",
+          "relative z-10 mx-auto w-full max-w-[var(--container-max)]",
           containerClassName,
         )}
       >

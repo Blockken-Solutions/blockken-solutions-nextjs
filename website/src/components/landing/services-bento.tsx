@@ -20,7 +20,7 @@ export function ServicesBento({ content }: ServicesBentoProps) {
         <SectionHeading>{content.heading}</SectionHeading>
       </div>
 
-      <ul className="mt-14 grid gap-6 md:grid-cols-3">
+      <ul className="mt-10 grid gap-6 md:grid-cols-3 lg:mt-12">
         {content.items.map((item, index) => {
           const Icon = getIcon(item.icon);
           const isAccent = index % 3 === 1;

@@ -116,7 +116,7 @@ export function PricingSection({ content }: PricingSectionProps) {
         </SectionDescription>
       </div>
 
-      <ul className="mt-14 grid gap-6 md:grid-cols-3">
+      <ul className="mt-10 grid gap-6 md:grid-cols-3 lg:mt-12">
         {content.tiers.map((tier) => (
           <PricingCard key={tier.id} tier={tier} />
         ))}

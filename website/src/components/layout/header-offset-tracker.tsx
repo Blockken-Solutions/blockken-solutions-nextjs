@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, type ReactNode } from "react";
 
 type HeaderOffsetTrackerProps = {
   children: ReactNode;
@@ -9,7 +9,7 @@ type HeaderOffsetTrackerProps = {
 export function HeaderOffsetTracker({ children }: HeaderOffsetTrackerProps) {
   const headerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = headerRef.current;
     if (!element) {
       return;
